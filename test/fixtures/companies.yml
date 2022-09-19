@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  number_of_employees: 1
+  name: MyString
+  bio: MyString
+  location: MyString
+  logo: MyString
+
+two:
+  type: 
+  number_of_employees: 1
+  name: MyString
+  bio: MyString
+  location: MyString
+  logo: MyString

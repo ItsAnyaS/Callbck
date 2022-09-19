@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+#Dancers
+get '/dancers/:id', to: 'dancers#show'
+#Companies
+get '/companies/:id', to: 'companies#show'
+#Applications
+get '/applications/:id', to: 'applications#show'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+#Listings
+get '/listings/:id', to: 'listings#show'
 end

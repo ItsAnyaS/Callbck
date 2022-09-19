@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  style: MyString
+  dancer-gender: MyString
+  compensation: MyString
+  image: MyString
+  location: MyString
+  rehersal_start_date: 2022-09-19 19:14:24
+  show_date_start: 2022-09-19 19:14:24
+  years_of_expirence: 1
+  company_id: 1
+
+two:
+  title: MyString
+  description: MyText
+  style: MyString
+  dancer-gender: MyString
+  compensation: MyString
+  image: MyString
+  location: MyString
+  rehersal_start_date: 2022-09-19 19:14:24
+  show_date_start: 2022-09-19 19:14:24
+  years_of_expirence: 1
+  company_id: 1
