@@ -18,12 +18,19 @@ class ApplicationsController <  ApplicationController
     end
 
     def create
-        application = Application.new(listing_id: params[:listing_id], dancer_id: params[:dancer_id], company_id: params[:company_id], status: "applied", role: params[:role])
-        if application.save
-            render json: application
+        check_app = Application.find_by(dancer_id: params[:dancer_id], listing_id: params[:listing_id])
+        if check_app
+            render json: {error: "You can only apply to each listing once"}
         else
-            render json: application.errors.full_messages, status: 422
+            application = Application.new(listing_id: params[:listing_id], dancer_id: params[:dancer_id], company_id: params[:company_id], status: "applied", role: params[:role])
+            if application.save
+                render json: application
+            else
+                render json: application.errors.full_messages, status: 422
+            end
+
         end
+       
     end
 
 end
