@@ -21,7 +21,7 @@ const Search = () => {
 
     return (
         <div>
-            <input name='keywords' onChange={(e)=> {handleInput(e.target.name, e.target.value)}}/>
+            Search
         </div>
     )
 }

@@ -8,6 +8,7 @@ class ListingsController < ApplicationController
 
 
     def show 
+        puts params[:id]
         listing = Listing.find_by(id: params[:id])
         render json: listing
     end
@@ -22,6 +23,7 @@ class ListingsController < ApplicationController
     end
 
     def search
+        #needs refactoring
         if params[:location]
             #think about how to add more general location
                 listings = Listing.where(location: params[:location])
@@ -39,18 +41,17 @@ class ListingsController < ApplicationController
                     render json: listings
                 end
         elsif params[:style]
-            listings = Listing.all.filter{|listing| listing.style.include?(params[:style])}
-            if params[:keywords]
+                listings = Listing.all.filter{|listing| listing.style.include?(params[:style])}
+                if params[:keywords]
+                    keyword_filtered_listings = listings.filter{|listing| listing.description.downcase.include?(params[:keywords].downcase)}
+                    render json: keyword_filtered_listings
+                else
+                    render json: listings
+                end
+        else
+                listings = Listing.all
                 keyword_filtered_listings = listings.filter{|listing| listing.description.downcase.include?(params[:keywords].downcase)}
                 render json: keyword_filtered_listings
-            else
-                render json: listings
-            end
-        else
-            #refactor
-            listings = Listing.all
-            keyword_filtered_listings = listings.filter{|listing| listing.description.downcase.include?(params[:keywords].downcase)}
-            render json: keyword_filtered_listings
         end
     end
 
