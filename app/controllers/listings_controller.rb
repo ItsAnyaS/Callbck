@@ -10,7 +10,7 @@ class ListingsController < ApplicationController
     def show 
         puts params[:id]
         listing = Listing.find_by(id: params[:id])
-        render json: listing
+        render json: listing.to_json(methods: [:company])
     end
 
     def create
