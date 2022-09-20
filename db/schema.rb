@@ -17,7 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_19_233058) do
   create_table "applications", force: :cascade do |t|
     t.integer "listing_id"
     t.integer "dancer_id"
-    t.string "status"
+    t.string " "
     t.string "role"
     t.integer "company_id"
     t.datetime "created_at", null: false
