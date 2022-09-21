@@ -15,7 +15,7 @@ const getDancerInfo = async() => {
     console.log(res)
     let applied =  await res.filter(app => { return app?.status == 'applied'})
     setList1(applied)
-    let callback1 = await  res.filter(app => { return app?.status == 'callback_1'})
+    let callback1 = await res.filter(app => { return app?.status == 'callback_1'})
     setList2(callback1)
 }
 
@@ -54,14 +54,13 @@ const handleDrop = (item) => {
     }
 }
 const handleStatusChange = (currentStatus) => {
-if (currentStatus == 'applied' && origin != 'list2'){
+if (currentStatus == 'applied'){
     return 'callback_1'
 } else if ( currentStatus == 'callback_1'){
     return 'callback_2'
 } else if (currentStatus == 'callback_2'){
     return 'final_callback'
 }
-updateApplicationStaus()
 }
 
 
@@ -73,17 +72,17 @@ return (
         <header>
             <h1>Welcome, Dancer</h1>
         </header>
-        <div className="container" id='list1'  onDragEnterCapture={(e)=>{setDroppedOn('list1'); console.log('enter')}} >
+        <div className="container" id='list1' onDragEnterCapture={(e)=>{setDroppedOn('list1'); console.log('enter')}} >
             {list1.map(item => {
                 return (
-                    <p className="dragable" onDragStart={(e)=> {setOrigin(e.target.parentElement.id)}} onDragEnd={(e)=> {handleDrop(item);  setCurrentlySelectedApplicaton({applicationId:item?.id, status: handleStatusChange(item?.status)})}} draggable >{item?.listing?.title}</p>
+                    <p className="dragable" onDragStart={(e)=> {setOrigin(e.target.parentElement.id)}} onDragEnd={(e)=> {handleDrop(item);  setCurrentlySelectedApplicaton({applicationId:item?.id, status: handleStatusChange(item.status)}); updateApplicationStaus()}} draggable >{item?.listing?.title}</p>
                 )
             })}
             </div>
-        <div className="container" id='list2'  onDragEnterCapture={(e)=>{setDroppedOn('list2')}}>
+        <div className="container" id='list2' onDragEnterCapture={(e)=>{setDroppedOn('list2')}}>
         {list2.map(item => {
                 return (
-                    <div className="dragable"   onDragStart={(e)=> {setOrigin(e.target.parentElement.id)}}  onDragEnd={(e)=> {handleDrop(item);  setCurrentlySelectedApplicaton({applicationId:item?.id,  status: handleStatusChange(item?.status)});}} draggable >{item?.listing?.title}</div>
+                    <p className="dragable" onDragStart={(e)=> {setOrigin(e.target.parentElement.id)}}  onDragEnd={(e)=> {handleDrop(item);  setCurrentlySelectedApplicaton({applicationId:item?.id, status: handleStatusChange(item.status)});updateApplicationStaus()}} draggable >{item?.listing?.title}</p>
                 )
             })}
         </div>
