@@ -19,7 +19,7 @@ const App = () => {
       <Navbar/>
         <Routes>
           <Route exact key={1} path='/' element={<Home/>}/>
-          <Route exact key={2} path='/search/:searchTerm' element={<Search/>}/>
+          <Route exact key={2} path='/search' element={<Search/>}/>
           <Route exact key={3} path='/dancer_profile' element={<DancerProfile/>}/>
           <Route exact key={4} path='/company_profile' element={<CompanyProfile/>}/>
           <Route exact key={5} path='/signup' element={<AuthPage/>}/>
