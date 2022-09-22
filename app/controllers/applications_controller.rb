@@ -22,7 +22,7 @@ class ApplicationsController <  ApplicationController
         if check_app
             render json: {error: "You can only apply to each listing once"}
         else
-            application = Application.new(listing_id: params[:listing_id], dancer_id: params[:dancer_id], company_id: params[:company_id], status: "applied", role: params[:role])
+            application = Application.new(listing_id: params[:listing_id], dancer_id: params[:dancer_id], company_id: params[:company_id], status: "0", role: params[:role])
             if application.save
                 render json: application
             else
