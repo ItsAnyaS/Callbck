@@ -26,6 +26,9 @@ const App = () => {
           <Route exact key={6} path='/listing/:id' element={<ListingPage/>}/>
         </Routes>
       </Router>
+      <footer>
+        This is the footer it is going to have some social media stuff and maybe some usefull links
+    </footer>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import '../styles/ListingPage.css'
 
 const ListingPage = () => {
     let { id } = useParams()
@@ -32,13 +33,15 @@ const ListingPage = () => {
     }
 // console.log(displayedListing)
 return (
-    <div>
-        <header>
+    <main id='listing-page'>
+        <header id='listing-page-header'>
+            <div>
             <h1>{displayedListing?.title}</h1>
-            <h2>{displayedListing?.updated_at}</h2>
-            <h2>${displayedListing?.compensation}</h2>
+            <p>{displayedListing?.updated_at}</p>
+            </div>
+            <h2 id='listing-page-info-comp'>${displayedListing?.compensation}</h2>
         </header>
-        <section>
+        <section id="listing-page-info">
             <img src={displayedListing?.image} alt='listing photo' />
             <p>{displayedListing?.description}</p>
             <p>{displayedListing?.location}</p>
@@ -51,7 +54,7 @@ return (
             <p>Years of expirence required: {displayedListing?.years_of_expirence || '0'}</p>
         <button onClick={()=> {applyForListing()}}>Apply</button>
         </section>
-        <section>
+        <section id="listing-page-company-section">
             <img src={displayedListing?.company?.logo}/>
             <h4>{displayedListing?.company?.name}</h4>
             <h5>Number of Employees: {displayedListing?.company?.number_of_employees}</h5>
@@ -61,7 +64,7 @@ return (
        {currentListingId - 1 !== 0 ? <button onClick={()=> {setCurrentListingId(currentListingId - 1)}}>previous listing</button>: <button>previous listing</button>}
         <button onClick={()=> {setCurrentListingId(currentListingId + 1)}}>next listing</button>
         {/* <p>{JSON.stringify(displayedListing)}</p> */}
-    </div>
+    </main>
 )
 }
 

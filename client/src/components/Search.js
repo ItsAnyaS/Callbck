@@ -1,6 +1,8 @@
 import {useState, useEffect} from 'react'
-
+import {useNavigate} from 'react-router-dom'
+import '../styles/Search.css'
 const Search = () => {
+    const navigate = useNavigate()
     const [searchParams, setSearchParams] = useState({})
     const [listings, setListings] = useState([])
         const handleSearch = async() => {
@@ -52,19 +54,21 @@ console.log(searchParams)
                     <button>Search</button>
                 </form>
             </header>
-            <section>
+            <section id='listing-container'>
             {listings.map(listing => {
                 return (
-                    <div key={listing?.id}>
+                    <div className='listing-item'onClick={()=> {navigate(`/listing/${listing?.id}`)}} key={listing?.id}>
+                        <div className='listing-item-info'>
                         <h4>{listing?.title}</h4>
                         <p>{listing?.description}</p>
-                        <div>
-                            <h5>{listing?.compensation}</h5>
-                            <button><a href={`/listing/${listing?.id}`}>Go to listing</a></button>
+                        </div>
+                        <div className='listing-item-cta'>
+                            <h5>${listing?.compensation}</h5>
                         </div>
                     </div>
                 )
             })}
+              
             </section>
         </main>
     )

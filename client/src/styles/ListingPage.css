@@ -1,0 +1,21 @@
+#listing-page{
+    
+}
+
+#listing-page-header{
+    display: flex;
+    align-items: center;
+    margin-left: 10%;
+    width: 60%;
+}
+
+#listing-page-header div {
+    margin-right: auto;
+}
+
+#listing-page-info{}
+
+
+#listing-page-company-section{
+
+}

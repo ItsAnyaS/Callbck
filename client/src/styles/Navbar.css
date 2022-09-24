@@ -1,0 +1,17 @@
+#navbar {
+display: flex;
+
+}
+#logo{
+    margin-right: auto;
+}
+
+#nav-list {
+    display: flex;
+    gap: 10%;
+    margin-right: 10%;
+}
+
+.nav-item {
+list-style-type: none;
+}

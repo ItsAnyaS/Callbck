@@ -1,0 +1,44 @@
+
+
+#listing-container{
+min-height: 90vh;
+width: 100%;
+margin-top: 5em;
+}
+
+
+
+.listing-item{
+margin-left: 10%;
+width: 60%; 
+border-bottom: 1px solid rgba(0, 0, 0, 0.426);
+display: flex;
+align-items: center;
+padding: 10px 10px;
+}
+
+.listing-item:hover{
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.598);
+}
+
+.listing-item-info{
+margin-right: auto;
+max-width: 80%;
+}
+
+.listing-item-info p {
+    
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+max-width: 100%;
+
+}
+
+.listing-item-cta{
+display: flex;
+flex-direction: column;
+align-items: flex-end;
+font-size: 1.4em;
+}
