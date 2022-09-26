@@ -1,6 +1,8 @@
 import '../styles/CompanyProfile.css'
 import { useEffect, useState } from 'react'
+import {useNavigate} from 'react-router-dom'
 const CompanyProfile = () => {
+    const navigate = useNavigate()
     const [listingInfo, setListingInfo] = useState({company_id: 1})
     const [isShowingCreatePostModal, setIsShowingCreatePostModal] = useState(false)
     const [currentListings, setCurrentListings] = useState([])
@@ -9,7 +11,9 @@ const CompanyProfile = () => {
         const getCurrentListings = async() => {
             let req = await fetch(`http://localhost:3000/listings_by_company/1`)
             let res = await req.json()
-            console.log(res)
+            if (req.ok){
+                setCurrentListings(res)
+            }
         }
         getCurrentListings()
     }, [])
@@ -50,7 +54,25 @@ const CompanyProfile = () => {
         let res = await req.json()
         if (req.ok) {
             setIsShowingCreatePostModal(false)
+            setCurrentListings(prev => [...prev, res])
         }
+    }
+
+    const handleListingDelete = async(listing) => {
+
+        let req =  await fetch(`http://localhost:3000/listings/${listing.id}`, {
+            method: 'DELETE',
+            headers: {"content-type": "application/json"}
+        })
+        let res = await req.json()
+        if (req.ok) {
+
+        let filteredListings = currentListings.filter(cur => {
+            return (cur.id != listing.id)
+        })
+        setCurrentListings(filteredListings)
+    }
+
     }
     return (
 <main>
@@ -94,9 +116,19 @@ const CompanyProfile = () => {
             <button>Post listing</button>
         </form>
     </section>}
-    <section>
+    <section id='company-page-listing-section'>
         <h2>Current listings:</h2>
-        {}
+        {currentListings.map(listing => {
+            return (
+                <div onClick={() => {navigate(`/listing/${listing.id}`)}} className='seller-page-listing-item' key={listing?.id}>
+                    <div className='spli-wrapper'>
+                    <h4>{listing?.title}</h4>
+                    <p>{listing?.description}</p>
+                    </div>
+                    <button onClick={(e)=> { e.stopPropagation() ;handleListingDelete(listing)}}>Delete</button>
+                </div>
+            )
+        })}
     </section>
 </main>
     )
