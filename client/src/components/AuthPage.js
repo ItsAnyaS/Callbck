@@ -1,21 +1,13 @@
-import { useState } from "react"
-import CompanySignUp from './CompanySignUp'
-import DancerSignUp from './DancerSignUp'
+import { useNavigate } from "react-router-dom"
 const AuthPage = () => {
-    const [isCompany, setIsCompany] = useState(false)
-    const [isDancer, setIsDancer] = useState(false)
+    const navigate = useNavigate()
     return (
         <main>
-           {!isCompany && !isDancer && <section> 
-            <button>Sign up as dancer</button>
-            <button>Sign up as company</button>
-            </section>}
-            { isCompany && 
-                <CompanySignUp/>
-            }
-            { isDancer && 
-                <DancerSignUp/>
-            }
+            <section> 
+            <button onClick={()=> {navigate('/dancer/signup')}}>Sign up as dancer</button>
+            <button onClick={()=> {navigate('/company/signup')}}>Sign up as company</button>
+            </section>
+           
         </main>
     )
 }

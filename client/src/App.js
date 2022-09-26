@@ -1,8 +1,8 @@
 import './App.css';
 import Search from './components/Search'
 import DancerProfile from './components/Dancer'
-// import DancerSignUp from './components/DancerSignUp';
-// import CompanySignUp from './components/CompanySignUp';
+import DancerSignUp from './components/DancerSignUp';
+import CompanySignUp from './components/CompanySignUp';
 import AuthPage from './components/AuthPage';
 import Navbar from './components/Navbar';
 import CompanyProfile from './components/CompanyProfile';
@@ -13,8 +13,6 @@ import {BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 const App = () => {
   return (
     <div className="App">
-      {/* <DancerSignUp/> */}
-      {/* <CompanySignUp/> */}
       <Router>
       <Navbar/>
         <Routes>
@@ -24,6 +22,9 @@ const App = () => {
           <Route exact key={4} path='/company_profile' element={<CompanyProfile/>}/>
           <Route exact key={5} path='/signup' element={<AuthPage/>}/>
           <Route exact key={6} path='/listing/:id' element={<ListingPage/>}/>
+          <Route exact key={7} path='/listing/:id' element={<ListingPage/>}/>
+          <Route exact key={8} path='/dancer/signup' element={<DancerSignUp/>}/>
+          <Route exact key={9} path='/company/signup' element={<CompanySignUp/>}/>
         </Routes>
       </Router>
       <footer>
