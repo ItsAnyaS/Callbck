@@ -59,4 +59,9 @@ class ListingsController < ApplicationController
         end
     end
 
+    def listings_by_company
+        listings = Listing.where(company_id: params[:id])
+        render json: listings
+    end
+
 end

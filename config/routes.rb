@@ -13,9 +13,9 @@ post '/applications', to: 'applications#create'
 
 #Listings
 get '/listings/:id', to: 'listings#show'
-post '/listing', to: 'listings#create'
+post '/listings', to: 'listings#create'
 get '/listings', to: 'listings#index'
-
+get '/listings_by_company/:id', to: 'listings#listings_by_company'
 #Listing search
 
 post '/listings_search', to: 'listings#search'

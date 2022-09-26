@@ -1,20 +1,25 @@
 #listing-page{
-    
+    padding-left: 10%;
 }
 
 #listing-page-header{
     display: flex;
     align-items: center;
-    margin-left: 10%;
     width: 60%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.474);
 }
 
 #listing-page-header div {
     margin-right: auto;
 }
 
+
 #listing-page-info{}
 
+#listing-pref-gender-container{
+   display: flex;
+   gap: 10px; 
+}
 
 #listing-page-company-section{
 

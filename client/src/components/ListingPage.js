@@ -20,15 +20,15 @@ const ListingPage = () => {
         }
         getCurrentListing()
     },[currentListingId])
-    const [dancerApplicationInfo, setDancerApplicationInfo] = useState({dancer_id: 1, listing_id: currentListingId, company_id: 1, role: 'soloist'})
+    const [dancerApplicationInfo] = useState({dancer_id: 1, listing_id: currentListingId, company_id: 1, role: 'soloist'})
     
     const applyForListing = async() => {
-        let req = await fetch('http://localhost:3000/applications', {
+        fetch('http://localhost:3000/applications', {
             method: "POST",
             headers: {"Content-type": "application/json"},
             body: JSON.stringify(dancerApplicationInfo)
         })
-        let res = await req.json()
+        // let res = await .json()
         // console.log(res)
     }
 // console.log(displayedListing)
@@ -37,25 +37,34 @@ return (
         <header id='listing-page-header'>
             <div>
             <h1>{displayedListing?.title}</h1>
-            <p>{displayedListing?.updated_at}</p>
+            <p>{new Date( displayedListing?.updated_at).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</p>
             </div>
             <h2 id='listing-page-info-comp'>${displayedListing?.compensation}</h2>
         </header>
         <section id="listing-page-info">
-            <img src={displayedListing?.image} alt='listing photo' />
+            <h1>Description:</h1>
             <p>{displayedListing?.description}</p>
+            <h3>Location</h3>
             <p>{displayedListing?.location}</p>
+            {/* <iframe referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps/embed/v1/view?key=AIzaSyDej2gyib9LdZv2wQO2_6MInDwv-glcoeE&center=-33.8569,151.2152&zoom=14&maptype=satellite"
+                allowfullscreen>
+            </iframe> */}
+            <h3>Prefered gender:</h3>
+            <div id="listing-pref-gender-container">
             {displayedListing?.dancer_gender?.map((item, index) => {
                 return (
                     <p key={index} >{item}</p>
                 )
             })}
+            </div>
             <p>{displayedListing?.style}</p>
-            <p>Years of expirence required: {displayedListing?.years_of_expirence || '0'}</p>
+            <h3>Years of expirence required: </h3>
+            <p>{displayedListing?.years_of_expirence || '0'}</p>
         <button onClick={()=> {applyForListing()}}>Apply</button>
         </section>
         <section id="listing-page-company-section">
-            <img src={displayedListing?.company?.logo}/>
+            <img  alt={`This is a logo of ${displayedListing?.company?.name}`} src={displayedListing?.company?.logo}/>
             <h4>{displayedListing?.company?.name}</h4>
             <h5>Number of Employees: {displayedListing?.company?.number_of_employees}</h5>
             <p>{displayedListing?.company?.bio}</p>
