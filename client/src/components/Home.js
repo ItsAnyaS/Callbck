@@ -1,10 +1,13 @@
 import '../styles/Home.css'
+import { useNavigate} from 'react-router-dom'
 const Home = () => {
-
+const navigate = useNavigate()
     return (
 <main id='home'>
     <section id='hero'>
-        This is the hero section there will prob be text on left and img on right
+        <h1>Quick, transparent, convientent.</h1>
+        <h3>This is a short sentence about why you should make an account</h3>
+        <button onClick={()=> {navigate('/signup')}}>Get Started</button>
         {/* <img src='' alt='hero image text'/> */}
     </section>
     <section id="cta-section">

@@ -6,6 +6,10 @@ display: flex;
     margin-right: auto;
 }
 
+#logo:hover {
+    cursor: pointer;
+}
+
 #nav-list {
     display: flex;
     gap: 10%;
