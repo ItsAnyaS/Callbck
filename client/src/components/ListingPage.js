@@ -20,7 +20,7 @@ const ListingPage = () => {
         }
         getCurrentListing()
     },[currentListingId])
-    const [dancerApplicationInfo] = useState({dancer_id: 1, listing_id: currentListingId, company_id: 1, role: 'soloist'})
+    const [dancerApplicationInfo] = useState({dancer_id: 11, listing_id: currentListingId, company_id: 1, role: 'soloist'})
     
     const applyForListing = async() => {
         fetch('http://localhost:3000/applications', {

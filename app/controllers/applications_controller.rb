@@ -11,7 +11,9 @@ class ApplicationsController <  ApplicationController
         token = params[:auth_token]
         decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
         dancer = Dancer.find_by(email: decoded_token[0]["data"])
-        applicaions = Application.where(dancer_id: params[:dancer_id])
+        puts dancer.id
+        applicaions = Application.where(dancer_id: dancer.id)
+        puts applicaions
         render json: applicaions.to_json(methods: [:listing])
     end
 
