@@ -13,8 +13,12 @@ class ListingsController < ApplicationController
         render json: listing.to_json(methods: [:company])
     end
 
-    def create
-        listing = Listing.new(title: params[:title], description: params[:description], image: params[:image], style: params[:style], dancer_gender: params[:dancer_gender], compensation: params[:compensation], location: params[:location], rehersal_start_date: params[:rehersal_start_date], show_date_start: params[:show_date_start], years_of_expirence: params[:years_of_expirence], company_id: params[:company_id])
+    def create 
+        hmac_secret = 'my$ecretK3y'
+        token = params[:company_auth_token]
+        decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
+        company = Company.find_by(email: decoded_token[0]["data"])
+        listing = Listing.new(title: params[:title], description: params[:description], image: params[:image], style: params[:style], dancer_gender: params[:dancer_gender], compensation: params[:compensation], location: params[:location], rehersal_start_date: params[:rehersal_start_date], show_date_start: params[:show_date_start], years_of_expirence: params[:years_of_expirence], company_id: company.id)
         if listing.save
             render json: listing
         else
@@ -60,7 +64,11 @@ class ListingsController < ApplicationController
     end
 
     def listings_by_company
-        listings = Listing.where(company_id: params[:id])
+        hmac_secret = 'my$ecretK3y'
+        token = params[:company_auth_token]
+        decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
+        company = Company.find_by(email: decoded_token[0]["data"])
+        listings = Listing.where(company_id: company.id)
         render json: listings
     end
 

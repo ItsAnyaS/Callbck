@@ -17,7 +17,7 @@ get '/listings/:id', to: 'listings#show'
 post '/listings', to: 'listings#create'
 get '/listings', to: 'listings#index'
 delete '/listings/:id', to: 'listings#destroy'
-get '/listings_by_company/:id', to: 'listings#listings_by_company'
+post '/listings_by_company', to: 'listings#listings_by_company'
 #Listing search
 post '/listings_search', to: 'listings#search'
 

@@ -1,15 +1,22 @@
 import '../styles/CompanyProfile.css'
 import { useEffect, useState } from 'react'
 import {useNavigate} from 'react-router-dom'
+import Cookies from 'js-cookie'
 const CompanyProfile = () => {
     const navigate = useNavigate()
-    const [listingInfo, setListingInfo] = useState({company_id: 1})
+    const [listingInfo, setListingInfo] = useState({company_auth_token: Cookies.get('company-auth-token')})
     const [isShowingCreatePostModal, setIsShowingCreatePostModal] = useState(false)
     const [currentListings, setCurrentListings] = useState([])
 
     useEffect(() => {
         const getCurrentListings = async() => {
-            let req = await fetch(`http://localhost:3000/listings_by_company/1`)
+            let authToken = Cookies.get('company-auth-token')
+            console.log(authToken)
+            let req = await fetch(`http://localhost:3000/listings_by_company`, {
+                method: "POST",
+                headers: {"content-type": "application/json"},
+                body: JSON.stringify({company_auth_token: authToken})
+            })
             let res = await req.json()
             if (req.ok){
                 setCurrentListings(res)

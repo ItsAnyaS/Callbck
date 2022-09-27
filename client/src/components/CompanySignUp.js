@@ -23,7 +23,7 @@ const CompanySignUp = () => {
         console.log(res)
         if (req.ok){
             Cookies.set('company-auth-token', res["company-auth-token"], { expires: 7 })
-            // navigate('/company_profile')
+            navigate('/company_profile')
         }
     }
 
