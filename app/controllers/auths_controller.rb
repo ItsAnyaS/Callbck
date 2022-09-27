@@ -29,7 +29,7 @@ end
         end
     end
 
-    def login_company
+    def company_login
         company = Company.find_by(email: params[:email])
         if company.password_digest == params[:password]
             hmac_secret = 'my$ecretK3y'
@@ -38,6 +38,18 @@ end
             render json: {"company-auth-token": token}
         else 
             render json: {error: "Incorrect email or password"}
+        end
+    end
+
+    def company_signup
+        company = Company.new(company_type: params[:company_type], number_of_employees: params[:number_of_employees], name: params[:name],email: params[:email], bio: params[:bio], location: params[:location], logo: params[:logo], password_digest: params[:password])
+        if company.save
+            hmac_secret = 'my$ecretK3y'
+            payload = { data:  company.email}
+            token = JWT.encode payload, hmac_secret, 'HS256'
+            render json: {"company-auth-token": token}
+        else
+            render json: company.errors.full_messages, statis: 422
         end
     end
 

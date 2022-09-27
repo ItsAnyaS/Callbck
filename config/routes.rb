@@ -25,4 +25,7 @@ post '/listings_search', to: 'listings#search'
 
 post '/auth/login', to: 'auths#login'
 post '/auth/signup', to: 'auths#register'
+
+post '/auth/company/login', to: 'auths#company_login'
+post '/auth/company/signup', to: 'auths#company_signup'
 end
