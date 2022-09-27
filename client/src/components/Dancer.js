@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import '../styles/Dancer.css'
-
+import Cookies from "js-cookie"
 const DancerProfile = ()=> {
 const [applications, setApplications] = useState([])
 const [list1, setList1] = useState([])
@@ -12,7 +12,8 @@ const [droppedOn, setDroppedOn] = useState()
 
     useEffect(()=> {
         const getDancerInfo = async() => {
-            let req = await fetch(`http://localhost:3000/applications_by_dancer/1`)
+            let authToken = Cookies.get('auth-token')
+            let req = await fetch(`http://localhost:3000/applications_by_dancer/${authToken}`)
             let res = await req.json()
             setApplications(res)
             console.log(res)
@@ -30,7 +31,8 @@ const [droppedOn, setDroppedOn] = useState()
     }, [])
 
     const updateApplicationStaus = async(id, status) => {
-        let req = await fetch(`http://localhost:3000//applications/${id}`, {
+       
+        let req = await fetch(`http://localhost:3000/applications/${id}`, {
             method: 'PATCH',
             headers: {"Content-type": "application/json"},
             body: JSON.stringify({status: status})

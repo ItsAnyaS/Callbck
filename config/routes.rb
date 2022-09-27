@@ -19,6 +19,10 @@ get '/listings', to: 'listings#index'
 delete '/listings/:id', to: 'listings#destroy'
 get '/listings_by_company/:id', to: 'listings#listings_by_company'
 #Listing search
-
 post '/listings_search', to: 'listings#search'
+
+#Auth
+
+post '/auth/login', to: 'auths#login'
+post '/auth/signup', to: 'auths#register'
 end

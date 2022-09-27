@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_19_233058) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_27_022053) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "applications", force: :cascade do |t|
     t.integer "listing_id"
     t.integer "dancer_id"
-    t.string " "
+    t.string "status"
     t.string "role"
     t.integer "company_id"
     t.datetime "created_at", null: false
@@ -41,11 +41,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_19_233058) do
     t.string "first_name"
     t.string "last_name"
     t.string "gender"
-    t.string "dance_style", default: [], array: true
+    t.string "dance_style"
     t.string "email"
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
     t.index ["email"], name: "index_dancers_on_email", unique: true
   end
 

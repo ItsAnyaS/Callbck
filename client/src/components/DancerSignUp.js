@@ -1,23 +1,29 @@
 import { useEffect, useState } from "react"
+import { useNavigate} from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 const DancerSignUp = () => {
+    const navigate = useNavigate()
     const [newDancerInfo, setNewDancerInfo] = useState()
     const [isStepTwo, setIsStepTwo] = useState(false)
     const [duplicateDancerError, setDuplicateDancerError] = useState()
 
     useEffect(()=> {
-        setNewDancerInfo({...newDancerInfo, gender:['female']})
+        setNewDancerInfo({...newDancerInfo, gender:'female'})
     }, [])
 
     const createNewDancer = async(e) => {
         e.preventDefault()
-        let req = await fetch('http://localhost:3000/dancers', {
+        let req = await fetch('http://localhost:3000/auth/signup', {
             method: "POST", 
             headers: {"Content-type": "application/json"},
             body: JSON.stringify(newDancerInfo)
             })
         let res = await req.json()
-        console.log(res)
+        if (req.ok){
+            Cookies.set('auth-token', res["auth-token"], { expires: 7 })
+            navigate('/dancer_profile')
+        }
     }
 
     const handleInput = (e) => {
@@ -33,7 +39,6 @@ const DancerSignUp = () => {
         e.preventDefault()
         let req = await fetch(`http://localhost:3000/dancers_by_email/${newDancerInfo.email}`)
         let res = await req.json()
-        console.log(res)
         if (res == null){
             setIsStepTwo(true)
         }
@@ -41,13 +46,7 @@ const DancerSignUp = () => {
             setDuplicateDancerError('There is already an account with this email.')
         }
     }
-    const handleGenderInput = (e) => {
-        let value = e.target.value
-        setNewDancerInfo({...newDancerInfo,
-        gender: [value]})
-    }
-
-    console.log(newDancerInfo)
+   
     return (
     <main>
     <section>
@@ -59,13 +58,14 @@ const DancerSignUp = () => {
         <button>Next</button>
     </form>}
    { isStepTwo && <form onSubmit={createNewDancer}>
-        <select name='gender' required placeholder="Gender" onChange={handleGenderInput}> 
+        <select name='gender' required placeholder="Gender" onChange={handleInput}> 
         <option defaultChecked={true} disabled >---Select-one---</option>
         <option value={'female'} >Female</option>
         <option value={'male'}>Male</option>
         <option value={'non-binary'}>Non-binary</option>
         </select>
         <input name='location' minLength="5" maxLength="5" onChange={handleInput} type={'number'} required placeholder="Zip code"/> 
+        <input name="password_digest" required type={'password'} placeholder="Password" onChange={handleInput} />
         <button >Create Account</button>
     </form>}
     </section>   
