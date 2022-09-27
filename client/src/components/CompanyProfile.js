@@ -11,7 +11,6 @@ const CompanyProfile = () => {
     useEffect(() => {
         const getCurrentListings = async() => {
             let authToken = Cookies.get('company-auth-token')
-            console.log(authToken)
             let req = await fetch(`http://localhost:3000/listings_by_company`, {
                 method: "POST",
                 headers: {"content-type": "application/json"},

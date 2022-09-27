@@ -9,10 +9,37 @@ import CompanyProfile from './components/CompanyProfile';
 import ListingPage from './components/ListingPage';
 import Home from './components/Home';
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import {createContext, useState, useEffect, useMemo} from 'react'
+import Cookies from 'js-cookie';
+export const UserContext = createContext()
 
 const App = () => {
+const [globalUser, setGlobalUser] = useState()
+ 
+// const [isDancer, setIsDancer] = useState(false)
+const handleUserType = () => {
+  if (Cookies.get('auth-token')){
+    // setIsDancer(true)
+    setGlobalUser({...globalUser, isDancer: true})
+} else if (Cookies.get('company-auth-token')){
+    // setIsDancer(false)
+    setGlobalUser({...globalUser, isDancer: false})
+}}
+
+useEffect(() => {
+  handleUserType()
+}, [])
+
+
+
+
+  const value = useMemo(() => ({ globalUser, setGlobalUser }), [globalUser, setGlobalUser]);
+
+console.log(globalUser)
+
   return (
     <div className="App">
+      <UserContext.Provider value={value}>
       <Router>
       <Navbar/>
         <Routes>
@@ -30,6 +57,7 @@ const App = () => {
       <footer>
         This is the footer it is going to have some social media stuff and maybe some usefull links
     </footer>
+    </UserContext.Provider>
     </div>
   );
 }
