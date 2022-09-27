@@ -13,6 +13,7 @@ const Navbar = () => {
                 <NavLink style={{textDecoration: 'none', color: 'black'}} to='/search'><li className="nav-item">Listings</li></NavLink>
               { globalUser&& <NavLink style={{textDecoration: 'none', color: 'black'}} to={`/${globalUser.isDancer? 'dancer_profile': 'company_profile'}`}><li className="nav-item">Profile</li></NavLink>}
               { globalUser&& <NavLink style={{textDecoration: 'none', color: 'black'}} to={`/`}><li className="nav-item">Sign out</li></NavLink>}
+              { !globalUser&& <NavLink style={{textDecoration: 'none', color: 'black'}} to={`/login`}><li className="nav-item">LOGIN</li></NavLink>}
             </ul>
         </nav>
     )
