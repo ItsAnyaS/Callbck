@@ -8,7 +8,7 @@ get '/companies/:id', to: 'companies#show'
 post '/companies', to: 'companies#create'
 #Applications
 get '/applications/:id', to: 'applications#show'
-get '/applications_by_dancer/:dancer_id', to: 'applications#applications_by_dancer'
+post '/applications_by_dancer', to: 'applications#applications_by_dancer'
 patch '/applications/:id', to: 'applications#update'
 post '/applications', to: 'applications#create'
 

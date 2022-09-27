@@ -7,6 +7,10 @@ class ApplicationsController <  ApplicationController
     end
 
     def applications_by_dancer
+        hmac_secret = 'my$ecretK3y'
+        token = params[:auth_token]
+        decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
+        dancer = Dancer.find_by(email: decoded_token[0]["data"])
         applicaions = Application.where(dancer_id: params[:dancer_id])
         render json: applicaions.to_json(methods: [:listing])
     end
