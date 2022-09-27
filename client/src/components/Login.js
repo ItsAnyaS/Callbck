@@ -1,8 +1,10 @@
 import '../styles/Login.css'
 import { useState, useEffect, useContext } from 'react'
 import { UserContext } from '../App'
+import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
 const Login = () => {
+    const navigate = useNavigate()
     const {globalUser, setGlobalUser} = useContext(UserContext)
     const [loginType, setLoginType] = useState('dancer')
     const [loginInfo, setLoginInfo] = useState({})
@@ -14,8 +16,11 @@ const Login = () => {
             body: JSON.stringify(loginInfo)
         })
         let res = await req.json()
-        setGlobalUser({first_name: res.first_name, last_name: res.last_name, isDancer: true})
-        Cookies.set('auth-token', res["auth-token"])
+        if (req.ok) {
+            setGlobalUser({first_name: res.first_name, last_name: res.last_name, isDancer: true})
+            Cookies.set('auth-token', res["auth-token"])
+            navigate('/dancer_profile')
+        }
     }
 
     const companyLogin = async(e) => {
@@ -26,8 +31,11 @@ const Login = () => {
             body: JSON.stringify(loginInfo)
         })
         let res = await req.json()
-        setGlobalUser({name: res.name, isDancer: false})
-        Cookies.set('company-auth-token', res["company-auth-token"], {expires: 7})
+        if (req.ok) {
+            setGlobalUser({name: res.name, isDancer: false})
+            Cookies.set('company-auth-token', res["company-auth-token"], {expires: 7})
+            navigate('/company_profile')
+        }
     }
 
     const handleInput = (e) => {

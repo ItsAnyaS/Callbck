@@ -36,7 +36,7 @@ useEffect(() => {
 
   const value = useMemo(() => ({ globalUser, setGlobalUser }), [globalUser, setGlobalUser]);
 
-console.log(globalUser)
+// console.log(globalUser)
 
   return (
     <div className="App">
