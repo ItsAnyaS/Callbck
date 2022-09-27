@@ -13,4 +13,9 @@ class DancersController < ApplicationController
             render json: dancer.errors.full_messages, statis: 422
         end
     end
+
+    def dancer_by_email
+        dancer = Dancer.find_by(email: params[:email])
+       render json: dancer
+    end
 end
