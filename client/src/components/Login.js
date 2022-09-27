@@ -1,24 +1,64 @@
 import '../styles/Login.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { UserContext } from '../App'
+import Cookies from 'js-cookie'
 const Login = () => {
+    const {globalUser, setGlobalUser} = useContext(UserContext)
     const [loginType, setLoginType] = useState('dancer')
+    const [loginInfo, setLoginInfo] = useState({})
+    const dancerLogin = async(e) => {
+        e.preventDefault()
+        let req = await fetch('http://localhost:3000/auth/login', {
+            method: 'POST',
+            headers: {"content-type": "application/json"},
+            body: JSON.stringify(loginInfo)
+        })
+        let res = await req.json()
+        setGlobalUser({first_name: res.first_name, last_name: res.last_name, isDancer: true})
+        Cookies.set('auth-token', res["auth-token"])
+    }
+
+    const companyLogin = async(e) => {
+        e.preventDefault()
+        let req = await fetch('http://localhost:3000/auth/company/login',  {
+            method: 'POST',
+            headers: {"content-type": "application/json"},
+            body: JSON.stringify(loginInfo)
+        })
+        let res = await req.json()
+        setGlobalUser({name: res.name, isDancer: false})
+        Cookies.set('company-auth-token', res["company-auth-token"], {expires: 7})
+    }
+
+    const handleInput = (e) => {
+        let key = e.target.name
+        let value = e.target.value
+        setLoginInfo({...loginInfo,
+        [key]: value
+         })
+    }
+
+
 return (
     <main>
         {loginType == 'dancer' && 
         <section>
-            <form>
-                <input placeholder='Email' type={'email'}/>
-                <input placeholder='Password' type={'password'}/>
+            <form onSubmit={(e)=> {dancerLogin(e)}}>
+                <input name='email' onChange={handleInput} placeholder='Email' type={'email'}/>
+                <input name='password' onChange={handleInput} placeholder='Password' type={'password'}/>
                 <button>Login</button>
-                <button onClick={()=> {setLoginType('company')}}>Login as company</button>
+                <button onClick={()=> {setLoginType('company'); setLoginInfo({})}}>Login as company</button>
             </form>
         </section>}
         { loginType == 'company' &&
             <section>
-                <input placeholder='Email' type={'email'}/>
-                <input placeholder='Password' type={'password'}/>
+                <form onSubmit={(e)=> {companyLogin(e)}}>
+                <input name='email' onChange={handleInput} placeholder='Email' type={'email'}/>
+                <input name='password' onChange={handleInput} placeholder='Password' type={'password'}/>
                 <button>Login</button>
-                <button onClick={()=> {setLoginType('dancer')}}>Login as dancer</button>
+                <button onClick={()=> {setLoginType('dancer'); setLoginInfo({})}}>Login as dancer</button>
+                </form>
+                <h3>{}</h3>
             </section>
         }
     </main>
