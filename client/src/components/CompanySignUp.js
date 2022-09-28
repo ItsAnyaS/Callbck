@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate} from 'react-router-dom'
 import Cookies from 'js-cookie'
+import '../styles/Register.css'
 
 const CompanySignUp = () => {
     const navigate = useNavigate()
@@ -42,27 +43,31 @@ const CompanySignUp = () => {
     }
    
     return (
-    <main>
+    <main  id='signup-page'>
     <section>
         <h1>Company sign up</h1>
    { !isStepTwo && <form onSubmit={handleStepOne}>
         <input name='name' onChange={handleInput} required placeholder="Company name"/>
         <textarea name='bio' onChange={handleInput} required placeholder="Short bio describing your companies goals..."/> 
         <input name='email' onChange={handleInput} required placeholder="Email" type={'email'}/> 
-        <button>Next</button>
+        <button className="hover">Next <ion-icon name="arrow-forward-outline"></ion-icon></button>
     </form>}
    { isStepTwo && <form onSubmit={createNewCompany}>
+    <div>
+        <label>Select company type:</label>
         <select name='company_type' required placeholder="Company type" onChange={handleInput}> 
         <option defaultChecked={true} disabled >---Select-one---</option>
         <option value={'not-for-profit'} >Not for Profit</option>
         <option value={'for-profit'}>For Profit</option>
         </select>
+    </div>
         <input name='location' minLength="5" maxLength="5" onChange={handleInput} type={'number'} required placeholder="Zip code"/> 
         <input name='number_of_employees' onChange={handleInput} type={'number'} required placeholder="Number of employees"/> 
         <input name='logo' onChange={handleInput} required placeholder="Link to your logo"/> 
         <input name="password_digest" required type={'password'} placeholder="Password" onChange={handleInput} />
-        <button >Create Account</button>
+        <button className="hover">Create Account</button>
     </form>}
+    <button onClick={()=> {navigate('/dancer/signup')}}>Register as dancer</button>
     </section>   
     </main>
     )

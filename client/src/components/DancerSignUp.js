@@ -53,22 +53,26 @@ const DancerSignUp = () => {
     <section>
         <h1>Dancer sign up</h1>
    { !isStepTwo && <form onSubmit={handleStepOne}>
-        <input name='first_name' onChange={handleInput} required placeholder="First name"/>
+        <input className="first_name_input" name='first_name' onChange={handleInput} required placeholder="First name"/>
         <input name='last_name' onChange={handleInput} required placeholder="Last name"/> 
         <input name='email' onChange={handleInput} required placeholder="Email" type={'email'}/> 
-        <button>Next</button>
+        <button className="hover">Next <ion-icon name="arrow-forward-outline"></ion-icon></button>
     </form>}
    { isStepTwo && <form onSubmit={createNewDancer}>
-        <select name='gender' required placeholder="Gender" onChange={handleInput}> 
+    <div>
+       <label htmlFor="gender-drop-down">Choose gender:</label> 
+       <select name='gender' id="gender-drop-down" required placeholder="Gender" onChange={handleInput}> 
         <option defaultChecked={true} disabled >---Select-one---</option>
         <option value={'female'} >Female</option>
         <option value={'male'}>Male</option>
         <option value={'non-binary'}>Non-binary</option>
         </select>
+    </div>
         <input name='location' minLength="5" maxLength="5" onChange={handleInput} type={'number'} required placeholder="Zip code"/> 
         <input name="password_digest" required type={'password'} placeholder="Password" onChange={handleInput} />
         <button >Create Account</button>
     </form>}
+        <button onClick={()=> {navigate('/company/signup')}}>Register as company</button>
     </section>   
     </main>
     )
