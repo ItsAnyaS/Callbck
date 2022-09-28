@@ -47,6 +47,7 @@ const Search = () => {
     return (
         <main>
             <header id='search-header'>
+                <h1 style={{marginLeft: '10%', marginBottom: '2em'}}>Listings</h1>
                 <form onSubmit={handleSubmit} id='search-form' onChange={handleInput}>
                     <div id={expandedSearchBar ? 'search-bar-container-expanded': 'search-bar-container'}>
                   { expandedSearchBar && <input placeholder='Search keywords...' id='search-bar' name='keywords' />}

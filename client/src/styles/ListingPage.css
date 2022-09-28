@@ -30,21 +30,20 @@ margin-bottom: 2em;
 }
 
 #listing-page-company-section img {
-    width: 75px;
+width: 75px;
 }
 
 #listing-company-name-container{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 1.6em;
-    
+display: flex;
+align-items: center;
+gap: 10px;
+font-size: 1.6em;
 }
 
 #listing-pagination-seciton {
-    width: 60%;
-    display: flex;
-    margin-bottom: 2em;
+width: 60%;
+display: flex;
+margin-bottom: 2em;
 }
 
 #listing-pagination-seciton button {
@@ -58,11 +57,10 @@ cursor: pointer;
 }
 
 #listing-pagination-seciton button:hover {
-    transform: scale(1.1);
-    transition: 300ms;
+transform: scale(1.1);
+transition: 300ms;
 }
 
-
 .lps-rb {
-    margin-right: auto;
+margin-right: auto;
 }

@@ -1,3 +1,7 @@
+#company-page{
+    min-height: 92vh;
+}
+
 #company-post-modal{
 position: absolute;
 top: 0;
@@ -51,7 +55,7 @@ height: 30px;
     width: 60%;
     display: flex;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px 0px;
 }
 
 .seller-page-listing-item:hover {
@@ -64,4 +68,31 @@ height: 30px;
 }
 
 .seller-page-listing-item button {
+}
+
+#company-page-header{
+    margin-left: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 55%;
+    margin-top: 2em;
+}
+
+#company-page-header button {
+font-size: 2em;
+padding: 10px 20px;
+border-radius: 36px;
+/* border: 1px solid black; */
+border: none;
+background-color: #F05742;
+color: white;
+}
+
+#delete-listing-company-btn{
+    font-size: 1.4em;
+    border-radius: 26px;
+    border: 1px solid black;
+    background-color: transparent;
+    padding: 5px 10px;
 }

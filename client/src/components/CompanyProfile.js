@@ -83,14 +83,11 @@ const CompanyProfile = () => {
 
     }
     return (
-<main>
-    <header>
+<main id='company-page'>
+    <header id='company-page-header'>
         <h1>Welcome, {globalUser?.name}</h1>
+        <button className='hover' onClick={ () => setIsShowingCreatePostModal(true) }>Create listing</button>
     </header>
-    <section>
-        <h3>This is some placeholder information until I have a better idea of what I want to say.</h3>
-        <button onClick={ () => setIsShowingCreatePostModal(true) }>Create listing</button>
-    </section>
    { isShowingCreatePostModal && <section id='company-post-modal' onClick={() => setIsShowingCreatePostModal(false)} >
         <form id='company-post-modal-form' onSubmit={addListing} onClick={(e) => e.stopPropagation()}>
             <h2>Create Listing</h2>
@@ -133,7 +130,7 @@ const CompanyProfile = () => {
                     <h4>{listing?.title}</h4>
                     <p>{listing?.description}</p>
                     </div>
-                    <button onClick={(e)=> { e.stopPropagation() ;handleListingDelete(listing)}}>Delete</button>
+                    <button className='hover' id='delete-listing-company-btn' onClick={(e)=> { e.stopPropagation() ;handleListingDelete(listing)}}>Delete</button>
                 </div>
             )
         })}
