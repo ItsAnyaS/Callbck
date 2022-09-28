@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import '../styles/Dancer.css'
+import {UserContext} from '../App'
 import Cookies from "js-cookie"
 const DancerProfile = ()=> {
+    const {globalUser, seGlobalUser} = useContext(UserContext)
 const [applications, setApplications] = useState([])
 const [list1, setList1] = useState([])
 const [list2, setList2] = useState([])
@@ -102,8 +104,8 @@ return (
 
 
     <main>
-        <header>
-            <h1>Welcome, Dancer</h1>
+        <header id='dancer-header'>
+            <h1>Welcome, {globalUser?.first_name}</h1>
         </header>
         <section id='container-wrapper'>
         <div className="container" id='list1'  onDragOver={(e)=> {e.preventDefault()}} onDragEnterCapture={(e)=>{setDroppedOn('list1')}} >

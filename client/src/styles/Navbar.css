@@ -1,6 +1,5 @@
 #navbar {
 display: flex;
-
 }
 #logo{
     margin-right: auto;
@@ -18,4 +17,5 @@ display: flex;
 
 .nav-item {
 list-style-type: none;
+min-width:75px;
 }

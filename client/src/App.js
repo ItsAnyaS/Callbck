@@ -9,6 +9,7 @@ import CompanyProfile from './components/CompanyProfile';
 import ListingPage from './components/ListingPage';
 import Login from './components/Login';
 import Home from './components/Home';
+import Footer from './components/Footer';
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import {createContext, useState, useEffect, useMemo} from 'react'
 import Cookies from 'js-cookie';
@@ -56,9 +57,7 @@ useEffect(() => {
           <Route exact key={10} path='/login' element={<Login/>}/>
         </Routes>
       </Router>
-      <footer>
-        This is the footer it is going to have some social media stuff and maybe some usefull links
-    </footer>
+      <Footer/>
     </UserContext.Provider>
     </div>
   );

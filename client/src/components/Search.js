@@ -5,6 +5,7 @@ const Search = () => {
     const navigate = useNavigate()
     const [searchParams, setSearchParams] = useState({})
     const [listings, setListings] = useState([])
+    const [expandedSearchBar, setExpandedSearchBar] = useState(false)
         const handleSearch = async() => {
             let req = await fetch('http://localhost:3000/listings_search', {
                 method: "POST",
@@ -25,7 +26,12 @@ const Search = () => {
 
     const handleSubmit =(e) => {
         e.preventDefault()
-        handleSearch()
+        if (!expandedSearchBar){
+            setExpandedSearchBar(true)
+        }else {
+
+            handleSearch()
+        }
     }
 
     useEffect(()=> {
@@ -40,9 +46,14 @@ const Search = () => {
 // console.log(searchParams)
     return (
         <main>
-            <header>
-                <form onSubmit={handleSubmit} onChange={handleInput}>
-                    <input placeholder='search' name='keywords' />
+            <header id='search-header'>
+                <form onSubmit={handleSubmit} id='search-form' onChange={handleInput}>
+                    <div id={expandedSearchBar ? 'search-bar-container-expanded': 'search-bar-container'}>
+                  { expandedSearchBar && <input placeholder='Search keywords...' id='search-bar' name='keywords' />}
+                    <button><ion-icon name="search-outline"></ion-icon></button>
+                    </div>
+                    {/* <div id='search-location-container'>
+                    <input name='location' placeholder='location'/>
                     <select name='style'>
                         <option defaultChecked value={""} >--Select a style--</option>
                         <option name='tap'>tap</option>
@@ -50,11 +61,10 @@ const Search = () => {
                         <option name='jazz'>jazz</option>
                         <option name='contemporary'>contemporary</option>
                     </select>
-                    <input name='location' placeholder='location'/>
-                    <button>Search</button>
+                    </div> */}
                 </form>
             </header>
-            <section id='listing-container'>
+            <section id='listing-container' onClick={()=> {setExpandedSearchBar(false)}}>
             {listings.map(listing => {
                 return (
                     <div className='listing-item'onClick={()=> {navigate(`/listing/${listing?.id}`)}} key={listing?.id}>
