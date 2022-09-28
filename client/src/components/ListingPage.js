@@ -6,13 +6,13 @@ import { UserContext } from "../App"
 const ListingPage = () => {
     let { id } = useParams()
     const [currentListingId, setCurrentListingId] = useState(id)
-    const [displayedListing, setDisplayedListing] = useState({})
+    const [displayedListing, setDisplayedListing] = useState({dancer_gender: [[]]})
     const {globalUser} = useContext(UserContext)
     useEffect(()=> {
         const getCurrentListing = async()=> {
             let req = await fetch(`http://localhost:3000/listings/${currentListingId}`)
             let res = await req.json()
-            console.log(res)
+            // console.log(res)
             if (currentListingId < 1){
                 setCurrentListingId(1)
             }
