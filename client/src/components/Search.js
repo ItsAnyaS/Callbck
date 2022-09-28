@@ -37,14 +37,14 @@ const Search = () => {
         getAllListings()
     }, [])
 
-console.log(searchParams)
+// console.log(searchParams)
     return (
         <main>
             <header>
                 <form onSubmit={handleSubmit} onChange={handleInput}>
                     <input placeholder='search' name='keywords' />
                     <select name='style'>
-                        <option selected="selected" value={""} >--Select a style--</option>
+                        <option defaultChecked value={""} >--Select a style--</option>
                         <option name='tap'>tap</option>
                         <option name='ballet'>ballet</option>
                         <option name='jazz'>jazz</option>

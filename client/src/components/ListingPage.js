@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { useParams } from "react-router-dom"
 import '../styles/ListingPage.css'
+import { UserContext } from "../App"
 
 const ListingPage = () => {
     let { id } = useParams()
     const [currentListingId, setCurrentListingId] = useState(id)
     const [displayedListing, setDisplayedListing] = useState({})
+    const {globalUser} = useContext(UserContext)
     useEffect(()=> {
         const getCurrentListing = async()=> {
             let req = await fetch(`http://localhost:3000/listings/${currentListingId}`)
@@ -61,7 +63,7 @@ return (
             <p>{displayedListing?.style}</p>
             <h3>Years of expirence required: </h3>
             <p>{displayedListing?.years_of_expirence || '0'}</p>
-        <button onClick={()=> {applyForListing()}}>Apply</button>
+    { globalUser?.isDancer &&  <button onClick={()=> {applyForListing()}}>Apply</button>}
         </section>
         <section id="listing-page-company-section">
             <img  alt={`This is a logo of ${displayedListing?.company?.name}`} src={displayedListing?.company?.logo}/>
