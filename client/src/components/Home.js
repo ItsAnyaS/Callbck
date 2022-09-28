@@ -15,7 +15,7 @@ const navigate = useNavigate()
     <section id="cta-section">
         <h2>Never wonder how much you're getting paid.</h2>
         <p>Every listing must have an compensation rate and description outlining the job details.</p>
-        <button>Get started</button>
+        <button onClick={()=> {navigate('/signup')}} >Sign Up</button>
     </section>
     <section id='company-cta-section'>
         <h1>Ready.  Set.  List.</h1>
