@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate} from 'react-router-dom'
 import Cookies from 'js-cookie'
+import '../styles/Register.css'
 
 const DancerSignUp = () => {
     const navigate = useNavigate()
@@ -48,7 +49,7 @@ const DancerSignUp = () => {
     }
    
     return (
-    <main>
+    <main id='signup-page'>
     <section>
         <h1>Dancer sign up</h1>
    { !isStepTwo && <form onSubmit={handleStepOne}>

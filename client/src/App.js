@@ -60,7 +60,7 @@ useEffect(() => {
           <Route exact key={2} path='/search' element={<Search/>}/>
           <Route exact key={3} path='/dancer_profile' element={<DancerProfile/>}/>
           <Route exact key={4} path='/company_profile' element={<CompanyProfile/>}/>
-          <Route exact key={5} path='/signup' element={<AuthPage/>}/>
+          <Route exact key={5} path='/signup' element={<DancerSignUp/>}/>
           <Route exact key={6} path='/listing/:id' element={<ListingPage/>}/>
           <Route exact key={7} path='/listing/:id' element={<ListingPage/>}/>
           <Route exact key={8} path='/dancer/signup' element={<DancerSignUp/>}/>

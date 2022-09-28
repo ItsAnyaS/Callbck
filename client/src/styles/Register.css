@@ -1,0 +1,13 @@
+#signup-page{
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#signup-page section {
+border: 1px solid black;
+min-width: 800px;
+width: 50%;
+aspect-ratio: 1.5/1;
+}

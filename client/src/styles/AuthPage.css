@@ -3,6 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #eccc68;
 }
 
 #select-signup section {
