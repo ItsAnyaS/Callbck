@@ -53,7 +53,7 @@ const Search = () => {
                   { expandedSearchBar && <input placeholder='Search keywords...' id='search-bar' name='keywords' />}
                     <button><ion-icon name="search-outline"></ion-icon></button>
                     </div>
-                    {/* <div id='search-location-container'>
+                    <div id='search-location-container'>
                     <input name='location' placeholder='location'/>
                     <select name='style'>
                         <option defaultChecked value={""} >--Select a style--</option>
@@ -62,7 +62,7 @@ const Search = () => {
                         <option name='jazz'>jazz</option>
                         <option name='contemporary'>contemporary</option>
                     </select>
-                    </div> */}
+                    </div>
                 </form>
             </header>
             <section id='listing-container' onClick={()=> {setExpandedSearchBar(false)}}>

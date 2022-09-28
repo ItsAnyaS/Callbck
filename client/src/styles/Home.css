@@ -100,15 +100,17 @@ width: 30%;
     justify-content: center;
     flex-direction: column;
     text-align: center;
+    background-color: #eccc68;
+    color: rgba(0, 0, 0, 0.846);
 }
 
 #company-cta-section h1 {
-    font-size: 3em;
+    font-size: 4em;
 }
 
 #company-cta-section p {
     font-size: 1.6em;
-    width: 50%;
+    width: 40%;
 }
 
 .login-change-type {
@@ -116,4 +118,20 @@ width: 30%;
     border: none;
     text-decoration: underline;
     margin-top: 4em;
+}
+
+
+#company-cta-section button{
+    padding: 10px 20px;
+    font-size: 2em;
+    border-radius: 5px;
+    border: none;
+    background-color: #9980FA;
+    color: white;
+    cursor: pointer;
+}
+
+#company-cta-section button:hover {
+    transform: scale(1.1);
+    transition: 300ms;
 }

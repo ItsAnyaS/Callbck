@@ -16,12 +16,22 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.434);
 }
 
-#search-location-container input, select {
-    height: 40px;
+#search-location-container input {
+    font-size: 1.1em;
     border-radius: 25px;
     border: 1px solid black;
-    padding: 0;
+    padding: 5px 10px;
     margin: 0;
+}
+
+#search-location-container select {
+    font-size: 1.1em;
+    border-radius: 25px;
+    border: 1px solid black;
+    padding: 5px 10px;
+    color: rgba(0, 0, 0, 0.497);
+    margin: 0;
+    margin-left: 10px;
 }
 
 #search-header button{
@@ -45,6 +55,7 @@
     height: 30px;
     justify-content: center;
     animation: contract 300ms;
+    margin-right: auto;
 }
 
 #search-bar-container-expanded{
@@ -56,6 +67,7 @@ padding: 5px 10px;
 width: 30%;
 border-radius: 26px;
 animation: expand 300ms;
+margin-right: auto;
 }
 
 #search-bar-container-expanded input{
@@ -68,6 +80,10 @@ animation: expand 300ms;
     0% {
         width: 30%;
     }
+    99% {
+        border-radius: 26px;
+        /* border-radius: 50%; */
+    }
     100% {
         width: 30px;
      }
@@ -76,9 +92,11 @@ animation: expand 300ms;
 @keyframes expand {
     0% {
         width: 30px;
+        
      }
     100% {
         width: 30%;
+        
     }
 }
 
@@ -112,6 +130,11 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.426);
 display: flex;
 align-items: center;
 padding: 10px 10px;
+}
+
+.listing-item h4 {
+    color: #9980FA;
+    font-size: 1.5em;
 }
 
 .listing-item:hover{
