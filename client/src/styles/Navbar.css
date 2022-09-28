@@ -7,6 +7,11 @@ align-items: center;
 }
 #logo{
     margin-right: auto;
+    margin-left: 10%;
+}
+
+#logo-img{
+    height: 70px;
 }
 
 #logo:hover {

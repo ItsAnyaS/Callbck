@@ -10,8 +10,8 @@ min-height: 80vh;
 width: 100%;
 display: flex;
 position: relative;
-background-color: #eccc68;
-color: black;
+background-color: #F05742;
+color: white;
 }
 
 
@@ -48,7 +48,7 @@ right: 0;
     font-size: 2em;
     border-radius: 5px;
     border: none;
-    background-color: #9980FA;
+    background-color: #1e90ff;
     color: white;
     cursor: pointer;
 }
@@ -68,7 +68,7 @@ right: 0;
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    background-color: #9980FA;
+    background-color: #1e90ff;
     color: white;
 }
 
@@ -77,8 +77,8 @@ right: 0;
     font-size: 2em;
     border-radius: 5px;
     border: none;
-    background-color: #eccc68;
-    color: black;
+    background-color: #F05742;
+    color: white;
     cursor: pointer;
 }
 

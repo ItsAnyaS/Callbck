@@ -33,7 +33,9 @@ useEffect(() => {
 
     return (
         <nav id='navbar'>
-            <div onClick={()=> {navigate('/')}} id='logo'>Logo</div>
+            <div onClick={()=> {navigate('/')}} id='logo'>
+                <img id='logo-img' src='../callbck-logo.webp'/>
+            </div>
             <ul id='nav-list'>
                 <NavLink style={{textDecoration: 'none', color: 'black'}} to='/search'><li className="nav-item">Listings</li></NavLink>
               { isLoggedIn&& <NavLink style={{textDecoration: 'none', color: 'black'}} to={`/${globalUser?.isDancer? 'dancer_profile': 'company_profile'}`}><li className="nav-item">Profile</li></NavLink>}
