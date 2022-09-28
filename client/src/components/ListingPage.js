@@ -65,7 +65,7 @@ return (
             <p>{displayedListing?.style}</p>
             <h3>Years of expirence required: </h3>
             <p>{displayedListing?.years_of_expirence || '0'}</p>
-    { globalUser?.isDancer &&  <button onClick={()=> {applyForListing()}}>Apply</button>}
+    { globalUser?.isDancer &&  <button className="hover" onClick={()=> {applyForListing()}}>Apply</button>}
         </section>
         <section id="listing-page-company-section">
             <div id='listing-company-name-container'>

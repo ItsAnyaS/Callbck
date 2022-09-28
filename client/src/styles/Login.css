@@ -3,6 +3,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 height: 92vh;
+background-color: #9980FA;
 }
 
 .login-container{
@@ -12,6 +13,7 @@ height: 92vh;
     border-radius: 10px;
     display: flex;
     align-items: center;
+    background-color: white;
 
 }
 

@@ -1,15 +1,16 @@
 #signup-page{
-    min-height: 92vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+min-height: 92vh;
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: #9980FA;
 }
 
 #signup-page div {
-    margin-bottom: 1em;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+margin-bottom: 1em;
+display: flex;
+align-items: center;
+gap: 10px;
 }
 
 
@@ -33,6 +34,8 @@ min-height: 600px;
 display: flex;
 align-items: center;
 flex-direction: column;
+background-color: white;
+justify-content: center;
 }
 
 #signup-page section button {
