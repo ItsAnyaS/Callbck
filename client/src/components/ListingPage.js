@@ -12,6 +12,7 @@ const ListingPage = () => {
         const getCurrentListing = async()=> {
             let req = await fetch(`http://localhost:3000/listings/${currentListingId}`)
             let res = await req.json()
+            console.log(res)
             if (currentListingId < 1){
                 setCurrentListingId(1)
             }
@@ -45,7 +46,7 @@ return (
         </header>
         <section id="listing-page-info">
             <h1>Description:</h1>
-            <p>{displayedListing?.description}</p>
+            <p id="listing-desc">{displayedListing?.description}</p>
             <h3>Location</h3>
             <p>{displayedListing?.location}</p>
             {/* <iframe referrerpolicy="no-referrer-when-downgrade"
@@ -54,12 +55,13 @@ return (
             </iframe> */}
             <h3>Prefered gender:</h3>
             <div id="listing-pref-gender-container">
-            {displayedListing?.dancer_gender?.map((item, index) => {
+            {displayedListing?.dancer_gender[0].map((item, index) => {
                 return (
-                    <p key={index} >{item}</p>
+                    <p className="gender-item" key={index} >{item}</p>
                 )
             })}
             </div>
+            <h3>Dance style:</h3>
             <p>{displayedListing?.style}</p>
             <h3>Years of expirence required: </h3>
             <p>{displayedListing?.years_of_expirence || '0'}</p>
@@ -75,7 +77,7 @@ return (
             <p>{displayedListing?.company?.location}</p>
         </section>
         <section id='listing-pagination-seciton'>
-       {currentListingId - 1 !== 0 ? <button className="lps-rb" onClick={()=> {setCurrentListingId(currentListingId - 1)}}>Previous listing</button>: <button className="lps-rb">Previous listing</button>}
+       {currentListingId - 1 !== 0 ? <button className="lps-rb" onClick={()=> {setCurrentListingId(currentListingId - 1)}}>Previous listing</button>: <button className="lps-rb no-pag">Previous listing</button>}
         <button onClick={()=> {setCurrentListingId(currentListingId + 1)}}>Next listing</button>
         </section>
     </main>

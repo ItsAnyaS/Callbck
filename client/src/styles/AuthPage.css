@@ -1,0 +1,22 @@
+#select-signup{
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#select-signup section {
+    display: flex;
+    align-items: center;
+    gap: 5%;
+}
+
+#select-signup section button {
+    min-width: 350px;
+    font-size: 2em;
+    padding: 10px 10px;
+    border-radius: 36px;
+    border: none;
+    background-color: #9980FA;
+    color: white;
+}

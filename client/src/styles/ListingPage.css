@@ -16,9 +16,22 @@
 
 #listing-page-info{}
 
+#listing-desc{
+    max-width: 80%;
+}
+
 #listing-pref-gender-container{
    display: flex;
-   gap: 10px; 
+   gap: 20px; 
+
+}
+
+.gender-item{
+    text-transform: capitalize;
+}
+
+#listing-page-info {
+    max-width: 70%;
 }
 
 #listing-page-company-section{
@@ -64,3 +77,4 @@ transition: 300ms;
 .lps-rb {
 margin-right: auto;
 }
+
