@@ -22,5 +22,47 @@
 }
 
 #listing-page-company-section{
+border-top: 1px solid rgba(0, 0, 0, 0.53);
+border-bottom: 1px solid rgba(0, 0, 0, 0.53);
+width: 60%;
+margin-top: 2em;
+margin-bottom: 2em;
+}
 
+#listing-page-company-section img {
+    width: 75px;
+}
+
+#listing-company-name-container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.6em;
+    
+}
+
+#listing-pagination-seciton {
+    width: 60%;
+    display: flex;
+    margin-bottom: 2em;
+}
+
+#listing-pagination-seciton button {
+font-size: 1.6em;
+padding: 5px 10px;
+border: none;
+border-radius: 26px;
+background-color: #9980FA;
+color: white;
+cursor: pointer;
+}
+
+#listing-pagination-seciton button:hover {
+    transform: scale(1.1);
+    transition: 300ms;
+}
+
+
+.lps-rb {
+    margin-right: auto;
 }

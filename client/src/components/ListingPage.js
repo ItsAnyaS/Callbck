@@ -66,15 +66,18 @@ return (
     { globalUser?.isDancer &&  <button onClick={()=> {applyForListing()}}>Apply</button>}
         </section>
         <section id="listing-page-company-section">
+            <div id='listing-company-name-container'>
             <img  alt={`This is a logo of ${displayedListing?.company?.name}`} src={displayedListing?.company?.logo}/>
             <h4>{displayedListing?.company?.name}</h4>
+            </div>
             <h5>Number of Employees: {displayedListing?.company?.number_of_employees}</h5>
             <p>{displayedListing?.company?.bio}</p>
             <p>{displayedListing?.company?.location}</p>
         </section>
-       {currentListingId - 1 !== 0 ? <button onClick={()=> {setCurrentListingId(currentListingId - 1)}}>previous listing</button>: <button>previous listing</button>}
-        <button onClick={()=> {setCurrentListingId(currentListingId + 1)}}>next listing</button>
-        {/* <p>{JSON.stringify(displayedListing)}</p> */}
+        <section id='listing-pagination-seciton'>
+       {currentListingId - 1 !== 0 ? <button className="lps-rb" onClick={()=> {setCurrentListingId(currentListingId - 1)}}>Previous listing</button>: <button className="lps-rb">Previous listing</button>}
+        <button onClick={()=> {setCurrentListingId(currentListingId + 1)}}>Next listing</button>
+        </section>
     </main>
 )
 }
