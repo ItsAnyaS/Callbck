@@ -1,8 +1,10 @@
 import '../styles/CompanyProfile.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import { UserContext } from '../App'
 import {useNavigate} from 'react-router-dom'
 import Cookies from 'js-cookie'
 const CompanyProfile = () => {
+    const {globalUser, setGlobalUser} = useContext(UserContext)
     const navigate = useNavigate()
     const [listingInfo, setListingInfo] = useState({company_auth_token: Cookies.get('company-auth-token')})
     const [isShowingCreatePostModal, setIsShowingCreatePostModal] = useState(false)
@@ -83,7 +85,7 @@ const CompanyProfile = () => {
     return (
 <main>
     <header>
-        <h1>Welcome, Company</h1>
+        <h1>Welcome, {globalUser?.name}</h1>
     </header>
     <section>
         <h3>This is some placeholder information until I have a better idea of what I want to say.</h3>

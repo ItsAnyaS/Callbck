@@ -17,8 +17,30 @@ class AuthsController < ApplicationController
 end
 end
 
-    def is_valid_session
-        # decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
+    def is_valid_dancer_session
+        hmac_secret = 'my$ecretK3y'
+        token = params[:auth_token]
+        puts token
+        if token
+        decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
+        dancer = Dancer.find_by(email: decoded_token[0]["data"])
+        render json: {first_name: dancer.first_name, last_name: dancer.last_name}
+        else
+            render json: {error: 'Not logged in'}, status: 422
+        end
+    end
+
+    def is_valid_company_session 
+        hmac_secret = 'my$ecretK3y'
+        token = params[:company_auth_token]
+        puts token
+        if token
+        decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
+        company = Company.find_by(email: decoded_token[0]["data"])
+        render json: {name: company.name}
+        else
+            render json: {error: 'Not logged in'}, status: 422
+        end
     end
 
     def register

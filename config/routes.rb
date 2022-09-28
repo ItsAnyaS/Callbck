@@ -25,7 +25,10 @@ post '/listings_search', to: 'listings#search'
 
 post '/auth/login', to: 'auths#login'
 post '/auth/signup', to: 'auths#register'
+post 'auth/valid_dancer_session', to: 'auths#is_valid_dancer_session'
 
 post '/auth/company/login', to: 'auths#company_login'
 post '/auth/company/signup', to: 'auths#company_signup'
+post 'auth/company/valid_company_session', to: 'auths#is_valid_company_session'
+
 end

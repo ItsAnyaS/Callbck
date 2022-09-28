@@ -22,14 +22,14 @@ const [droppedOn, setDroppedOn] = useState()
             })
             let res = await req.json()
             setApplications(res)
-            console.log(res)
-            let applied =  await res.filter(app => { return app.status == '0'})
+            // console.log(res)
+            let applied =  await res.filter(app => { return app.status === '0'})
             setList1(applied)
-            let callback1 = await res.filter(app => { return app.status == '1'})
+            let callback1 = await res.filter(app => { return app.status === '1'})
             setList2(callback1)
-            let callback2 = await res.filter(app => { return app.status == '2'})
+            let callback2 = await res.filter(app => { return app.status === '2'})
             setList3(callback2)
-            let callback3 = await res.filter(app => { return app.status == '3'})
+            let callback3 = await res.filter(app => { return app.status === '3'})
             setList4(callback3)
         }
 
@@ -44,57 +44,57 @@ const [droppedOn, setDroppedOn] = useState()
             body: JSON.stringify({status: status})
         })
         let res = await req.json()
-        console.log(res)
+        // console.log(res)
     }
 
     const handleDrop = (item, e) => {
-        if (droppedOn == 'list1' && origin != 'list1'){
+        if (droppedOn === 'list1' && origin !== 'list1'){
             setList1(prev => [...prev, item])
             
-            if (origin == 'list2'){
+            if (origin === 'list2'){
                 updateApplicationStaus(item.id, '0')
-                let filteredList = list2.filter(listItem => { return listItem?.id != item?.id})
+                let filteredList = list2.filter(listItem => { return listItem?.id !== item?.id})
                 setList2(filteredList)
-            } else if (origin == 'list3'){
+            } else if (origin === 'list3'){
                 updateApplicationStaus(item.id, '0')
-                let filteredList = list3.filter(listItem => { return listItem?.id != item?.id})
+                let filteredList = list3.filter(listItem => { return listItem?.id !== item?.id})
                 setList3(filteredList)
-            } else if (origin == 'list4'){
+            } else if (origin === 'list4'){
                 updateApplicationStaus(item.id, '0')
-                let filteredList = list4.filter(listItem => { return listItem?.id != item?.id})
+                let filteredList = list4.filter(listItem => { return listItem?.id !== item?.id})
                 setList4(filteredList)
             }
-        } else if(droppedOn == 'list2'  && origin != 'list2') {
+        } else if(droppedOn === 'list2'  && origin !== 'list2') {
             setList2(prev => [...prev, item])
-            if (origin == 'list1'){
+            if (origin === 'list1'){
                 updateApplicationStaus(item.id, '1')
-                let filteredList = list1.filter(listItem => { return listItem?.id != item?.id})
+                let filteredList = list1.filter(listItem => { return listItem?.id !== item?.id})
                 setList1(filteredList)
-            } else if (origin == 'list3'){
+            } else if (origin === 'list3'){
                 updateApplicationStaus(item.id, '1')
-                let filteredList = list3.filter(listItem => { return listItem?.id != item?.id})
+                let filteredList = list3.filter(listItem => { return listItem?.id !== item?.id})
                 setList3(filteredList)
-            } else if (origin == 'list4'){
+            } else if (origin === 'list4'){
                 updateApplicationStaus(item.id, '1')
-                let filteredList = list4.filter(listItem => { return listItem?.id != item?.id})
+                let filteredList = list4.filter(listItem => { return listItem?.id !== item?.id})
                 setList4(filteredList)
             }
-        } else if(droppedOn == 'list3'  && origin != 'list3' && origin != 'list1') {
+        } else if(droppedOn === 'list3'  && origin !== 'list3' && origin !== 'list1') {
             setList3(prev => [...prev, item])
-            if (origin == 'list2'){
+            if (origin === 'list2'){
                 updateApplicationStaus(item.id, '2')
-                let filteredList = list2.filter(listItem => { return listItem?.id != item?.id})
+                let filteredList = list2.filter(listItem => { return listItem?.id !== item?.id})
                 setList2(filteredList)
-            } else if (origin == 'list4'){
+            } else if (origin === 'list4'){
                 updateApplicationStaus(item.id, '2')
-                let filteredList = list4.filter(listItem => { return listItem?.id != item?.id})
+                let filteredList = list4.filter(listItem => { return listItem?.id !== item?.id})
                 setList4(filteredList)
             }
-        }  else if(droppedOn == 'list4'  && origin != 'list4' && origin != 'list1' && origin != 'list2') {
+        }  else if(droppedOn === 'list4'  && origin !== 'list4' && origin !== 'list1' && origin !== 'list2') {
             setList4(prev => [...prev, item])
-            if (origin == 'list3'){
+            if (origin === 'list3'){
                 updateApplicationStaus(item.id, '3')
-                let filteredList = list3.filter(listItem => { return listItem?.id != item?.id})
+                let filteredList = list3.filter(listItem => { return listItem?.id !== item?.id})
                 setList3(filteredList)
             }
         }
@@ -103,7 +103,7 @@ const [droppedOn, setDroppedOn] = useState()
 return (
 
 
-    <main>
+    <main id='dancer-page'>
         <header id='dancer-header'>
             <h1>Welcome, {globalUser?.first_name}</h1>
         </header>

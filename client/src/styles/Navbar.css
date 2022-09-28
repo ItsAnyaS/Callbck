@@ -1,5 +1,9 @@
 #navbar {
 display: flex;
+height: 8vh;
+border-bottom: 1px solid rgba(0, 0, 0, 0.409);
+display: flex;
+align-items: center;
 }
 #logo{
     margin-right: auto;

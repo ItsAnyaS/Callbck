@@ -1,11 +1,11 @@
 import '../styles/Login.css'
-import { useState, useEffect, useContext } from 'react'
+import { useState, useContext } from 'react'
 import { UserContext } from '../App'
 import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
 const Login = () => {
     const navigate = useNavigate()
-    const {globalUser, setGlobalUser} = useContext(UserContext)
+    const { setGlobalUser} = useContext(UserContext)
     const [loginType, setLoginType] = useState('dancer')
     const [loginInfo, setLoginInfo] = useState({})
     const dancerLogin = async(e) => {
@@ -48,23 +48,25 @@ const Login = () => {
 
 
 return (
-    <main>
-        {loginType == 'dancer' && 
-        <section>
-            <form onSubmit={(e)=> {dancerLogin(e)}}>
-                <input name='email' onChange={handleInput} placeholder='Email' type={'email'}/>
-                <input name='password' onChange={handleInput} placeholder='Password' type={'password'}/>
-                <button>Login</button>
-                <button onClick={()=> {setLoginType('company'); setLoginInfo({})}}>Login as company</button>
+    <main id='login-page'>
+        {loginType === 'dancer' && 
+        <section className='login-container'>
+            <form className='login-form' onSubmit={(e)=> {dancerLogin(e)}}>
+            <h2>Login as a dancer</h2>
+                <input name='email' onChange={handleInput} required placeholder='Email' type={'email'}/>
+                <input name='password' onChange={handleInput} required placeholder='Password' type={'password'}/>
+                <button className='login-form-submit'>Login</button>
+                <button className='login-change-type' onClick={()=> {setLoginType('company'); setLoginInfo({})}}>Login as company</button>
             </form>
         </section>}
-        { loginType == 'company' &&
-            <section>
-                <form onSubmit={(e)=> {companyLogin(e)}}>
-                <input name='email' onChange={handleInput} placeholder='Email' type={'email'}/>
-                <input name='password' onChange={handleInput} placeholder='Password' type={'password'}/>
-                <button>Login</button>
-                <button onClick={()=> {setLoginType('dancer'); setLoginInfo({})}}>Login as dancer</button>
+        { loginType === 'company' &&
+            <section className='login-container'>
+                <form className='login-form' onSubmit={(e)=> {companyLogin(e)}}>
+                <h2>Login as a company</h2>
+                <input name='email' onChange={handleInput} required placeholder='Email' type={'email'}/>
+                <input name='password' onChange={handleInput} required placeholder='Password' type={'password'}/>
+                <button  className='login-form-submit'>Login</button>
+                <button className='login-change-type' onClick={()=> {setLoginType('dancer'); setLoginInfo({})}}>Login as dancer</button>
                 </form>
                 <h3>{}</h3>
             </section>

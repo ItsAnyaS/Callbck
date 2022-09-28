@@ -18,14 +18,25 @@ export const UserContext = createContext()
 const App = () => {
 const [globalUser, setGlobalUser] = useState()
  
-// const [isDancer, setIsDancer] = useState(false)
-const handleUserType = () => {
+const handleUserType = async() => {
   if (Cookies.get('auth-token')){
-    // setIsDancer(true)
-    setGlobalUser({...globalUser, isDancer: true})
-} else if (Cookies.get('company-auth-token')){
-    // setIsDancer(false)
-    setGlobalUser({...globalUser, isDancer: false})
+    let authToken = Cookies.get('auth-token')
+    let req = await fetch('http://localhost:3000/auth/valid_dancer_session', {
+      method: "POST",
+      headers: {"content-type": "application/json"},
+      body: JSON.stringify({auth_token: authToken})
+    })
+    let res = await req.json()
+    setGlobalUser({first_name: res.first_name,last_name: res.last_name, isDancer: true,})
+  } else if (Cookies.get('company-auth-token')){
+    let authToken = Cookies.get('company-auth-token')
+    let req = await fetch('http://localhost:3000/auth/company/valid_company_session', {
+      method: "POST",
+      headers: {"content-type": "application/json"},
+      body: JSON.stringify({company_auth_token: authToken})
+    })
+    let res = await req.json()
+    setGlobalUser({name: res.name, isDancer: false})
 }}
 
 useEffect(() => {
