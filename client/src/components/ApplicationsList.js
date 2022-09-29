@@ -11,7 +11,24 @@ const ApplicationsList = () => {
         let req = await fetch(`http://localhost:3000/applicaitons_by_listings/${id}`)
         let res = await req.json()
         setApplications(res)
-        console.log(applications)
+    }
+
+    const updateApplication = async(listingId, status) => {
+        let sendStatus 
+        if (parseInt(status) < 3){
+            console.log(status)
+            sendStatus = `${parseInt(status) + 1}`
+        }else {
+            sendStatus = 'hired'
+        }
+        let req = await fetch(`http://localhost:3000/applications/${listingId}`, {
+            method: 'PATCH',
+            headers: {"content-type": "application/json"},
+            body: JSON.stringify({status: sendStatus})
+        })
+        let res = await req.json()
+        setModalInfo(false)
+        console.log (res)
     }
 
     const rejectApplication = async(listingId) => {
@@ -80,9 +97,9 @@ console.log(modalInfo)
                     </div>
                 </div>
                 <div id="exp-app-btn-container">
-                    <button>Reject</button>
-                    <button>Send Callback</button>
-                    <button>Mark as Hired</button>
+                    <button onClick={()=> {rejectApplication(modalInfo?.id); setModalInfo(false)}}>Reject</button>
+                    { parseInt(modalInfo.status) < 3 &&<button onClick={()=> {updateApplication(modalInfo.id, modalInfo.status)}}>Send Callback</button>}
+                    <button onClick={()=> {updateApplication(modalInfo.id, '3')}} >Mark as Hired</button>
                 </div>
                 {/* <div id="exp-app-bottom-container">
                     <button>Previous</button>
