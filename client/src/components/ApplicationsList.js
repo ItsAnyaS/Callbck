@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { useParams } from "react-router-dom"
+import emailjs from '@emailjs/browser';
 import '../styles/ApplicationsList.css'
 import ApplicationsListCard from "./ApplicationListCard"
 const ApplicationsList = () => {
+    const form = useRef({to_name: 'Anya'})
     const { id } = useParams()
     const [applications, setApplications] = useState([])
     const [modalInfo, setModalInfo] = useState()
     const [numOfApps, setNumOfApps] = useState(0)
+    const [emailInfo, setEmailInfo] = useState({user_name: '', user_email: '', to_name: '', message: ''})
 
     const getApplications = async() => {
         let req = await fetch(`http://localhost:3000/applicaitons_by_listings/${id}`)
@@ -16,6 +19,15 @@ const ApplicationsList = () => {
         setNumOfApps(filteredApps.length)
 
     }
+
+    const sendEmail = () => {
+        emailjs.sendForm('service_i8bn0me', 'template_zh7l9ng', form.current, '-7XoatvWc_L2_1I1v')
+          .then((result) => {
+              console.log(result.text);
+          }, (error) => {
+              console.log(error.text);
+          });
+      };
 
     const updateApplication = async(listingId, status) => {
         let sendStatus 
@@ -33,6 +45,8 @@ const ApplicationsList = () => {
         let res = await req.json()
         setModalInfo(false)
         console.log (res)
+        sendEmail()
+        
     }
 
     const rejectApplication = async(listingId) => {
@@ -51,36 +65,50 @@ const ApplicationsList = () => {
     useEffect(()=> {
         getApplications()
     }, [])
+    console.log(emailInfo)
 
     return (
         <main id='application-list-page'>
             <header>
             { <h1>You currently have {numOfApps} open application{applications.length == 1? '': 's'}</h1>}
+            <form id="no-form" ref={form} onSubmit={(e) => {e.preventDefault()}}>
+      <label>Name</label>
+      <input type="text" name="user_name" value={emailInfo.user_name} />
+      <label>to</label>
+      <input type="text" name="to_name" value={emailInfo.to_name}  />
+      <label>Email</label>
+      <input type="email" name="user_email" value={emailInfo.user_email}/>
+      <label>Message</label>
+      <textarea name="message"  value={emailInfo.message}/>
+      <input type="submit" value="Send"/>
+    </form>
+
+    <button onClick={()=> {sendEmail()}}>Test</button>
             </header>
             <section id='applied'>
             <h3>Applied</h3>
                {
-                applications.filter( app => app.status === '0').map(app => <ApplicationsListCard app={app} rejectApplication={rejectApplication} setModalInfo={setModalInfo}/>)
+                applications.filter( app => app.status === '0').map(app => <ApplicationsListCard app={app} setEmailInfo={setEmailInfo} rejectApplication={rejectApplication} setModalInfo={setModalInfo}/>)
                }
             </section>
             <section id="callback_1">
             <h3>First Callback</h3>
             {
-                applications.filter( app => app.status === '1').map(app => <ApplicationsListCard app={app} rejectApplication={rejectApplication}setModalInfo={setModalInfo}/>)
+                applications.filter( app => app.status === '1').map(app => <ApplicationsListCard app={app} setEmailInfo={setEmailInfo} rejectApplication={rejectApplication}setModalInfo={setModalInfo}/>)
                }
             </section>
 
             <section id="callback_2">
             <h3>Second Callback</h3>
             {
-                applications.filter( app => app.status === '2').map(app => <ApplicationsListCard app={app} rejectApplication={rejectApplication}setModalInfo={setModalInfo}/>)
+                applications.filter( app => app.status === '2').map(app => <ApplicationsListCard app={app} setEmailInfo={setEmailInfo} rejectApplication={rejectApplication}setModalInfo={setModalInfo}/>)
                }
             </section>
 
             <section id='final_callback'>
                 <h3>Final Callback</h3>
             {
-                applications.filter( app => app.status === '3').map(app => <ApplicationsListCard app={app} rejectApplication={rejectApplication}setModalInfo={setModalInfo}/>)
+                applications.filter( app => app.status === '3').map(app => <ApplicationsListCard app={app} setEmailInfo={setEmailInfo} rejectApplication={rejectApplication}setModalInfo={setModalInfo}/>)
                }
             </section>
             {  modalInfo && <section onClick={()=> {setModalInfo(false)}} id='expanded-application-modal'>

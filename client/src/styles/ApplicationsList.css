@@ -121,3 +121,8 @@ padding: 0px 20px;
     border: 1px solid black;
     background-color: transparent;
 }
+
+#no-form {
+    position: absolute;
+    top: -200%;
+}
