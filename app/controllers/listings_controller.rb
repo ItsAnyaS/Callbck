@@ -74,9 +74,7 @@ class ListingsController < ApplicationController
 
     def destroy 
         listing = Listing.find_by(id: params[:id])
-        applications = Application.where(listing_id: listing.id)
         if listing
-        applications.destroy_all
         listing.destroy
         render json: {message: 'successfully deleted'}
         else 

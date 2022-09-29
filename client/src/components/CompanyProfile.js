@@ -130,6 +130,7 @@ const CompanyProfile = () => {
                     <h4>{listing?.title}</h4>
                     <p>{listing?.description}</p>
                     </div>
+                    <button className='hover' id='delete-listing-company-btn' onClick={(e)=> { e.stopPropagation(); navigate(`/company/application_list/${listing.id}`)}}>See applcants</button>
                     <button className='hover' id='delete-listing-company-btn' onClick={(e)=> { e.stopPropagation() ;handleListingDelete(listing)}}>Delete</button>
                 </div>
             )

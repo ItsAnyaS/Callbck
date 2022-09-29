@@ -55,8 +55,8 @@ return (
             <h2>Login as a dancer</h2>
                 <input name='email' onChange={handleInput} required placeholder='Email' type={'email'}/>
                 <input name='password' onChange={handleInput} required placeholder='Password' type={'password'}/>
-                <button className='login-form-submit'>Login</button>
-                <button className='login-change-type' onClick={()=> {setLoginType('company'); setLoginInfo({})}}>Login as company</button>
+                <button className='login-form-submit hover'>Login</button>
+                <button className='login-change-type hover' onClick={()=> {setLoginType('company'); setLoginInfo({})}}>Login as company</button>
             </form>
         </section>}
         { loginType === 'company' &&
@@ -65,8 +65,8 @@ return (
                 <h2>Login as a company</h2>
                 <input name='email' onChange={handleInput} required placeholder='Email' type={'email'}/>
                 <input name='password' onChange={handleInput} required placeholder='Password' type={'password'}/>
-                <button  className='login-form-submit'>Login</button>
-                <button className='login-change-type' onClick={()=> {setLoginType('dancer'); setLoginInfo({})}}>Login as dancer</button>
+                <button  className='login-form-submit hover'>Login</button>
+                <button className='login-change-type hover' onClick={()=> {setLoginType('dancer'); setLoginInfo({})}}>Login as dancer</button>
                 </form>
                 <h3>{}</h3>
             </section>

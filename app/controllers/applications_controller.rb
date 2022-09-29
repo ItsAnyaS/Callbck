@@ -45,4 +45,16 @@ class ApplicationsController <  ApplicationController
        
     end
 
+    def applicaitons_by_listings
+        applicaions = Application.where(listing_id: params[:id])
+        render json: applicaions.to_json(methods: [:dancer]) 
+    end
+
+    def destroy 
+        puts params[:id]
+        application = Application.find_by(id: params[:id])
+        application.destroy
+        render json: application
+    end
+
 end

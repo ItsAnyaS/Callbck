@@ -9,6 +9,7 @@ import CompanyProfile from './components/CompanyProfile';
 import ListingPage from './components/ListingPage';
 import Login from './components/Login';
 import Home from './components/Home';
+import ApplicationsList from './components/ApplicationsList';
 import Footer from './components/Footer';
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import {createContext, useState, useEffect, useMemo} from 'react'
@@ -66,6 +67,7 @@ useEffect(() => {
           <Route exact key={8} path='/dancer/signup' element={<DancerSignUp/>}/>
           <Route exact key={9} path='/company/signup' element={<CompanySignUp/>}/>
           <Route exact key={10} path='/login' element={<Login/>}/>
+          <Route exact key={11} path='/company/application_list/:id' element={<ApplicationsList/>}/>
         </Routes>
       </Router>
       <Footer/>
