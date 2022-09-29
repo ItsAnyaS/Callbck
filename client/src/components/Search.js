@@ -54,7 +54,7 @@ const Search = () => {
                     <button><ion-icon name="search-outline"></ion-icon></button>
                     </div>
                     <div id='search-location-container'>
-                    <input name='location' placeholder='location'/>
+                    <input name='location' placeholder='Zipcode'/>
                     <select name='style'>
                         <option defaultChecked value={""} >--Select a style--</option>
                         <option name='tap'>tap</option>
