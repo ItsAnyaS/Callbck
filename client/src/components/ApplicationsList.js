@@ -6,11 +6,15 @@ const ApplicationsList = () => {
     const { id } = useParams()
     const [applications, setApplications] = useState([])
     const [modalInfo, setModalInfo] = useState()
+    const [numOfApps, setNumOfApps] = useState(0)
 
     const getApplications = async() => {
         let req = await fetch(`http://localhost:3000/applicaitons_by_listings/${id}`)
         let res = await req.json()
         setApplications(res)
+        let filteredApps = applications.filter(app => app.status !== 'hired')
+        setNumOfApps(filteredApps.length)
+
     }
 
     const updateApplication = async(listingId, status) => {
@@ -47,12 +51,11 @@ const ApplicationsList = () => {
     useEffect(()=> {
         getApplications()
     }, [])
-console.log(modalInfo)
 
     return (
         <main id='application-list-page'>
             <header>
-                <h1>You currently have {applications.length} open application{applications.length == 1? '': 's'}</h1>
+            { <h1>You currently have {numOfApps} open application{applications.length == 1? '': 's'}</h1>}
             </header>
             <section id='applied'>
             <h3>Applied</h3>
