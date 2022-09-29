@@ -33,13 +33,13 @@ class ListingsController < ApplicationController
                 listings = Listing.where(location: params[:location])
                 if params[:keywords] && params[:keywords] !="" && params[:style] && params[:style] != ""
                     #think about how to allow more felxability
-                style_and_keyword_filtered_listings = listings.filter{|listing| listing.style.include?(params[:style]) && listing.description.downcase.include?(params[:keywords].downcase)}
+                style_and_keyword_filtered_listings = listings.filter{|listing| listing.style.include?(params[:style]) && listing.title.downcase.include?(params[:keywords].downcase)}
                 render json: style_and_keyword_filtered_listings
                 elsif params[:style] && params[:style] != ""
                     style_filtered_listings = listings.filter{|listing| listing.style.include?(params[:style])}
                     render json: style_filtered_listings
                 elsif params[:keywords] && params[:keywords] != ""
-                    keyword_filtered_listings = listings.filter{|listing| listing.description.downcase.include?(params[:keywords].downcase)}
+                    keyword_filtered_listings = listings.filter{|listing| listing.title.downcase.include?(params[:keywords].downcase)}
                     render json: keyword_filtered_listings
                 else
                     render json: listings
@@ -47,7 +47,7 @@ class ListingsController < ApplicationController
         elsif params[:style] && params[:style] != ""
                 listings = Listing.all.filter{|listing| listing.style.include?(params[:style])}
                 if params[:keywords] && params[:keywords] != ""
-                    keyword_filtered_listings = listings.filter{|listing| listing.description.downcase.include?(params[:keywords].downcase)}
+                    keyword_filtered_listings = listings.filter{|listing| listing.title.downcase.include?(params[:keywords].downcase)}
                     render json: keyword_filtered_listings
                 else
                     render json: listings
@@ -57,7 +57,7 @@ class ListingsController < ApplicationController
             if !params[:keywords] || params[:keywords] == ''
             render json: listings
             else
-                keyword_filtered_listings = listings.filter{|listing| listing.description.downcase.include?(params[:keywords].downcase)}
+                keyword_filtered_listings = listings.filter{|listing| listing.title.downcase.include?(params[:keywords].downcase)}
                 render json: keyword_filtered_listings
             end
         end
