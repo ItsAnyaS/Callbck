@@ -30,7 +30,7 @@ class ListingsController < ApplicationController
         #needs refactoring
         if params[:location] && params[:location] != ""
             #think about how to add more general location
-                listings = Listing.where(location: params[:location])
+                listings = Listing.where(location: params[:location]).order(created_at: :asc)
                 if params[:keywords] && params[:keywords] !="" && params[:style] && params[:style] != ""
                     #think about how to allow more felxability
                 style_and_keyword_filtered_listings = listings.filter{|listing| listing.style.include?(params[:style]) && listing.title.downcase.include?(params[:keywords].downcase)}
@@ -53,7 +53,7 @@ class ListingsController < ApplicationController
                     render json: listings
                 end
         else
-            listings = Listing.all
+            listings = Listing.order(created_at: :desc)
             if !params[:keywords] || params[:keywords] == ''
             render json: listings
             else

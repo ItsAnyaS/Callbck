@@ -2,11 +2,13 @@ import { useEffect, useState, useContext } from "react"
 import { useParams } from "react-router-dom"
 import '../styles/ListingPage.css'
 import { UserContext } from "../App"
+import Cookies from "js-cookie"
 
 const ListingPage = () => {
     let { id } = useParams()
     const [currentListingId, setCurrentListingId] = useState(id)
     const [displayedListing, setDisplayedListing] = useState({dancer_gender: [[]]})
+    const [appError, setAppError] = useState('')
     const {globalUser} = useContext(UserContext)
     useEffect(()=> {
         const getCurrentListing = async()=> {
@@ -23,20 +25,26 @@ const ListingPage = () => {
         }
         getCurrentListing()
     },[currentListingId])
-    const [dancerApplicationInfo] = useState({dancer_id: 11, listing_id: currentListingId, company_id: 1, role: 'soloist'})
+    let authToken = Cookies.get('auth-token')
+    const [dancerApplicationInfo] = useState({auth_token: authToken, listing_id: currentListingId, company_id: 1, role: 'soloist'})
     
     const applyForListing = async() => {
-        fetch('http://localhost:3000/applications', {
+       let req = await fetch('http://localhost:3000/applications', {
             method: "POST",
             headers: {"Content-type": "application/json"},
             body: JSON.stringify(dancerApplicationInfo)
         })
-        // let res = await .json()
-        // console.log(res)
+        let res = await req.json()
+        console.log(res)
+        setAppError(res.message)
+        setTimeout(() => {
+            setAppError('')
+        }, 4900)
     }
 // console.log(displayedListing)
 return (
     <main id='listing-page'>
+      {appError &&  <div id='app-alert'><p>{appError}</p></div>}
         <header id='listing-page-header'>
             <div>
             <h1>{displayedListing?.title}</h1>

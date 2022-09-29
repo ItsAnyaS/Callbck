@@ -1,6 +1,7 @@
 #listing-page{
     padding-left: 10%;
     min-height: 92vh;
+    position: relative;
 }
 
 #listing-page-header{
@@ -84,4 +85,36 @@ transition: 300ms;
 .lps-rb {
 margin-right: auto;
 }
+
+
+#app-alert{
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    background-color: dodgerblue;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-weight: 600;
+    animation: notif-slide-in 5000ms;
+}
+
+@keyframes notif-slide-in {
+    0% {
+        right: -500px;
+    }
+
+    5% {
+        right: 50px
+    }
+
+    90% {
+        right: 50px;
+    }
+
+    100% {
+        right: -500px
+    }
+}
+
 
