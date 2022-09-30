@@ -45,6 +45,7 @@ const DancerSignUp = () => {
         data.append('dancer[email]', e.target.email.value)
         data.append('dancer[gender]', e.target.gender.value)
         data.append('dancer[image]',e.target.image.files[0])
+        data.append('dancer[resume]',e.target.resume.files[0])
         data.append('dancer[location]', e.target.location.value)
         data.append('dancer[password_digest]', e.target.password_digest.value)
         setNewDancerInfo(data)
@@ -71,6 +72,7 @@ const DancerSignUp = () => {
         <option value={'non-binary'}>Non-binary</option>
         </select>
         <input name='image' onChange={(e) => {console.log(e.target.files[0])}} placeholder="upload" type={'file'}/>
+        <input name='resume' onChange={(e) => {console.log(e.target.files[0])}} placeholder="upload" type={'file'}/>
     </div>
         <input name='location' minLength="5" maxLength="5" onChange={handleInput} type={'number'} required placeholder="Zip code"/> 
         <input name="password_digest" required type={'password'} placeholder="Password" onChange={handleInput} />

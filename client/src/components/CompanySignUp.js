@@ -64,7 +64,7 @@ const CompanySignUp = () => {
         <input name='location' minLength="5" maxLength="5" onChange={handleInput} type={'number'} required placeholder="Zip code"/> 
         <input name='number_of_employees' onChange={handleInput} type={'number'} required placeholder="Number of employees"/> 
         <input name='logo' onChange={handleInput} required placeholder="Link to your logo"/> 
-        <input name="password_digest" required type={'password'} placeholder="Password" onChange={handleInput} />
+        <input name="password" required type={'password'} placeholder="Password" onChange={handleInput} />
         <button className="hover">Create Account</button>
     </form>}
     <button onClick={()=> {navigate('/dancer/signup')}}>Register as dancer</button>

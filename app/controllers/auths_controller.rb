@@ -1,5 +1,7 @@
 class AuthsController < ApplicationController
     skip_before_action :verify_authenticity_token
+
+
     def login
     dancer = Dancer.find_by(email: params[:email])
     if !dancer
@@ -14,8 +16,8 @@ class AuthsController < ApplicationController
     else
     render json: {error: "incorrect email or password"}, status: 404        
     end
-end
-end
+    end
+    end
 
     def is_valid_dancer_session
         hmac_secret = 'my$ecretK3y'
@@ -43,17 +45,17 @@ end
         end
     end
 
-    def register
-        dancer = Dancer.new(first_name: params[:first_name], last_name: params[:last_name], gender: params[:gender], dance_style: params[:dance_style], email: params[:email], location: params[:location], password_digest: params[:password_digest])
-        if dancer.save
-            hmac_secret = 'my$ecretK3y'
-            payload = { data:  dancer.email}
-            token = JWT.encode payload, hmac_secret, 'HS256'
-            render json: {"auth-token": token}
-        else
-            render json: dancer.errors.full_messages, status: 422
-        end
-    end
+    # def register
+    #     dancer = Dancer.new(first_name: params[:first_name], last_name: params[:last_name], gender: params[:gender], dance_style: params[:dance_style], email: params[:email], location: params[:location], password_digest: params[:password_digest])
+    #     if dancer.save
+    #         hmac_secret = 'my$ecretK3y'
+    #         payload = { data:  dancer.email}
+    #         token = JWT.encode payload, hmac_secret, 'HS256'
+    #         render json: {"auth-token": token}
+    #     else
+    #         render json: dancer.errors.full_messages, status: 422
+    #     end
+    # end
 
     def company_login
         company = Company.find_by(email: params[:email])
@@ -77,7 +79,7 @@ end
             hmac_secret = 'my$ecretK3y'
             payload = { data:  company.email}
             token = JWT.encode payload, hmac_secret, 'HS256'
-            render json: {"company-auth-token": token}
+            render json: {"company-auth-token": token, name: company.name}
         else
             render json: company.errors.full_messages, statis: 422
         end
