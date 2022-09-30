@@ -47,7 +47,7 @@ class ApplicationsController <  ApplicationController
 
     def applicaitons_by_listings
         applicaions = Application.where(listing_id: params[:id])
-        render json: applicaions.to_json(methods: [:dancer]) 
+        render json: applicaions.to_json(methods: [:dancer, :company]) 
     end
 
     def destroy 

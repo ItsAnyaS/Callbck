@@ -17,6 +17,7 @@ const ApplicationsList = () => {
         setApplications(res)
         let filteredApps = applications.filter(app => app.status !== 'hired')
         setNumOfApps(filteredApps.length)
+        console.log(res)
 
     }
 
@@ -82,8 +83,6 @@ const ApplicationsList = () => {
       <textarea name="message"  value={emailInfo.message}/>
       <input type="submit" value="Send"/>
     </form>
-
-    <button onClick={()=> {sendEmail()}}>Test</button>
             </header>
             <section id='applied'>
             <h3>Applied</h3>
@@ -128,9 +127,9 @@ const ApplicationsList = () => {
                     </div>
                 </div>
                 <div id="exp-app-btn-container">
-                    <button onClick={()=> {rejectApplication(modalInfo?.id); setModalInfo(false)}}>Reject</button>
-                    { parseInt(modalInfo.status) < 3 &&<button onClick={()=> {updateApplication(modalInfo.id, modalInfo.status)}}>Send Callback</button>}
-                    <button onClick={()=> {updateApplication(modalInfo.id, '3')}} >Mark as Hired</button>
+                    <button className="hover" onClick={()=> {rejectApplication(modalInfo?.id); setModalInfo(false)}}>Reject</button>
+                    { parseInt(modalInfo.status) < 3 &&<button className="hover" onClick={()=> {updateApplication(modalInfo.id, modalInfo.status)}}>Send Callback</button>}
+                    <button className="hover" onClick={()=> {updateApplication(modalInfo.id, '3')}} >Mark as Hired</button>
                 </div>
                 {/* <div id="exp-app-bottom-container">
                     <button>Previous</button>
