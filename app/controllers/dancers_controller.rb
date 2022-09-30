@@ -72,6 +72,6 @@ class DancersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def dancer_params
-      params.require(:dancer).permit(:first_name, :last_name, :email, :password_digest, :image)
+      params.require(:dancer).permit(:first_name, :last_name, :email, :password_digest, :image, :years_of_experience, :gender, :locaton)
     end
 end
