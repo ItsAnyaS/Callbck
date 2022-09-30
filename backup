@@ -1,0 +1,32 @@
+skip_before_action :verify_authenticity_token
+def show 
+    dancer = Dancer.find_by(id: params[:id])
+    render json: DancerSerializer.new(dancer).serializable_hash[:data][:attributes]
+end
+
+def create
+    puts params
+    dancer = Dancer.new(first_name: params[:first_name], last_name: params[:last_name], gender: params[:gender], dance_style: params[:dance_style], email: params[:email], location: params[:location], password_digest: params[:password_digest])
+    if dancer.save
+        render json: dancer
+    else
+        render json: dancer.errors.full_messages, statis: 422
+    end
+end
+
+def dancer_by_email
+    dancer = Dancer.find_by(email: params[:email])
+   render json: dancer
+end
+
+has_many :applications
+has_one_attached :image
+
+def image_url
+    Rails.application.routes.url_helpers.url_for(image) if image.attached?
+  end
+
+
+  get '/dancers/:id', to: 'dancers#show'
+post '/dancers', to: 'dancers#create'
+get '/dancers_by_email/:email', to: 'dancers#dancer_by_email'

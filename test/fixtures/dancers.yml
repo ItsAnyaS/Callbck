@@ -3,15 +3,11 @@
 one:
   first_name: MyString
   last_name: MyString
-  gender: MyString
-  dance_style: MyString
+  years_of_experience: MyString
   email: MyString
-  location: MyString
 
 two:
   first_name: MyString
   last_name: MyString
-  gender: MyString
-  dance_style: MyString
+  years_of_experience: MyString
   email: MyString
-  location: MyString

@@ -10,6 +10,7 @@ const ApplicationsList = () => {
     const [modalInfo, setModalInfo] = useState()
     const [numOfApps, setNumOfApps] = useState(0)
     const [emailInfo, setEmailInfo] = useState({user_name: '', user_email: '', to_name: '', message: ''})
+    const [refresh, setRefresh] = useState(false)
 
     const getApplications = async() => {
         let req = await fetch(`http://localhost:3000/applicaitons_by_listings/${id}`)
@@ -47,6 +48,7 @@ const ApplicationsList = () => {
         setModalInfo(false)
         console.log (res)
         sendEmail()
+        setRefresh(prev => !prev)
         
     }
 
@@ -60,12 +62,13 @@ const ApplicationsList = () => {
         if (req.ok){
             let filteredApplications = applications.filter(app => app.id !== listingId)
             setApplications(filteredApplications)
+            setRefresh(prev => !prev)
         }
     }
 
     useEffect(()=> {
         getApplications()
-    }, [])
+    }, [refresh])
     console.log(emailInfo)
 
     return (
@@ -109,6 +112,11 @@ const ApplicationsList = () => {
             {
                 applications.filter( app => app.status === '3').map(app => <ApplicationsListCard app={app} setEmailInfo={setEmailInfo} rejectApplication={rejectApplication}setModalInfo={setModalInfo}/>)
                }
+            </section>
+            <section id='hired'>
+                <h3>Hired for this position</h3>
+                {applications.filter(app => app.status === 'hired').map( app => <p>{app?.dancer?.first_name}</p>)}
+
             </section>
             {  modalInfo && <section onClick={()=> {setModalInfo(false)}} id='expanded-application-modal'>
                <div id="exp-app-modal-container" onClick={(e)=> {e.stopPropagation()}}>

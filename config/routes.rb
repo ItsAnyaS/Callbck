@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 #Dancers
-get '/dancers/:id', to: 'dancers#show'
-post '/dancers', to: 'dancers#create'
-get '/dancers_by_email/:email', to: 'dancers#dancer_by_email'
+resources :dancers
+get '/latest', to: 'dancers#latest'
 #Companies
 get '/companies/:id', to: 'companies#show'
 post '/companies', to: 'companies#create'

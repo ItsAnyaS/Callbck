@@ -10,17 +10,17 @@ const DancerSignUp = () => {
     const [duplicateDancerError, setDuplicateDancerError] = useState()
 
     useEffect(()=> {
-        setNewDancerInfo({...newDancerInfo, gender:'female'})
+        // setNewDancerInfo({...newDancerInfo, gender:'female'})
     }, [])
 
-    const createNewDancer = async(e) => {
-        e.preventDefault()
-        let req = await fetch('http://localhost:3000/auth/signup', {
+    const createNewDancer = async(data) => {
+       
+        let req = await fetch('http://localhost:3000/dancers', {
             method: "POST", 
-            headers: {"Content-type": "application/json"},
-            body: JSON.stringify(newDancerInfo)
+            body: data
             })
         let res = await req.json()
+        console.log(res)
         if (req.ok){
             Cookies.set('auth-token', res["auth-token"], { expires: 7 })
             navigate('/dancer_profile')
@@ -36,29 +36,32 @@ const DancerSignUp = () => {
         })
     }
 
-    const handleStepOne = async(e) => {
+  
+    const handleSubmit = (e) => {
         e.preventDefault()
-        let req = await fetch(`http://localhost:3000/dancers_by_email/${newDancerInfo.email}`)
-        let res = await req.json()
-        if (res == null){
-            setIsStepTwo(true)
-        }
-        else {
-            setDuplicateDancerError('There is already an account with this email.')
-        }
+        const data = new FormData()
+        data.append('dancer[first_name]', e.target.first_name.value)
+        data.append('dancer[last_name]',e.target.last_name.value)
+        data.append('dancer[email]', e.target.email.value)
+        data.append('dancer[gender]', e.target.gender.value)
+        data.append('dancer[image]',e.target.image.files[0])
+        data.append('dancer[location]', e.target.location.value)
+        data.append('dancer[password_digest]', e.target.password_digest.value)
+        setNewDancerInfo(data)
+        createNewDancer(data)
+        console.log(data)
     }
-   
+
+
+
     return (
     <main id='signup-page'>
     <section>
         <h1>Dancer sign up</h1>
-   { !isStepTwo && <form onSubmit={handleStepOne}>
+   { <form onSubmit={handleSubmit}>
         <input className="first_name_input" name='first_name' onChange={handleInput} required placeholder="First name"/>
         <input name='last_name' onChange={handleInput} required placeholder="Last name"/> 
         <input name='email' onChange={handleInput} required placeholder="Email" type={'email'}/> 
-        <button className="hover">Next <ion-icon name="arrow-forward-outline"></ion-icon></button>
-    </form>}
-   { isStepTwo && <form onSubmit={createNewDancer}>
     <div>
        <label htmlFor="gender-drop-down">Choose gender:</label> 
        <select name='gender' id="gender-drop-down" required placeholder="Gender" onChange={handleInput}> 
@@ -67,6 +70,7 @@ const DancerSignUp = () => {
         <option value={'male'}>Male</option>
         <option value={'non-binary'}>Non-binary</option>
         </select>
+        <input name='image' onChange={(e) => {console.log(e.target.files[0])}} placeholder="upload" type={'file'}/>
     </div>
         <input name='location' minLength="5" maxLength="5" onChange={handleInput} type={'number'} required placeholder="Zip code"/> 
         <input name="password_digest" required type={'password'} placeholder="Password" onChange={handleInput} />
