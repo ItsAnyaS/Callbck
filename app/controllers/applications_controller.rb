@@ -46,8 +46,13 @@ class ApplicationsController <  ApplicationController
     end
 
     def applicaitons_by_listings
-        applicaions = Application.where(listing_id: params[:id])
-        render json: applicaions.to_json(methods: [:dancer, :company]) 
+        applications = Application.where(listing_id: params[:id])
+        dancers = applications.map { |app| Dancer.find_by(id: app.dancer_id)}
+        dancers = dancers.map { |dancer| {first_name: dancer.first_name, last_name: dancer.last_name, gender: dancer.gender, years_of_experience: dancer.years_of_experience, email: dancer.email, headshot: dancer.image_url, resume: dancer.resume_url}}
+        # puts dancers
+         apps = applications.map.with_index {|app, index| {id: app.id, listing_id: app.listing_id, company_id: app.company_id, status: app.status, dancer: dancers[index] }}
+         puts apps
+        render json: apps
     end
 
     def destroy 

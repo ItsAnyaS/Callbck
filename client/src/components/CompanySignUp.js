@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { useNavigate} from 'react-router-dom'
 import Cookies from 'js-cookie'
+import { UserContext} from '../App'
 import '../styles/Register.css'
 
 const CompanySignUp = () => {
+    const {setGlobalUser} = useContext(UserContext)
     const navigate = useNavigate()
     const [newCompanyInfo, setNewCompanyInfo] = useState()
     const [isStepTwo, setIsStepTwo] = useState(false)
@@ -23,6 +25,7 @@ const CompanySignUp = () => {
         let res = await req.json()
         console.log(res)
         if (req.ok){
+            setGlobalUser({name: res.name, isDancer: false})
             Cookies.set('company-auth-token', res["company-auth-token"], { expires: 7 })
             navigate('/company_profile')
         }

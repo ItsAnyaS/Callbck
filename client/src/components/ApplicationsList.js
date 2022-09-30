@@ -77,52 +77,52 @@ const ApplicationsList = () => {
             { <h1>You currently have {numOfApps} open application{applications.length == 1? '': 's'}</h1>}
             <form id="no-form" ref={form} onSubmit={(e) => {e.preventDefault()}}>
       <label>Name</label>
-      <input type="text" name="user_name" value={emailInfo.user_name} />
+      <input readOnly type="text" name="user_name" value={emailInfo.user_name} />
       <label>to</label>
-      <input type="text" name="to_name" value={emailInfo.to_name}  />
+      <input readOnly type="text" name="to_name" value={emailInfo.to_name}  />
       <label>Email</label>
-      <input type="email" name="user_email" value={emailInfo.user_email}/>
+      <input readOnly type="email" name="user_email" value={emailInfo.user_email}/>
       <label>Message</label>
-      <textarea name="message"  value={emailInfo.message}/>
+      <textarea readOnly name="message"  value={emailInfo.message}/>
       <input type="submit" value="Send"/>
     </form>
             </header>
             <section id='applied'>
             <h3>Applied</h3>
                {
-                applications.filter( app => app.status === '0').map(app => <ApplicationsListCard app={app} setEmailInfo={setEmailInfo} rejectApplication={rejectApplication} setModalInfo={setModalInfo}/>)
+                applications.filter( app => app.status === '0').map(app => <ApplicationsListCard  key={app.id} app={app} setEmailInfo={setEmailInfo} rejectApplication={rejectApplication} setModalInfo={setModalInfo}/>)
                }
             </section>
             <section id="callback_1">
             <h3>First Callback</h3>
             {
-                applications.filter( app => app.status === '1').map(app => <ApplicationsListCard app={app} setEmailInfo={setEmailInfo} rejectApplication={rejectApplication}setModalInfo={setModalInfo}/>)
+                applications.filter( app => app.status === '1').map(app => <ApplicationsListCard key={app.id} app={app} setEmailInfo={setEmailInfo} rejectApplication={rejectApplication}setModalInfo={setModalInfo}/>)
                }
             </section>
 
             <section id="callback_2">
             <h3>Second Callback</h3>
             {
-                applications.filter( app => app.status === '2').map(app => <ApplicationsListCard app={app} setEmailInfo={setEmailInfo} rejectApplication={rejectApplication}setModalInfo={setModalInfo}/>)
+                applications.filter( app => app.status === '2').map(app => <ApplicationsListCard key={app.id} app={app} setEmailInfo={setEmailInfo} rejectApplication={rejectApplication}setModalInfo={setModalInfo}/>)
                }
             </section>
 
             <section id='final_callback'>
                 <h3>Final Callback</h3>
             {
-                applications.filter( app => app.status === '3').map(app => <ApplicationsListCard app={app} setEmailInfo={setEmailInfo} rejectApplication={rejectApplication}setModalInfo={setModalInfo}/>)
+                applications.filter( app => app.status === '3').map(app => <ApplicationsListCard key={app.id} app={app} setEmailInfo={setEmailInfo} rejectApplication={rejectApplication}setModalInfo={setModalInfo}/>)
                }
             </section>
             <section id='hired'>
                 <h3>Hired for this position</h3>
-                {applications.filter(app => app.status === 'hired').map( app => <p>{app?.dancer?.first_name}</p>)}
+                {applications.filter(app => app.status === 'hired').map( app => <p key={app.id}>{app?.dancer?.first_name}</p>)}
 
             </section>
             {  modalInfo && <section onClick={()=> {setModalInfo(false)}} id='expanded-application-modal'>
                <div id="exp-app-modal-container" onClick={(e)=> {e.stopPropagation()}}>
                 <div id="exp-app-top-container">
                     <div id='app-top-left'>
-                        <img src="https://daisybeattyphotography.com/wp-content/uploads/2016/07/ballet-dancer-headshots-manhattan-nyc-daisy-beatty-photography-684x1024(pp_w480_h718).png"/>
+                        <img src={modalInfo?.dancer?.headshot}/>
                         <h3>{modalInfo?.dancer?.first_name} {modalInfo?.dancer?.last_name}</h3>
                         <p>Gender: {modalInfo?.dancer?.gender}</p>
                         <p>Email: {modalInfo?.dancer?.email}</p>
@@ -130,7 +130,7 @@ const ApplicationsList = () => {
                         <a href={`${modalInfo?.dancer?.dance_reel}`}>See dance reel</a>
                     </div>
                     <div id="pdf-container">
-                    <iframe id="embeded-pdf" src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210101201653/PDF.pdf" > 
+                    <iframe id="embeded-pdf" src={modalInfo?.dancer?.resume} > 
                      </iframe>
                     </div>
                 </div>

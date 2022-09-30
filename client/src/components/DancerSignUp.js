@@ -2,8 +2,11 @@ import { useEffect, useState } from "react"
 import { useNavigate} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import '../styles/Register.css'
+import { UserContext } from "../App"
+import { useContext } from "react"
 
 const DancerSignUp = () => {
+    const  {setGlobalUser} = useContext(UserContext)
     const navigate = useNavigate()
     const [newDancerInfo, setNewDancerInfo] = useState()
     const [isStepTwo, setIsStepTwo] = useState(false)
@@ -22,6 +25,7 @@ const DancerSignUp = () => {
         let res = await req.json()
         console.log(res)
         if (req.ok){
+            setGlobalUser({first_name: res.first_name, last_name: res.last_name, isDancer: true})
             Cookies.set('auth-token', res["auth-token"], { expires: 7 })
             navigate('/dancer_profile')
         }

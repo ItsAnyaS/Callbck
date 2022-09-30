@@ -60,7 +60,7 @@ class DancersController < ApplicationController
 
   def latest
     @dancer = Dancer.last
-    render json: DancerSerializer.new(@dancer).serializable_hash[:data][:attributes]
+    render json: {dancer: DancerSerializer.new(@dancer).serializable_hash[:data][:attributes]}
   end
 
 
