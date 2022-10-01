@@ -1,16 +1,15 @@
 import { useEffect, useState, useContext } from "react"
 import '../styles/Dancer.css'
 import {UserContext} from '../App'
+import { useNavigate } from "react-router-dom"
 import Cookies from "js-cookie"
 const DancerProfile = ()=> {
-    const {globalUser, seGlobalUser} = useContext(UserContext)
-const [applications, setApplications] = useState([])
+    const navigate =useNavigate()
+    const {globalUser} = useContext(UserContext)
 const [list1, setList1] = useState([])
 const [list2, setList2] = useState([])
 const [list3, setList3] = useState([])
 const [list4, setList4] = useState([])
-const [origin, setOrigin] = useState() 
-const [droppedOn, setDroppedOn] = useState()
 
     useEffect(()=> {
         const getDancerInfo = async() => {
@@ -21,7 +20,6 @@ const [droppedOn, setDroppedOn] = useState()
                 body: JSON.stringify({auth_token: authToken})
             })
             let res = await req.json()
-            setApplications(res)
             // console.log(res)
             let applied =  await res.filter(app => { return app.status === '0'})
             setList1(applied)
@@ -36,69 +34,9 @@ const [droppedOn, setDroppedOn] = useState()
         getDancerInfo()
     }, [])
 
-    const updateApplicationStaus = async(id, status) => {
-       
-        let req = await fetch(`http://localhost:3000/applications/${id}`, {
-            method: 'PATCH',
-            headers: {"Content-type": "application/json"},
-            body: JSON.stringify({status: status})
-        })
-        let res = await req.json()
-        // console.log(res)
-    }
 
-    const handleDrop = (item, e) => {
-        if (droppedOn === 'list1' && origin !== 'list1'){
-            setList1(prev => [...prev, item])
-            
-            if (origin === 'list2'){
-                updateApplicationStaus(item.id, '0')
-                let filteredList = list2.filter(listItem => { return listItem?.id !== item?.id})
-                setList2(filteredList)
-            } else if (origin === 'list3'){
-                updateApplicationStaus(item.id, '0')
-                let filteredList = list3.filter(listItem => { return listItem?.id !== item?.id})
-                setList3(filteredList)
-            } else if (origin === 'list4'){
-                updateApplicationStaus(item.id, '0')
-                let filteredList = list4.filter(listItem => { return listItem?.id !== item?.id})
-                setList4(filteredList)
-            }
-        } else if(droppedOn === 'list2'  && origin !== 'list2') {
-            setList2(prev => [...prev, item])
-            if (origin === 'list1'){
-                updateApplicationStaus(item.id, '1')
-                let filteredList = list1.filter(listItem => { return listItem?.id !== item?.id})
-                setList1(filteredList)
-            } else if (origin === 'list3'){
-                updateApplicationStaus(item.id, '1')
-                let filteredList = list3.filter(listItem => { return listItem?.id !== item?.id})
-                setList3(filteredList)
-            } else if (origin === 'list4'){
-                updateApplicationStaus(item.id, '1')
-                let filteredList = list4.filter(listItem => { return listItem?.id !== item?.id})
-                setList4(filteredList)
-            }
-        } else if(droppedOn === 'list3'  && origin !== 'list3' && origin !== 'list1') {
-            setList3(prev => [...prev, item])
-            if (origin === 'list2'){
-                updateApplicationStaus(item.id, '2')
-                let filteredList = list2.filter(listItem => { return listItem?.id !== item?.id})
-                setList2(filteredList)
-            } else if (origin === 'list4'){
-                updateApplicationStaus(item.id, '2')
-                let filteredList = list4.filter(listItem => { return listItem?.id !== item?.id})
-                setList4(filteredList)
-            }
-        }  else if(droppedOn === 'list4'  && origin !== 'list4' && origin !== 'list1' && origin !== 'list2') {
-            setList4(prev => [...prev, item])
-            if (origin === 'list3'){
-                updateApplicationStaus(item.id, '3')
-                let filteredList = list3.filter(listItem => { return listItem?.id !== item?.id})
-                setList3(filteredList)
-            }
-        }
-    }
+
+    
 
 return (
 
@@ -108,41 +46,66 @@ return (
             <h1>Welcome, {globalUser?.first_name}</h1>
         </header>
         <section id='container-wrapper'>
-        <div className="container" id='list1'  onDragOver={(e)=> {e.preventDefault()}} onDragEnterCapture={(e)=>{setDroppedOn('list1')}} >
+            <h1>Current applications:</h1>
+       { list1.length !== 0 && <div className="container" id='list1'  >
             <h3>Applied</h3>
             {list1.map(item => {
                 return (
-                    <p key={item.id} onDragOver={(e)=> {e.preventDefault()}} className="dragable" onDragStart={(e)=> {setOrigin(e.target.parentElement.id)}} onDragEnd={(e)=> { handleDrop(item, e);e.preventDefault()}} draggable >{item?.listing?.title}</p>
+                    <div key={item.id} className='dancer-app-item'>
+                        <div>
+                        <h4>{item?.listing?.title}</h4>
+                        <p>{new Date( item?.listing?.created_at).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</p>
+                        </div>
+                        <button onClick={()=> {navigate(`/listing/${item.listing.id}`)}} className="hover">Visit listing</button>
+                        </div>
                 )
             })}
-            </div>
+            </div>}
 
-        <div className="container" id='list2' onDragOver={(e)=> {e.preventDefault()}} onDragEnterCapture={(e)=>{setDroppedOn('list2')}}>
-        <h3>First callback</h3>
-        {list2.map(item => {
+            { list2.length !== 0 && <div className="container" id='list2'  >
+            <h3>First callback</h3>
+            {list2.map(item => {
                 return (
-                    <p key={item.id}  onDragOver={(e)=> {e.preventDefault()}} className="dragable" onDragStart={(e)=> {setOrigin(e.target.parentElement.id)}} onDragEnd={(e)=> {handleDrop(item, e)}} draggable >{item?.listing?.title}</p>
+                    <div key={item.id} className='dancer-app-item'>
+                        <div>
+                        <h4>{item?.listing?.title}</h4>
+                        <p>{new Date( item?.listing?.created_at).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</p>
+                        </div>
+                        <button onClick={()=> {navigate(`/listing/${item.listing.id}`)}} className="hover">Visit listing</button>
+                        </div>
                 )
             })}
-        </div>
+            </div>}
 
-        <div className="container" id='list3'  onDragOver={(e)=> {e.preventDefault()}} onDragEnterCapture={(e)=>{setDroppedOn('list3')}}>
-        <h3>Second callback</h3>
-        {list3.map(item => {
+            { list3.length !== 0 && <div className="container" id='list3'  >
+            <h3>Second callback</h3>
+            {list3.map(item => {
                 return (
-                    <p key={item.id}  onDragOver={(e)=> {e.preventDefault()}} className="dragable" onDragStart={(e)=> {setOrigin(e.target.parentElement.id)}} onDragEnd={(e)=> {handleDrop(item, e)}} draggable='true' >{item?.listing?.title}</p>
+                    <div key={item.id} className='dancer-app-item'>
+                        <div>
+                        <h4>{item?.listing?.title}</h4>
+                        <p>{new Date( item?.listing?.created_at).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</p>
+                        </div>
+                        <button onClick={()=> {navigate(`/listing/${item.listing.id}`)}} className="hover">Visit listing</button>
+                        </div>
                 )
             })}
-        </div>
+            </div>}
 
-        <div className="container"  onDragOver={(e)=> {e.preventDefault()}} id='list4' onDragEnterCapture={(e)=>{setDroppedOn('list4')}}>
-        <h3>Final callback</h3>
-        {list4.map(item => {
+            { list4.length !== 0 && <div className="container" id='list4'  >
+            <h3>Final callback</h3>
+            {list4.map(item => {
                 return (
-                    <p key={item.id}  onDragOver={(e)=> {e.preventDefault()}} className="dragable" onDragStart={(e)=> {setOrigin(e.target.parentElement.id)}} onDragEnd={(e)=> {handleDrop(item, e)}} draggable >{item?.listing?.title}</p>
+                    <div key={item.id} className='dancer-app-item'>
+                        <div>
+                        <h4>{item?.listing?.title}</h4>
+                        <p>{new Date( item?.listing?.created_at).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</p>
+                        </div>
+                        <button onClick={()=> {navigate(`/listing/${item.listing.id}`)}} className="hover">Visit listing</button>
+                        </div>
                 )
             })}
-        </div>
+            </div>}
         </section>
     </main>
     

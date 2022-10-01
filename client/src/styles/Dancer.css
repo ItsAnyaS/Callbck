@@ -1,47 +1,6 @@
 #dancer-page{
     min-height: 92vh;
 }
-
-#application-container {
-    display: flex;
-    gap: 20px;
-    padding: 20px;
-}   
-
-
-.container {
-border: 1px solid black;
-width: 20%;
-min-width: 300px;
-min-height: 500px;
-gap: 20px;
-border-radius: 10px;
-display: flex;
-flex-direction: column;
-align-items : center;
-}
-
-.dragable {
-border: 1px solid rgba(0, 0, 0, 0.564);
-min-height: 50px;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-border-radius: 5px;
-width: 80%;
-
-
-}
-#container-wrapper {
-    display: flex;
-    gap: 20px;
-    padding: 20px;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-}
-
 #dancer-header{
     display: flex;
     align-items: center;
@@ -49,3 +8,37 @@ width: 80%;
     margin-bottom: 2em;
     justify-content: center;
 }
+
+#container-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
+
+}   
+
+
+.container {
+    width: 80%;
+}
+
+.dancer-app-item {
+border: 1px solid black;
+width: 80%;
+border-radius: 10px;
+padding: 5px 10px;
+display: flex;
+align-items: center;
+margin-bottom: 1em;
+}
+
+.dancer-app-item div {
+margin-right: auto;}
+
+.dancer-app-item button {
+    font-size: 1.2em;
+    padding: 5px 10px;
+    border-radius: 26px;
+    background-color: transparent;
+    border: 1px solid black;
+}
+
