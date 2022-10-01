@@ -1,5 +1,6 @@
 class ApplicationsController <  ApplicationController
     skip_before_action :verify_authenticity_token
+    after_action :allow_iframe, only: :applicaitons_by_listings
 
     def show 
         application = Application.find_by(id: params[:id])
@@ -46,6 +47,7 @@ class ApplicationsController <  ApplicationController
     end
 
     def applicaitons_by_listings
+        response.headers.except! 'X-Frame-Options'
         applications = Application.where(listing_id: params[:id])
         dancers = applications.map { |app| Dancer.find_by(id: app.dancer_id)}
         dancers = dancers.map { |dancer| {first_name: dancer.first_name, last_name: dancer.last_name, gender: dancer.gender, years_of_experience: dancer.years_of_experience, email: dancer.email, headshot: dancer.image_url, resume: dancer.resume_url}}
@@ -61,5 +63,12 @@ class ApplicationsController <  ApplicationController
         application.destroy
         render json: application
     end
+
+    private
+
+
+  def allow_iframe
+    response.headers.except! 'X-Frame-Options'
+  end
 
 end

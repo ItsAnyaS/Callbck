@@ -130,7 +130,7 @@ const ApplicationsList = () => {
                         <a href={`${modalInfo?.dancer?.dance_reel}`}>See dance reel</a>
                     </div>
                     <div id="pdf-container">
-                    <iframe id="embeded-pdf" src={modalInfo?.dancer?.resume} > 
+                    <iframe is="x-frame-bypass" id="embeded-pdf" src={modalInfo?.dancer?.resume} > 
                      </iframe>
                     </div>
                 </div>
