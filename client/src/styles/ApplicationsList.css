@@ -8,10 +8,11 @@
 
 .applicant-card {
     display: flex;
-    border: 1px solid black;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.431);
     align-items: center;
     padding: 10px;
     width: 60%;
+
 }
 
 .applicant-card  img {
@@ -62,8 +63,18 @@ justify-content: center;
     padding: 10px;
     
 }
+#app-top-left{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 #app-top-left p{
-    margin: 5px;
+    margin: 5px 0px;
+}
+
+#app-top-left a {
+    color: black;
 }
 
 #app-top-left img {
@@ -107,6 +118,8 @@ margin-top: 1em;
     background-color: transparent;
 }
 
+
+
 #exp-app-bottom-container{
 display: flex;
 justify-content: space-between;
@@ -125,4 +138,8 @@ padding: 0px 20px;
 #no-form {
     position: absolute;
     top: -200%;
+}
+
+#apps-page-container {
+    margin-left: 5%;
 }
