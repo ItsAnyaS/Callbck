@@ -54,7 +54,7 @@ return (
                     <div key={item.id} className='dancer-app-item'>
                         <div>
                         <h4>{item?.listing?.title}</h4>
-                        <p>{new Date( item?.listing?.created_at).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</p>
+                        <p>Applied: {new Date( item?.listing?.created_at).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</p>
                         </div>
                         <button onClick={()=> {navigate(`/listing/${item.listing.id}`)}} className="hover">Visit listing</button>
                         </div>
@@ -69,7 +69,7 @@ return (
                     <div key={item.id} className='dancer-app-item'>
                         <div>
                         <h4>{item?.listing?.title}</h4>
-                        <p>{new Date( item?.listing?.created_at).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</p>
+                        <p>Applied: {new Date( item?.listing?.created_at).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</p>
                         </div>
                         <button onClick={()=> {navigate(`/listing/${item.listing.id}`)}} className="hover">Visit listing</button>
                         </div>
@@ -84,7 +84,7 @@ return (
                     <div key={item.id} className='dancer-app-item'>
                         <div>
                         <h4>{item?.listing?.title}</h4>
-                        <p>{new Date( item?.listing?.created_at).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</p>
+                        <p>Applied: {new Date( item?.listing?.created_at).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</p>
                         </div>
                         <button onClick={()=> {navigate(`/listing/${item.listing.id}`)}} className="hover">Visit listing</button>
                         </div>
@@ -99,7 +99,7 @@ return (
                     <div key={item.id} className='dancer-app-item'>
                         <div>
                         <h4>{item?.listing?.title}</h4>
-                        <p>{new Date( item?.listing?.created_at).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</p>
+                        <p>Applied: {new Date( item?.listing?.created_at).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</p>
                         </div>
                         <button onClick={()=> {navigate(`/listing/${item.listing.id}`)}} className="hover">Visit listing</button>
                         </div>
