@@ -50,39 +50,91 @@ const DancerSignUp = () => {
         data.append('dancer[gender]', e.target.gender.value)
         data.append('dancer[image]',e.target.image.files[0])
         data.append('dancer[resume]',e.target.resume.files[0])
+        data.append('dancer[years_of_expirence]',e.target.years_of_expirence.value)
         data.append('dancer[location]', e.target.location.value)
         data.append('dancer[password_digest]', e.target.password_digest.value)
         setNewDancerInfo(data)
         createNewDancer(data)
-        console.log(data)
     }
 
 
 
     return (
-    <main id='signup-page'>
-    <section>
+    <main id='signup--dancer-page'>
+    <secton id='signup-left-container'></secton>
+    <section id="dancer-signup-container">
         <h1>Dancer sign up</h1>
-   { <form onSubmit={handleSubmit}>
-        <input className="first_name_input" name='first_name' onChange={handleInput} required placeholder="First name"/>
-        <input name='last_name' onChange={handleInput} required placeholder="Last name"/> 
-        <input name='email' onChange={handleInput} required placeholder="Email" type={'email'}/> 
-    <div>
-       <label htmlFor="gender-drop-down">Choose gender:</label> 
-       <select name='gender' id="gender-drop-down" required placeholder="Gender" onChange={handleInput}> 
+
+   { <form id="dancer-signup-form" onSubmit={handleSubmit}>
+    <div className="input-divider">
+        <div className="input-container">
+        <p htmlFor="first_name">First name</p>
+        <input  name='first_name' required placeholder="First name"/>
+        </div>
+
+        <div className="input-container">
+        <p>Last name</p>
+        <input name='last_name'  required placeholder="Last name"/> 
+        </div>
+    </div>
+
+
+    <div className="input-divider">
+        <div className="input-container">
+        <p>Email</p>
+        <input name='email'  required placeholder="Email" type={'email'}/> 
+        </div>
+
+
+        <div className="input-container">
+        <p>Zip code</p>
+        <input name='location' minLength="5" maxLength="5"  type={'number'} required placeholder="Zip code"/> 
+        </div>
+    </div>
+
+    <div className="input-divider">
+        <div className="input-container">
+            <p>Gender</p>
+        <select  name='gender' id="gender-drop-down" required placeholder="Gender" > 
         <option defaultChecked={true} disabled >---Select-one---</option>
         <option value={'female'} >Female</option>
         <option value={'male'}>Male</option>
         <option value={'non-binary'}>Non-binary</option>
+        <option value={'other'}>Other</option>
         </select>
-        <input name='image' onChange={(e) => {console.log(e.target.files[0])}} placeholder="upload" type={'file'}/>
-        <input name='resume' onChange={(e) => {console.log(e.target.files[0])}} placeholder="upload" type={'file'}/>
+        </div>
+
+        <div className="input-container">
+        <p>Years of expirence</p>
+        <input name='years_of_expirence' required placeholder="Years of expirence" type={'number'}/> 
+        </div>
     </div>
-        <input name='location' minLength="5" maxLength="5" onChange={handleInput} type={'number'} required placeholder="Zip code"/> 
-        <input name="password_digest" required type={'password'} placeholder="Password" onChange={handleInput} />
-        <button >Create Account</button>
+
+    <div className="input-divider">
+        <div className="input-container">
+        <p>Headshot</p>
+        <input name='image' required placeholder="upload" type={'file'}/>
+        </div>
+        <div className="input-container">
+        <p>Resume</p>
+        <input name='resume'  required placeholder="upload" type={'file'}/>
+        </div>
+
+    </div>
+    <div className="input-divider">
+            <div className="input-container">
+            <p>Passwod</p>
+            <input name="password_digest" required type={'password'} placeholder="Password" />
+            </div>
+            <div className="input-container">
+            <p>Confirm password</p>
+            <input  required type={'password'} placeholder="Confirm password" />
+            </div>
+    </div>
+
+        <button className="create-dancer-account-btn hover">Create Account</button>
     </form>}
-        <button onClick={()=> {navigate('/company/signup')}}>Register as company</button>
+        <button className="hover change-type" onClick={()=> {navigate('/company/signup')}}>Register as company</button>
     </section>   
     </main>
     )
