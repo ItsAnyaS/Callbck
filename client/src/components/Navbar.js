@@ -34,7 +34,7 @@ useEffect(() => {
     return (
         <nav id='navbar'>
             <div onClick={()=> {navigate('/')}} id='logo'>
-                <img id='logo-img' src='../callbck-logo-v2.png'/>
+                <img id='logo-img' src='./callbck-logo-v2.png'/>
             </div>
             <ul id='nav-list'>
                 <NavLink style={{textDecoration: 'none', color: 'black'}} to='/search'><li className="nav-item">Listings</li></NavLink>
