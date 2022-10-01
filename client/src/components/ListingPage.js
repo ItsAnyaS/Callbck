@@ -57,10 +57,8 @@ return (
             <p id="listing-desc">{displayedListing?.description}</p>
             <h3>Location</h3>
             <p>{displayedListing?.location}</p>
-            {/* <iframe referrerpolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps/embed/v1/view?key=AIzaSyDej2gyib9LdZv2wQO2_6MInDwv-glcoeE&center=-33.8569,151.2152&zoom=14&maptype=satellite"
-                allowfullscreen>
-            </iframe> */}
+                <h3>Dance style:</h3>
+                <p>{displayedListing?.style}</p>
             <h3>Prefered gender:</h3>
             <div id="listing-pref-gender-container">
             {displayedListing?.dancer_gender[0].map((item, index) => {
@@ -69,8 +67,6 @@ return (
                 )
             })}
             </div>
-            <h3>Dance style:</h3>
-            <p>{displayedListing?.style}</p>
             <h3>Years of expirence required: </h3>
             <p>{displayedListing?.years_of_expirence || '0'}</p>
     { globalUser?.isDancer &&  <button className="hover" onClick={()=> {applyForListing()}}>Apply</button>}
