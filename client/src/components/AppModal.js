@@ -1,4 +1,5 @@
-const AppModal = ({modalInfo, setModalInfo, rejectApplication, updateApplication}) => {
+const AppModal = ({modalInfo, setModalInfo, rejectApplication, updateApplication, setEmailInfo}) => {
+    console.log(modalInfo)
 return (
     <section onClick={()=> {setModalInfo(false)}} id='expanded-application-modal'>
                <div id="exp-app-modal-container" onClick={(e)=> {e.stopPropagation()}}>
@@ -17,7 +18,7 @@ return (
                     </div>
                 </div>
                 <div id="exp-app-btn-container">
-                    <button className="hover" onClick={()=> {rejectApplication(modalInfo?.id); setModalInfo(false)}}>Reject</button>
+                    <button className="hover" onClick={()=> { setEmailInfo({user_name: 'Callbck', from_name: 'Callbck',user_email: modalInfo.dancer.email, message: `Unfortunatly, you weren't the right fit for this position.  Keep applying and you'll get there!`, to_name: modalInfo.dancer.first_name});rejectApplication(modalInfo.id); setModalInfo(false)}}>Reject</button>
                     { parseInt(modalInfo.status) < 3 &&<button className="hover" onClick={()=> {updateApplication(modalInfo.id, modalInfo.status)}}>Send Callback</button>}
                     <button className="hover" onClick={()=> {updateApplication(modalInfo.id, '3')}} >Mark as Hired</button>
                 </div>

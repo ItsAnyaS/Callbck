@@ -76,6 +76,7 @@ const ApplicationsList = () => {
             let filteredApplications = applications.filter(app => app.id !== listingId)
             setApplications(filteredApplications)
             setRefresh(prev => !prev)
+            sendEmail()
         }
     }
 
@@ -130,7 +131,7 @@ const ApplicationsList = () => {
         <h3>Hired for this position</h3>
         {hired.map( app => <p key={app.id}>{app?.dancer?.first_name}</p>)}
     </section>}
-    {  modalInfo && <AppModal modalInfo={modalInfo} rejectApplication={rejectApplication} updateApplication={updateApplication} setModalInfo={setModalInfo}/>}
+    {  modalInfo && <AppModal setEmailInfo={setEmailInfo} modalInfo={modalInfo} rejectApplication={rejectApplication} updateApplication={updateApplication} setModalInfo={setModalInfo}/>}
     </section>
 </main>
     )
