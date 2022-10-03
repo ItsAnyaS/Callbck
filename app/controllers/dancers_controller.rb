@@ -11,6 +11,11 @@ class DancersController < ApplicationController
   def show
   end
 
+  def dancers_by_token
+    dancer =  verify_dancer
+    render json: {message: dancer}
+  end
+
   # GET /dancers/new
   def new
     @dancer = Dancer.new
@@ -68,6 +73,15 @@ class DancersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_dancer
       @dancer = Dancer.find(params[:id])
+    end
+
+    def verify_dancer
+      hmac_secret = 'my$ecretK3y'
+      token = params[:token]
+      puts token
+      decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
+      puts decoded_token
+      dancer = Dancer.find_by(email: decoded_token[0]["data"])
     end
 
     # Only allow a list of trusted parameters through.

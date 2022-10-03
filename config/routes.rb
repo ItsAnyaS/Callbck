@@ -2,9 +2,11 @@ Rails.application.routes.draw do
 #Dancers
 resources :dancers
 get '/latest', to: 'dancers#latest'
+post '/dancers_by_token', to: 'dancers#dancers_by_token'
 #Companies
 get '/companies/:id', to: 'companies#show'
 post '/companies', to: 'companies#create'
+post '/companies_by_token', to: 'companies#companies_by_token'
 #Applications
 get '/applications/:id', to: 'applications#show'
 post '/applications_by_dancer', to: 'applications#applications_by_dancer'

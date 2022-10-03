@@ -13,4 +13,9 @@ class CompaniesController < ApplicationController
             render josn: company.errors.full_messages
         end
     end
+
+
+  def companies_by_token
+    render json: {message: 'workin'}
+  end
 end

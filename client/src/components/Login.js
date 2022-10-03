@@ -8,6 +8,7 @@ const Login = () => {
     const { setGlobalUser} = useContext(UserContext)
     const [loginType, setLoginType] = useState('dancer')
     const [loginInfo, setLoginInfo] = useState({})
+    const [errorMsg, setErroMsg] = useState()
     const dancerLogin = async(e) => {
         e.preventDefault()
         let req = await fetch('http://localhost:3000/auth/login', {
@@ -20,6 +21,9 @@ const Login = () => {
             setGlobalUser({first_name: res.first_name, last_name: res.last_name, isDancer: true})
             Cookies.set('auth-token', res["auth-token"])
             navigate('/dancer_profile')
+        }
+        if (req.status === 404){
+            setErroMsg('Incorrect email or password')
         }
     }
 
@@ -35,6 +39,8 @@ const Login = () => {
             setGlobalUser({name: res.name, isDancer: false})
             Cookies.set('company-auth-token', res["company-auth-token"], {expires: 7})
             navigate('/company_profile')
+        } if (req.status === 404){
+            setErroMsg('Incorrect email or password')
         }
     }
 
@@ -53,20 +59,22 @@ return (
         <section className='login-container'>
             <form className='login-form' onSubmit={(e)=> {dancerLogin(e)}}>
             <h2>Login as a dancer</h2>
+            {errorMsg &&<div id='sign-in-error'><p>{errorMsg}</p></div>}
                 <input name='email' onChange={handleInput} required placeholder='Email' type={'email'}/>
                 <input name='password' onChange={handleInput} required placeholder='Password' type={'password'}/>
                 <button className='login-form-submit hover'>Login</button>
-                <button className='login-change-type hover' onClick={()=> {setLoginType('company'); setLoginInfo({})}}>Login as company</button>
+                <button className='login-change-type hover' onClick={()=> {setLoginType('company'); setErroMsg(false);setLoginInfo({})}}>Login as company</button>
             </form>
         </section>}
         { loginType === 'company' &&
             <section className='login-container'>
                 <form className='login-form' onSubmit={(e)=> {companyLogin(e)}}>
                 <h2>Login as a company</h2>
+                {errorMsg &&<div id='sign-in-error'><p>{errorMsg}</p></div>}
                 <input name='email' onChange={handleInput} required placeholder='Email' type={'email'}/>
                 <input name='password' onChange={handleInput} required placeholder='Password' type={'password'}/>
                 <button  className='login-form-submit hover'>Login</button>
-                <button className='login-change-type hover' onClick={()=> {setLoginType('dancer'); setLoginInfo({})}}>Login as dancer</button>
+                <button className='login-change-type hover' onClick={()=> {setLoginType('dancer'); setErroMsg(false);setLoginInfo({})}}>Login as dancer</button>
                 </form>
                 <h3>{}</h3>
             </section>
