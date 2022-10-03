@@ -8,8 +8,8 @@ return (
                         <h3>{modalInfo?.dancer?.first_name} {modalInfo?.dancer?.last_name}</h3>
                         <p>Gender: {modalInfo?.dancer?.gender}</p>
                         <p>Email: {modalInfo?.dancer?.email}</p>
-                        <p>Years of expirence: {modalInfo?.dancer?.years_of_expirence || 0}</p>
-                        <a href={`${modalInfo?.dancer?.dance_reel}`}>See dance reel</a>
+                        <p>Years of expirence: {modalInfo?.dancer?.years_of_experience}</p>
+                        <a target='_blanck' href={`${modalInfo?.dancer?.dance_reel}`}>See dance reel</a>
                     </div>
                     <div id="pdf-container">
                     <iframe is="x-frame-bypass" id="embeded-pdf" src={modalInfo?.dancer?.resume} > 

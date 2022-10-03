@@ -52,6 +52,7 @@ const DancerSignUp = () => {
         data.append('dancer[resume]',e.target.resume.files[0])
         data.append('dancer[years_of_experience]',e.target.years_of_expirence.value)
         data.append('dancer[location]', e.target.location.value)
+        data.append('dancer[dance_reel]', e.target.dance_reel.value)
         data.append('dancer[password_digest]', e.target.password_digest.value)
         setNewDancerInfo(data)
         createNewDancer(data)
@@ -123,12 +124,12 @@ const DancerSignUp = () => {
     </div>
     <div className="input-divider">
             <div className="input-container">
-            <p>Passwod</p>
-            <input name="password_digest" required type={'password'} placeholder="Password" />
+            <p>Dance reel</p>
+            <input name='dance_reel'  required type={'text'} placeholder="Youtube link to dance reel" />
             </div>
             <div className="input-container">
-            <p>Confirm password</p>
-            <input  required type={'password'} placeholder="Confirm password" />
+            <p>Passwod</p>
+            <input name="password_digest" required type={'password'} placeholder="Password" />
             </div>
     </div>
 
