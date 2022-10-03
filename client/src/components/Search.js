@@ -57,10 +57,10 @@ const Search = () => {
                     <input name='location' placeholder='Zipcode'/>
                     <select name='style'>
                         <option defaultChecked value={""} >--Select a style--</option>
-                        <option name='tap'>tap</option>
-                        <option name='ballet'>ballet</option>
-                        <option name='jazz'>jazz</option>
-                        <option name='contemporary'>contemporary</option>
+                        <option name='tap'>Tap</option>
+                        <option name='ballet'>Ballet</option>
+                        <option name='jazz'>Jazz</option>
+                        <option name='contemporary'>Contemporary</option>
                     </select>
                     </div>
                 </form>

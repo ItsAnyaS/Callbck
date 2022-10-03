@@ -88,7 +88,7 @@ margin-right: auto;
 
 
 #app-alert{
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 50px;
     background-color: dodgerblue;

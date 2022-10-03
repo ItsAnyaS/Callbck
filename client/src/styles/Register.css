@@ -173,3 +173,10 @@ margin: 0;
     text-decoration: underline;
     margin-top: 2em;
 }
+
+#signup-ta{
+    resize: none;
+    height: 30px;
+    width: 250px;
+    border-radius: 5px;
+}
