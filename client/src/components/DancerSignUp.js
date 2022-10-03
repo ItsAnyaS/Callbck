@@ -50,7 +50,7 @@ const DancerSignUp = () => {
         data.append('dancer[gender]', e.target.gender.value)
         data.append('dancer[image]',e.target.image.files[0])
         data.append('dancer[resume]',e.target.resume.files[0])
-        data.append('dancer[years_of_expirence]',e.target.years_of_expirence.value)
+        data.append('dancer[years_of_experience]',e.target.years_of_expirence.value)
         data.append('dancer[location]', e.target.location.value)
         data.append('dancer[password_digest]', e.target.password_digest.value)
         setNewDancerInfo(data)

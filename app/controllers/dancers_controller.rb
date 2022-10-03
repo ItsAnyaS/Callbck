@@ -28,7 +28,7 @@ class DancersController < ApplicationController
             hmac_secret = 'my$ecretK3y'
             payload = { data:  @dancer.email}
             token = JWT.encode payload, hmac_secret, 'HS256'
-            render json: {"auth-token": token}
+            render json: {"auth-token": token, first_name: @dancer.first_name, last_name: @dancer.last_name}
         # render json: @dancer
       else
         format.json { render json: @dancer.errors, status: :unprocessable_entity }
@@ -72,6 +72,6 @@ class DancersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def dancer_params
-      params.require(:dancer).permit(:first_name, :last_name, :email, :password_digest, :image, :years_of_experience, :gender, :locaton, :resume)
+      params.require(:dancer).permit(:first_name, :last_name, :email, :password_digest, :image, :years_of_experience, :gender, :location, :resume)
     end
 end
