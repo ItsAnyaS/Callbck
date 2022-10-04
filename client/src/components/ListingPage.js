@@ -14,7 +14,7 @@ const ListingPage = () => {
         const getCurrentListing = async()=> {
             let req = await fetch(`http://localhost:3000/listings/${currentListingId}`)
             let res = await req.json()
-            // console.log(res)
+            console.log(res)
             if (currentListingId < 1){
                 setCurrentListingId(1)
             }
@@ -69,6 +69,10 @@ return (
             </div>
             <h3>Years of expirence required: </h3>
             <p>{displayedListing?.years_of_expirence || '0'}</p>
+            <h3>Rehersals start date</h3>
+            <p>{ new Date(displayedListing?.rehersal_start_date).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</p>
+            <h3>Show Start Date</h3>
+            <p>{new Date( displayedListing?.show_date_start).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</p>
     { globalUser?.isDancer &&  <button className="hover" onClick={()=> {applyForListing()}}>Apply</button>}
         </section>
         <section id="listing-page-company-section">

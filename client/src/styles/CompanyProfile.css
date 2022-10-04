@@ -3,7 +3,7 @@
 }
 
 #company-post-modal{
-position: absolute;
+position: fixed;
 top: 0;
 left: 0;
 width: 100%;
@@ -23,7 +23,10 @@ aspect-ratio: 1/1;
 padding: 20px;
 align-items: center;
 gap: 10px;
+border-radius: 10px;
 }
+
+
 
 #company-post-modal-form h2 {
     color: black;
@@ -34,7 +37,8 @@ gap: 10px;
 #company-post-modal-form input, textarea{
 width: 80%;
 height: 30px;
-
+border-radius: 5px;
+border: 1px solid #9880fa87;
 }
 
 #company-post-modal-form textarea {
@@ -44,6 +48,10 @@ height: 30px;
 #company-post-modal-form button {
     padding: 5px 10px ;
     font-size: 1.4em;
+    background-color: #9980FA;
+    border: none;
+    color: white;
+    border-radius: 16px;
 }
 
 #company-page-listing-section{
@@ -98,4 +106,12 @@ color: white;
     padding: 5px 10px;
     min-width: 150px;
     text-overflow: ellipsis;
+}
+
+.new-listing-modal-dd{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    gap: 5px;
+    margin-bottom: 1em;
 }

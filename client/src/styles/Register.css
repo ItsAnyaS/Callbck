@@ -89,7 +89,8 @@ min-height: 92vh;
 }
 
 #signup-left-container{
-background-color: #9980FA;
+background-image: url('https://images.pexels.com/photos/8934637/pexels-photo-8934637.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+background-size: cover;
 height: 92vh;
 width: 30%;
 margin-right: 8em;
