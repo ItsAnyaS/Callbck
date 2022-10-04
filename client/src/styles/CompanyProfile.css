@@ -20,8 +20,8 @@ flex-direction: column;
 background-color: white;
 width: 40%;
 aspect-ratio: 1/1;
-padding: 20px;
-align-items: center;
+padding: 20px 60px;
+
 gap: 10px;
 border-radius: 10px;
 }
@@ -34,15 +34,21 @@ border-radius: 10px;
 
 
 
+
 #company-post-modal-form input, textarea{
-width: 80%;
+width: 100%;
 height: 30px;
 border-radius: 5px;
 border: 1px solid #9880fa87;
 }
 
 #company-post-modal-form textarea {
-    height: 20%;
+    height: 100px;
+    resize: none;
+}
+
+#listing-desc-creact {
+    width: 100%;
 }
 
 #company-post-modal-form button {
@@ -52,6 +58,8 @@ border: 1px solid #9880fa87;
     border: none;
     color: white;
     border-radius: 16px;
+    width: 60%;
+    align-self: center;
 }
 
 #company-page-listing-section{

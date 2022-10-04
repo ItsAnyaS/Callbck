@@ -23,7 +23,7 @@ const CompanyProfile = () => {
                 setCurrentListings(res)
             }
         }
-        setListingInfo({...listingInfo, gender: 'female', style: 'ballet'})
+        setListingInfo({...listingInfo, dancer_gender: [['male']], style: ['ballet']})
         getCurrentListings()
     }, [])
 
@@ -92,13 +92,35 @@ const CompanyProfile = () => {
    { isShowingCreatePostModal && <section id='company-post-modal' onClick={() => setIsShowingCreatePostModal(false)} >
         <form id='company-post-modal-form' onSubmit={addListing} onClick={(e) => e.stopPropagation()}>
             <h2>Create Listing</h2>
-            <input onChange={handleInput} name='title' required placeholder='Listing title' />
-            <textarea  onChange={handleInput} name='description' required placeholder='Proivde a detailed description of the dancers role and excpectations'/>
-            <input  onChange={handleInput} name='compensation' required placeholder='What is the compensation for this role'/>
+            <div className='input-container'>
+            <p>Listing title</p>
+            <input onChange={handleInput} name='title' required />
+
+            </div>
+            <div className='input-container'>
+            <p>Description</p>
+            <textarea  onChange={handleInput} id='listing-desc-creact' name='description' required placeholder='Proivde a detailed description of the dancers role and excpectations'/>
+            </div>
+            <div className='input-container'>
+                <p>Compensation</p>
+            <input  onChange={handleInput} name='compensation' required />
+            </div>
+            <div className='input-container'>
+                <p>Rehersal start date</p>
             <input  onChange={handleInput} type='datetime-local' name='rehersal_start_date' required placeholder='Rehersal start date'/>
+            </div>
+            <div className='input-container'>
+            <p>Show start date</p>
             <input  onChange={handleInput} type='datetime-local' name='show_date_start' required placeholder='Perforamce start date'/>
-            <input  onChange={handleInput} name='location' required placeholder='zipcode of location'/>
-            <input  onChange={handleInput} name='years_of_expirence' required placeholder='Years of expirence'/>
+            </div>
+            <div className='input-container'>
+            <p>Location</p>
+            <input  onChange={handleInput} name='location' minLength='5' maxLength='5' type={'number'} required placeholder='Zip code'/>
+            </div>
+            <div className='input-container'>
+            <p>Years of expirence</p>
+            <input  onChange={handleInput} name='years_of_expirence' type={'number'} required />
+            </div>
             <div className='new-listing-modal-dd'>
             <label>
             Choose style:    

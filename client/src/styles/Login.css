@@ -7,7 +7,7 @@ background-color: #9980FA;
 }
 
 .login-container{
-    width: 30%;
+    width: 35%;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.413);
     height: 70%;
     border-radius: 10px;
@@ -27,6 +27,7 @@ background-color: #9980FA;
 
 .login-form h2 {
     font-size: 2.1em;
+    margin-bottom: 2em;
 }
 
 .login-form input {

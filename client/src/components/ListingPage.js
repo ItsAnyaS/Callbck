@@ -58,7 +58,7 @@ return (
             <h3>Location</h3>
             <p>{displayedListing?.location}</p>
                 <h3>Dance style:</h3>
-                <p>{displayedListing?.style}</p>
+                <p className="gender-item">{displayedListing?.style}</p>
             <h3>Prefered gender:</h3>
             <div id="listing-pref-gender-container">
             {displayedListing?.dancer_gender[0].map((item, index) => {
@@ -80,7 +80,7 @@ return (
             <img  alt={`This is a logo of ${displayedListing?.company?.name}`} src={displayedListing?.company?.logo}/>
             <h4>{displayedListing?.company?.name}</h4>
             </div>
-            <h5>Number of Employees: {displayedListing?.company?.number_of_employees}</h5>
+            <h5>Company size: {displayedListing?.company?.number_of_employees > 100 ? 'Large': 'Small'}</h5>
             <p>{displayedListing?.company?.bio}</p>
             <p>{displayedListing?.company?.location}</p>
         </section>
