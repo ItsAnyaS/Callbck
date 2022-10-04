@@ -7,6 +7,8 @@ post '/dancers_by_token', to: 'dancers#dancers_by_token'
 get '/companies/:id', to: 'companies#show'
 post '/companies', to: 'companies#create'
 post '/companies_by_token', to: 'companies#companies_by_token'
+delete '/companies/:id', to: 'companies#destroy'
+patch '/companies/:id', to: 'companies#update'
 #Applications
 get '/applications/:id', to: 'applications#show'
 post '/applications_by_dancer', to: 'applications#applications_by_dancer'

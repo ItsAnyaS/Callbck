@@ -13,7 +13,7 @@ class DancersController < ApplicationController
 
   def dancers_by_token
     dancer =  verify_dancer
-    render json: {message: dancer}
+    render json: dancer
   end
 
   # GET /dancers/new
@@ -42,25 +42,17 @@ class DancersController < ApplicationController
 
   # PATCH/PUT /dancers/1 or /dancers/1.json
   def update
-    respond_to do |format|
       if @dancer.update(dancer_params)
-        format.html { redirect_to dancer_url(@dancer), notice: "Dancer was successfully updated." }
-        format.json { render :show, status: :ok, location: @dancer }
+        render json: @dancer, status: 200
       else
-        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @dancer.errors, status: :unprocessable_entity }
-      end
     end
   end
 
   # DELETE /dancers/1 or /dancers/1.json
   def destroy
     @dancer.destroy
-
-    respond_to do |format|
-      format.html { redirect_to dancers_url, notice: "Dancer was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    render json: {message: 'destroyed'},  status: 200
   end
 
   def latest

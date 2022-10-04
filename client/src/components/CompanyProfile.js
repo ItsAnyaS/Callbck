@@ -93,7 +93,6 @@ const CompanyProfile = () => {
             <h2>Create Listing</h2>
             <input onChange={handleInput} name='title' required placeholder='Listing title' />
             <textarea  onChange={handleInput} name='description' required placeholder='Proivde a detailed description of the dancers role and excpectations'/>
-           
             <input  onChange={handleInput} name='compensation' required placeholder='What is the compensation for this role'/>
             <input  onChange={handleInput} name='rehersal_start_date' required placeholder='Rehersal start date'/>
             <input  onChange={handleInput} name='show_date_start' required placeholder='Perforamce start date'/>
@@ -122,7 +121,8 @@ const CompanyProfile = () => {
         </form>
     </section>}
     <section id='company-page-listing-section'>
-        <h2>Current listings:</h2>
+      { currentListings.length !== 0 &&  <h2>Current listings:</h2>}
+        { currentListings.length === 0 &&<div><h1>You have no open listings</h1></div>}
         {currentListings.map(listing => {
             return (
                 <div onClick={() => {navigate(`/listing/${listing.id}`)}} className='seller-page-listing-item' key={listing?.id}>

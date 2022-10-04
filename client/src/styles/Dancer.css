@@ -42,3 +42,14 @@ margin-right: auto;}
     border: 1px solid black;
 }
 
+#no-open-dancer-listings{
+    display: flex;
+    margin-top: 5em;
+    flex-direction: column;
+    align-items: center;
+}
+
+#no-open-dancer-listings a {
+color: black;
+}
+

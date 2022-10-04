@@ -10,6 +10,7 @@ const [list1, setList1] = useState([])
 const [list2, setList2] = useState([])
 const [list3, setList3] = useState([])
 const [list4, setList4] = useState([])
+const [hasOpenListings, setHasOpenLisitngs] = useState(false)
 
     useEffect(()=> {
         const getDancerInfo = async() => {
@@ -20,7 +21,7 @@ const [list4, setList4] = useState([])
                 body: JSON.stringify({auth_token: authToken})
             })
             let res = await req.json()
-            // console.log(res)
+            setHasOpenLisitngs(res.length ===0 ? false : true)
             let applied =  await res.filter(app => { return app.status === '0'})
             setList1(applied)
             let callback1 = await res.filter(app => { return app.status === '1'})
@@ -35,8 +36,6 @@ const [list4, setList4] = useState([])
     }, [])
 
 
-
-    
 
 return (
 
@@ -107,6 +106,9 @@ return (
             })}
             </div>}
         </section>
+      { !hasOpenListings &&  <div id="no-open-dancer-listings">
+            <h1>Looks like you have no open applications... Click <a href="/search">Here</a> to start applying</h1>
+        </div>}
     </main>
     
 )

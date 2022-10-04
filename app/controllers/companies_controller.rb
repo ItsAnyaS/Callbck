@@ -16,6 +16,42 @@ class CompaniesController < ApplicationController
 
 
   def companies_by_token
-    render json: {message: 'workin'}
+    company =  verify_company
+    render json: company
   end
+
+  def update
+    company = Company.find_by(id: params[:id])
+    company.update(company_params)
+    render json: company
+  end
+
+  def destroy 
+    company = Company.find_by(id: params[:id])
+    listings = Listings.find_by(company_id: company.id)
+    applications = Applications.find_by(company_id: company.id)
+    listings.destroy_all
+    applications.destroy_all
+    company.destroy
+    render json: {message: 'successfully deleted'}
+  end
+
+
+
+private
+
+def verify_company
+  hmac_secret = 'my$ecretK3y'
+  token = params[:token]
+  decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
+  company = Company.find_by(email: decoded_token[0]["data"])
+end
+
+def company_params
+  params.require(:company).permit(:name, :location, :email, :password_digest, :bio, :logo, :number_of_employees, :company_type,)
+end
+
+
+
+
 end
