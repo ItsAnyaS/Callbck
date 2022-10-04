@@ -9,6 +9,7 @@ class DancersController < ApplicationController
 
   # GET /dancers/1 or /dancers/1.json
   def show
+    render json: @dancer
   end
 
   def dancers_by_token

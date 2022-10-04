@@ -1,5 +1,4 @@
 const Settings = ({globalUser, setIsSettingsOpen, setSubmitData, handleSubmit, isSettingsOpen, userInfo, handleInputChange, setSubmitType, submitData}) => {
-    console.log(userInfo)
 return (
     <section id="settings-modal" onClick={()=> {setIsSettingsOpen(false); setSubmitData({})}}>
     <form onSubmit={handleSubmit} id="settings-container" className={isSettingsOpen && 'slide-up'} onClick={(e)=> {e.stopPropagation()}}>

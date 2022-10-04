@@ -41,7 +41,7 @@ const CompanySignUp = () => {
     return (
 
 <main id='signup--dancer-page'>
-<secton id='signup-left-container'></secton>
+<section id='signup-left-container'></section>
 <section id="dancer-signup-container">
     <h1>Company sign up</h1>
 

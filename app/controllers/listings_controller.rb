@@ -2,7 +2,7 @@ class ListingsController < ApplicationController
     skip_before_action :verify_authenticity_token
 
     def index
-        listings = Listing.all
+        listings = Listing.all.sort {|a,z|  z.created_at - a.created_at}
         render json: listings
     end
 
@@ -30,7 +30,7 @@ class ListingsController < ApplicationController
         #needs refactoring
         if params[:location] && params[:location] != ""
             #think about how to add more general location
-                listings = Listing.where(location: params[:location]).order(created_at: :asc)
+                listings = Listing.where(location: params[:location]).sort {|a,z|  z.created_at - a.created_at}
                 if params[:keywords] && params[:keywords] !="" && params[:style] && params[:style] != ""
                     #think about how to allow more felxability
                 style_and_keyword_filtered_listings = listings.filter{|listing| listing.style.include?(params[:style]) && listing.title.downcase.include?(params[:keywords].downcase)}
@@ -45,7 +45,7 @@ class ListingsController < ApplicationController
                     render json: listings
                 end
         elsif params[:style] && params[:style] != ""
-                listings = Listing.all.filter{|listing| listing.style.include?(params[:style])}
+                listings = Listing.all.filter{|listing| listing.style.include?(params[:style])}.sort {|a,z|  z.created_at - a.created_at}
                 if params[:keywords] && params[:keywords] != ""
                     keyword_filtered_listings = listings.filter{|listing| listing.title.downcase.include?(params[:keywords].downcase)}
                     render json: keyword_filtered_listings
@@ -53,7 +53,7 @@ class ListingsController < ApplicationController
                     render json: listings
                 end
         else
-            listings = Listing.order(created_at: :desc)
+            listings = Listing.all.sort {|a,z|  z.created_at - a.created_at}
             if !params[:keywords] || params[:keywords] == ''
             render json: listings
             else

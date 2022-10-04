@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect} from "react"
 import { useNavigate} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import '../styles/Register.css'
@@ -8,9 +8,7 @@ import { useContext } from "react"
 const DancerSignUp = () => {
     const  {setGlobalUser} = useContext(UserContext)
     const navigate = useNavigate()
-    const [newDancerInfo, setNewDancerInfo] = useState()
-    const [isStepTwo, setIsStepTwo] = useState(false)
-    const [duplicateDancerError, setDuplicateDancerError] = useState()
+    // const [newDancerInfo, setNewDancerInfo] = useState()
 
     useEffect(()=> {
         // setNewDancerInfo({...newDancerInfo, gender:'female'})
@@ -31,14 +29,6 @@ const DancerSignUp = () => {
         }
     }
 
-    const handleInput = (e) => {
-        let key = e.target.name
-        let value = e.target.value
-        setNewDancerInfo({
-            ...newDancerInfo,
-            [key]: value
-        })
-    }
 
   
     const handleSubmit = (e) => {
@@ -54,7 +44,7 @@ const DancerSignUp = () => {
         data.append('dancer[location]', e.target.location.value)
         data.append('dancer[dance_reel]', e.target.dance_reel.value)
         data.append('dancer[password_digest]', e.target.password_digest.value)
-        setNewDancerInfo(data)
+        // setNewDancerInfo(data)
         createNewDancer(data)
     }
 
@@ -62,7 +52,7 @@ const DancerSignUp = () => {
 
     return (
     <main id='signup--dancer-page'>
-    <secton id='signup-left-container'></secton>
+    <section id='signup-left-container'></section>
     <section id="dancer-signup-container">
         <h1>Dancer sign up</h1>
 

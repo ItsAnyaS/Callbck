@@ -14,7 +14,6 @@ const ListingPage = () => {
         const getCurrentListing = async()=> {
             let req = await fetch(`http://localhost:3000/listings/${currentListingId}`)
             let res = await req.json()
-            console.log(res)
             if (currentListingId < 1){
                 setCurrentListingId(1)
             }
@@ -35,7 +34,6 @@ const ListingPage = () => {
             body: JSON.stringify(dancerApplicationInfo)
         })
         let res = await req.json()
-        console.log(res)
         setAppError(res.message)
         setTimeout(() => {
             setAppError('')
