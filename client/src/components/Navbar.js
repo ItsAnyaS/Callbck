@@ -96,9 +96,9 @@ const Navbar = () => {
             if (req.ok){
                 setIsSettingsOpen(false)
                 if (globalUser.isDancer){
-                setGlobalUser({first_name: submitData.first_name, last_name: submitData.last_name, isDancer: true})
+                setGlobalUser({first_name: submitData.first_name ?  submitData.first_name: globalUser.first_name, last_name: submitData.last_name? submitData.last_name: globalUser.last_name, isDancer: true})
                 }else {
-                    setGlobalUser({name: submitData.name, isDancer: false})
+                    setGlobalUser({name: submitData.name? submitData.name: globalUser.name, isDancer: false})
                 }
             }
         } else if (submitType === 'none'){
