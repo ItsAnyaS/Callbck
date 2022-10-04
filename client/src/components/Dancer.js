@@ -15,7 +15,7 @@ const [hasOpenListings, setHasOpenLisitngs] = useState(false)
     useEffect(()=> {
         const getDancerInfo = async() => {
             let authToken = Cookies.get('auth-token')
-            let req = await fetch(`http://localhost:3000/applications_by_dancer`, {
+            let req = await fetch(`/applications_by_dancer`, {
                 method: 'POST',
                 headers: {"Content-type": "application/json"},
                 body: JSON.stringify({auth_token: authToken})

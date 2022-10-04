@@ -36,7 +36,7 @@ const Search = () => {
 
     useEffect(()=> {
         const getAllListings = async() => {
-            let req = await fetch("http://localhost:3000/listings")
+            let req = await fetch("/listings")
             let res = await req.json()
             setListings(res)
         }

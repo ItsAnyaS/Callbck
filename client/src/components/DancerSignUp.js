@@ -16,7 +16,7 @@ const DancerSignUp = () => {
 
     const createNewDancer = async(data) => {
        
-        let req = await fetch('http://localhost:3000/dancers', {
+        let req = await fetch('/dancers', {
             method: "POST", 
             body: data
             })

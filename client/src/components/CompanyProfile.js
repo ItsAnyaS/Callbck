@@ -13,7 +13,7 @@ const CompanyProfile = () => {
     useEffect(() => {
         const getCurrentListings = async() => {
             let authToken = Cookies.get('company-auth-token')
-            let req = await fetch(`http://localhost:3000/listings_by_company`, {
+            let req = await fetch(`/listings_by_company`, {
                 method: "POST",
                 headers: {"content-type": "application/json"},
                 body: JSON.stringify({company_auth_token: authToken})
@@ -55,7 +55,7 @@ const CompanyProfile = () => {
 
     const addListing = async(e) => {
         e.preventDefault()
-        let req = await fetch('http://localhost:3000/listings', {
+        let req = await fetch('/listings', {
             method: 'POST',
             headers: {"content-type": "application/json"},
             body: JSON.stringify(listingInfo)
@@ -69,7 +69,7 @@ const CompanyProfile = () => {
 
     const handleListingDelete = async(listing) => {
 
-        let req =  await fetch(`http://localhost:3000/listings/${listing.id}`, {
+        let req =  await fetch(`/listings/${listing.id}`, {
             method: 'DELETE',
             headers: {"content-type": "application/json"}
         })

@@ -33,7 +33,7 @@ const Navbar = () => {
         authToken = Cookies.get('company-auth-token')
         route = 'companies'
     }
-    let req = await fetch(`http://localhost:3000/${route}_by_token`, {
+    let req = await fetch(`/${route}_by_token`, {
         method: 'POST',
         headers: {"Content-type": "application/json"},
         body: JSON.stringify({token: authToken})
@@ -78,7 +78,7 @@ const Navbar = () => {
             route = 'companies'
         }
         if (submitType === 'delete'){
-            let req = await fetch(`http://localhost:3000/${route}/${userInfo.id}`, {
+            let req = await fetch(`/${route}/${userInfo.id}`, {
                 method: "DELETE",
                 headers: {"Content-type": 'application/json'}
             })
@@ -87,7 +87,7 @@ const Navbar = () => {
                 handleSignOut()
             }
         } else if (submitType === 'edit'){
-            let req = await fetch(`http://localhost:3000/${route}/${userInfo.id}`, {
+            let req = await fetch(`/${route}/${userInfo.id}`, {
                 method: "PATCH",
                 headers: {"Content-type": 'application/json'},
                 body: JSON.stringify(submitData)

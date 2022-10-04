@@ -12,7 +12,7 @@ const ListingPage = () => {
     const {globalUser} = useContext(UserContext)
     useEffect(()=> {
         const getCurrentListing = async()=> {
-            let req = await fetch(`http://localhost:3000/listings/${currentListingId}`)
+            let req = await fetch(`/listings/${currentListingId}`)
             let res = await req.json()
             if (currentListingId < 1){
                 setCurrentListingId(1)

@@ -18,7 +18,7 @@ const ApplicationsList = () => {
     const [refresh, setRefresh] = useState(false)
 
     const getApplications = async() => {
-        let req = await fetch(`http://localhost:3000/applicaitons_by_listings/${id}`)
+        let req = await fetch(`/applicaitons_by_listings/${id}`)
         let res = await req.json()
         setApplications(res)
         let hiredApps = res.filter(app => app.status === 'hired')

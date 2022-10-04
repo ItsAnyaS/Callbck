@@ -15,7 +15,7 @@ const CompanySignUp = () => {
 
     const createNewCompany = async(e) => {
         e.preventDefault()
-        let req = await fetch('http://localhost:3000/auth/company/signup', {
+        let req = await fetch('/auth/company/signup', {
             method: "POST", 
             headers: {"Content-type": "application/json"},
             body: JSON.stringify(newCompanyInfo)
