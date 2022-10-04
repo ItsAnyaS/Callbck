@@ -129,7 +129,7 @@ const ApplicationsList = () => {
     </section>}
         { hired.length !== 0 && <section id='hired'>
         <h3>Hired for this position</h3>
-        {hired.map( app => <p key={app.id}>{app?.dancer?.first_name}</p>)}
+        {hired.map( app => <div key={app.id}>{app?.dancer?.first_name} | {app?.dancer?.email}</div>)}
     </section>}
     {  modalInfo && <AppModal setEmailInfo={setEmailInfo} modalInfo={modalInfo} rejectApplication={rejectApplication} updateApplication={updateApplication} setModalInfo={setModalInfo}/>}
     </section>

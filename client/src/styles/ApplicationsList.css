@@ -3,6 +3,9 @@
     position: relative;
 }
 
+#application-list-page header h1 {
+    margin-left: 10%;
+}
 
 
 
@@ -141,5 +144,6 @@ padding: 0px 20px;
 }
 
 #apps-page-container {
-    margin-left: 5%;
+    margin-left: 10%;
+    margin-top: 5em;
 }
