@@ -68,7 +68,7 @@ return (
             </div>}
         </div>
                 <div className="settings-btn-container">
-                    <button onClick={()=> {setSubmitType('delete')}} className="settings-del-btn hover">Delete Account</button>
+                    <button onClick={()=> {setSubmitType('none')}} className="settings-del-btn hover">Delete Account</button>
                     <button  onClick={()=> {submitData ? setSubmitType('edit') : setSubmitType('none')}} className="settings-save-btn hover">Save</button>
                 </div>
      </form>
