@@ -8,7 +8,7 @@ class AuthsController < ApplicationController
         render json: {error: "no account"}, status: 404
     else
     if dancer.password_digest == params[:password]
-        hmac_secret = 'my$ecretK3y'
+        hmac_secret = 'my$ecredsfgihdghdfghdfkghndfkhdfkdhgiudtK3y'
         payload = { data:  dancer.email}
         token = JWT.encode payload, hmac_secret, 'HS256'
         puts token
@@ -20,7 +20,7 @@ class AuthsController < ApplicationController
     end
 
     def is_valid_dancer_session
-        hmac_secret = 'my$ecretK3y'
+        hmac_secret = 'my$ecredsfgihdghdfghdfkghndfkhdfkdhgiudtK3y'
         token = params[:auth_token]
         puts token
         if token
@@ -33,7 +33,7 @@ class AuthsController < ApplicationController
     end
 
     def is_valid_company_session 
-        hmac_secret = 'my$ecretK3y'
+        hmac_secret = 'my$ecredsfgihdghdfghdfkghndfkhdfkdhgiudtK3y'
         token = params[:company_auth_token]
         puts token
         if token
@@ -63,7 +63,7 @@ class AuthsController < ApplicationController
             render json: {error: "no account"}, status: 404
         else
         if company.password_digest == params[:password]
-            hmac_secret = 'my$ecretK3y'
+            hmac_secret = 'my$ecredsfgihdghdfghdfkghndfkhdfkdhgiudtK3y'
             payload = { data:  company.email}
             token = JWT.encode payload, hmac_secret, 'HS256'
             render json: {"company-auth-token": token, name: company.name}
@@ -76,7 +76,7 @@ class AuthsController < ApplicationController
     def company_signup
         company = Company.new(company_type: params[:company_type], number_of_employees: params[:number_of_employees], name: params[:name],email: params[:email], bio: params[:bio], location: params[:location], logo: params[:logo], password_digest: params[:password])
         if company.save
-            hmac_secret = 'my$ecretK3y'
+            hmac_secret = 'my$ecredsfgihdghdfghdfkghndfkhdfkdhgiudtK3y'
             payload = { data:  company.email}
             token = JWT.encode payload, hmac_secret, 'HS256'
             render json: {"company-auth-token": token, name: company.name}

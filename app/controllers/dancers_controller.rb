@@ -31,7 +31,7 @@ class DancersController < ApplicationController
     @dancer = Dancer.new(dancer_params)
 
       if @dancer.save
-            hmac_secret = 'my$ecretK3y'
+            hmac_secret = 'my$ecredsfgihdghdfghdfkghndfkhdfkdhgiudtK3y'
             payload = { data:  @dancer.email}
             token = JWT.encode payload, hmac_secret, 'HS256'
             render json: {"auth-token": token, first_name: @dancer.first_name, last_name: @dancer.last_name}
@@ -69,7 +69,7 @@ class DancersController < ApplicationController
     end
 
     def verify_dancer
-      hmac_secret = 'my$ecretK3y'
+      hmac_secret = 'my$ecredsfgihdghdfghdfkghndfkhdfkdhgiudtK3y'
       token = params[:token]
       puts token
       decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }

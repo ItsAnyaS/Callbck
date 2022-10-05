@@ -14,7 +14,7 @@ class ListingsController < ApplicationController
     end
 
     def create 
-        hmac_secret = 'my$ecretK3y'
+        hmac_secret = 'my$ecredsfgihdghdfghdfkghndfkhdfkdhgiudtK3y'
         token = params[:company_auth_token]
         decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
         company = Company.find_by(email: decoded_token[0]["data"])
@@ -64,7 +64,7 @@ class ListingsController < ApplicationController
     end
 
     def listings_by_company
-        hmac_secret = 'my$ecretK3y'
+        hmac_secret = 'my$ecredsfgihdghdfghdfkghndfkhdfkdhgiudtK3y'
         token = params[:company_auth_token]
         decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
         company = Company.find_by(email: decoded_token[0]["data"])

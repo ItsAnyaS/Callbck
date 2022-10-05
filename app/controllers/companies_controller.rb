@@ -41,7 +41,7 @@ class CompaniesController < ApplicationController
 private
 
 def verify_company
-  hmac_secret = 'my$ecretK3y'
+  hmac_secret = 'my$ecredsfgihdghdfghdfkghndfkhdfkdhgiudtK3y'
   token = params[:token]
   decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
   company = Company.find_by(email: decoded_token[0]["data"])
