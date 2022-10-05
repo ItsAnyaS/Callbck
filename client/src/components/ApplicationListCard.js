@@ -12,7 +12,7 @@ const ApplicationsListCard = ({app, rejectApplication, setModalInfo, setEmailInf
     }
 return (
     <div className="applicant-card" key={app.id}>
-    <img alt='dancer headahot' src={app.dancer.headshot}/>
+    <img alt='dancer headshot' src={app.dancer.headshot}/>
     <div className="applicant-card-left-container">
         <h5>{app?.dancer?.first_name}</h5>
     </div>

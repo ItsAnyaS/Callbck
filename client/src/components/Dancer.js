@@ -20,19 +20,25 @@ const [hasOpenListings, setHasOpenLisitngs] = useState(false)
                 headers: {"Content-type": "application/json"},
                 body: JSON.stringify({auth_token: authToken})
             })
-            let res = await req.json()
-            setHasOpenLisitngs(res.length ===0 ? false : true)
-            let applied =  await res.filter(app => { return app.status === '0'})
-            setList1(applied)
-            let callback1 = await res.filter(app => { return app.status === '1'})
-            setList2(callback1)
-            let callback2 = await res.filter(app => { return app.status === '2'})
-            setList3(callback2)
-            let callback3 = await res.filter(app => { return app.status === '3'})
-            setList4(callback3)
-        }
+            if (req.status === 500){
+               navigate('/')
+            }
+            else if (req.ok){
+                let res = await req.json()
+                setHasOpenLisitngs(res.length ===0 ? false : true)
+                let applied =  await res.filter(app => { return app.status === '0'})
+                setList1(applied)
+                let callback1 = await res.filter(app => { return app.status === '1'})
+                setList2(callback1)
+                let callback2 = await res.filter(app => { return app.status === '2'})
+                setList3(callback2)
+                let callback3 = await res.filter(app => { return app.status === '3'})
+                setList4(callback3)
+            }
 
+        }
         getDancerInfo()
+        
     }, [])
 
 

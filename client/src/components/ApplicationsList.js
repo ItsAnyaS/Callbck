@@ -1,12 +1,14 @@
 import { useEffect, useState, useRef } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import emailjs from '@emailjs/browser';
 import '../styles/ApplicationsList.css'
 import ApplicationsListCard from "./ApplicationListCard"
 import AppModal from "./AppModal";
+import Cookies from "js-cookie";
 const ApplicationsList = () => {
     const form = useRef({to_name: 'Anya'})
     const { id } = useParams()
+    const navigate = useNavigate()
     const [applications, setApplications] = useState([])
     const [applications1, setApplications1] = useState([])
     const [applications2, setApplications2] = useState([])
@@ -18,21 +20,29 @@ const ApplicationsList = () => {
     const [refresh, setRefresh] = useState(false)
 
     const getApplications = async() => {
+        let isCompany = Cookies.get('company-auth-token')
+        if (!isCompany){
+            navigate('/')
+        }
         let req = await fetch(`/applicaitons_by_listings/${id}`)
-        let res = await req.json()
-        setApplications(res)
-        let hiredApps = res.filter(app => app.status === 'hired')
-        let notHiredApps = res.filter(app => app.status !== 'hired')
-        setNumOfApps(notHiredApps.length)
-        setHired(hiredApps)
-        let filteredApplications = res.filter(app => app.status === '0')
-        setApplications(filteredApplications)
-        filteredApplications = res.filter(app => app.status === '1')
-        setApplications1(filteredApplications)
-        filteredApplications = res.filter(app => app.status === '2')
-        setApplications2(filteredApplications)
-        filteredApplications = res.filter(app => app.status === '3')
-        setApplications3(filteredApplications)
+        if (req.ok){
+            let res = await req.json()
+            setApplications(res)
+            let hiredApps = res.filter(app => app.status === 'hired')
+            let notHiredApps = res.filter(app => app.status !== 'hired')
+            setNumOfApps(notHiredApps.length)
+            setHired(hiredApps)
+            let filteredApplications = res.filter(app => app.status === '0')
+            setApplications(filteredApplications)
+            filteredApplications = res.filter(app => app.status === '1')
+            setApplications1(filteredApplications)
+            filteredApplications = res.filter(app => app.status === '2')
+            setApplications2(filteredApplications)
+            filteredApplications = res.filter(app => app.status === '3')
+            setApplications3(filteredApplications)
+        }else {
+            console.log('error')
+        }
         
     }
 

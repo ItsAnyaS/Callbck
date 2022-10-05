@@ -18,9 +18,11 @@ const CompanyProfile = () => {
                 headers: {"content-type": "application/json"},
                 body: JSON.stringify({company_auth_token: authToken})
             })
-            let res = await req.json()
             if (req.ok){
+                let res = await req.json()
                 setCurrentListings(res)
+            }else {
+                navigate('/')
             }
         }
         setListingInfo({...listingInfo, dancer_gender: [['male']], style: ['ballet']})
