@@ -36,4 +36,5 @@ post '/auth/company/login', to: 'auths#company_login'
 post '/auth/company/signup', to: 'auths#company_signup'
 post 'auth/company/valid_company_session', to: 'auths#is_valid_company_session'
 
+get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end

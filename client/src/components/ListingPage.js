@@ -28,7 +28,7 @@ const ListingPage = () => {
     const [dancerApplicationInfo] = useState({auth_token: authToken, listing_id: currentListingId, company_id: 1, role: 'soloist'})
     
     const applyForListing = async() => {
-       let req = await fetch('http://localhost:3000/applications', {
+       let req = await fetch('/applications', {
             method: "POST",
             headers: {"Content-type": "application/json"},
             body: JSON.stringify(dancerApplicationInfo)

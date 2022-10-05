@@ -11,7 +11,7 @@ const Login = () => {
     const [errorMsg, setErroMsg] = useState()
     const dancerLogin = async(e) => {
         e.preventDefault()
-        let req = await fetch('http://localhost:3000/auth/login', {
+        let req = await fetch('/auth/login', {
             method: 'POST',
             headers: {"content-type": "application/json"},
             body: JSON.stringify(loginInfo)
@@ -29,7 +29,7 @@ const Login = () => {
 
     const companyLogin = async(e) => {
         e.preventDefault()
-        let req = await fetch('http://localhost:3000/auth/company/login',  {
+        let req = await fetch('/auth/company/login',  {
             method: 'POST',
             headers: {"content-type": "application/json"},
             body: JSON.stringify(loginInfo)
