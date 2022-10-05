@@ -117,4 +117,35 @@ margin-right: auto;
     }
 }
 
+@media (max-width: 428px) {
+    #listing-page-header {
+        width: 90%;
+    }
+
+    #listing-page-header h1{
+        font-size: 1.2em;
+    }
+
+    #listing-page-info{
+        max-width: 90%;
+    }
+
+    #listing-desc{
+        margin: 0;
+        max-width: 100%;
+    }
+
+    #listing-page-company-section{
+        width: 90%;
+    }
+
+    #listing-pagination-seciton{ 
+        width: 90%;
+    }
+
+    #listing-pagination-seciton button {
+        font-size: 1.2em;
+    }
+}
+
 

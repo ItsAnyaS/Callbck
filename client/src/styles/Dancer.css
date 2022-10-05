@@ -53,3 +53,29 @@ margin-right: auto;}
 color: black;
 }
 
+@media (max-width: 428px) {
+
+    .container {
+        width: 90%;
+    }
+
+
+    .dancer-app-item{
+        width: 100%;
+    }
+
+    .dancer-app-item button {
+        font-size: 0.6em;
+        min-width: 110px;
+    }
+
+    .dancer-app-item h4 {
+        max-width: 100%;
+        font-size: 0.9em;
+    }
+
+    .dancer-app-item p {
+        font-size: 0.6em;
+    }
+}
+
