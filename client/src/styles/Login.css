@@ -8,6 +8,7 @@ background-color: #9980FA;
 
 .login-container{
     width: 35%;
+    min-width: 350px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.413);
     height: 70%;
     border-radius: 10px;
@@ -16,6 +17,8 @@ background-color: #9980FA;
     background-color: white;
 
 }
+
+
 
 .login-form{
     display: flex;

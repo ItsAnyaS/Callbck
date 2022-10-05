@@ -6,6 +6,7 @@ const Search = () => {
     const [searchParams, setSearchParams] = useState({})
     const [listings, setListings] = useState([])
     const [expandedSearchBar, setExpandedSearchBar] = useState(false)
+    const [annimation, setAnnimation] = useState(false)
         const handleSearch = async() => {
             let req = await fetch('http://localhost:3000/listings_search', {
                 method: "POST",
@@ -49,7 +50,7 @@ const Search = () => {
             <header id='search-header'>
                 <h1 style={{marginLeft: '10%', marginBottom: '2em'}}>Listings</h1>
                 <form onSubmit={handleSubmit} id='search-form' onChange={handleInput}>
-                    <div id={expandedSearchBar ? 'search-bar-container-expanded': 'search-bar-container'}>
+                    <div className={annimation? 'contract': ''} id={expandedSearchBar ? 'search-bar-container-expanded': 'search-bar-container'}>
                   { expandedSearchBar && <input placeholder='Search keywords...' id='search-bar' name='keywords' />}
                     <button><ion-icon name="search-outline"></ion-icon></button>
                     </div>
@@ -65,7 +66,7 @@ const Search = () => {
                     </div>
                 </form>
             </header>
-            <section id='listing-container' onClick={()=> {setExpandedSearchBar(false)}}>
+            <section id='listing-container' onClick={()=> {setExpandedSearchBar(false); setAnnimation(true)}}>
             {listings.map(listing => {
                 return (
                     <div className='listing-item'onClick={()=> {navigate(`/listing/${listing?.id}`)}} key={listing?.id}>

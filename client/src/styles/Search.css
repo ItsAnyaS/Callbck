@@ -54,8 +54,12 @@
     width: 30px;
     height: 30px;
     justify-content: center;
-    animation: contract 300ms;
+    transition: all 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
     margin-right: auto;
+}
+
+.contract {
+    animation: contract 300ms;
 }
 
 #search-bar-container-expanded{
@@ -66,7 +70,8 @@ height: 30px;
 padding: 5px 10px;
 width: 30%;
 border-radius: 26px;
-animation: expand 300ms;
+/* animation: expand 300ms; */
+transition: all 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
 margin-right: auto;
 }
 

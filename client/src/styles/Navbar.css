@@ -4,6 +4,9 @@ height: 8vh;
 border-bottom: 1px solid rgba(0, 0, 0, 0.409);
 display: flex;
 align-items: center;
+max-width: 100vw;
+width: 100vw;
+overflow-x: hidden;
 }
 #logo{
     margin-right: auto;
@@ -16,6 +19,11 @@ align-items: center;
 
 #logo:hover {
     cursor: pointer;
+}
+
+.hamburger-icon{
+  font-size: 2.3em;
+  margin-right: 1em;
 }
 
 #nav-list {
@@ -36,6 +44,50 @@ min-width:75px;
 .gear ion-icon:hover{
     animation: spin 0.6s ease-in-out both;
     cursor: pointer;
+}
+/* Only navbar */
+
+#drop-down-nav-list{
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.745);
+  width: 100%;
+  height: 110%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding-top: 5em;
+  gap: 5%;
+}
+.dd-nav-item{
+color: white;
+z-index: 12;
+margin-left: -80px;
+list-style-type: none;
+font-size: 4em;
+text-align: center;
+font-weight: 600;
+}
+
+.close-nav-modal{
+  font-size: 3em;
+  position: absolute;
+  top: 10px;
+  right: 50px;
+}
+
+@media (max-width: 428px) {
+#logo {}
+
+#logo-img {
+  height: 30px;
+}
+#nav-list{
+  gap: 5%;
+}
 }
 
 @keyframes spin {

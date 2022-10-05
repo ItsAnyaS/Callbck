@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom"
 import "../styles/Navbar.css"
 import { UserContext } from "../App"
 import { useContext, useState, useEffect } from "react"
+import NavDropDown from "./NavDropDown"
 import Cookies from "js-cookie"
 import Settings from "./Settings"
 const Navbar = () => {
@@ -12,6 +13,8 @@ const Navbar = () => {
     const [submitData, setSubmitData] = useState()
     const [submitType, setSubmitType] = useState()
     const navigate = useNavigate()
+    const [isHamburger, setIsHamburger] = useState(true)
+    const [isActive, setIsActive] = useState(false)
     
     useEffect(() => {
         if (globalUser){
@@ -19,6 +22,20 @@ const Navbar = () => {
         }else {
             setIsLoggedIn(false)
         }
+
+        const handleResize = () => {
+            if (window.innerWidth < 600) {
+              setIsHamburger(true);
+            } else {
+              setIsHamburger(false);
+            }
+            
+          }
+          window.addEventListener('load', handleResize)
+          window.addEventListener('resize', handleResize);
+          return () => {
+            window.removeEventListener('resize', handleResize)
+          }
         
     }, [globalUser])
     
@@ -110,15 +127,24 @@ const Navbar = () => {
             <div onClick={()=> {navigate('/')}} id='logo'>
                 <img id='logo-img' alt="Callbck" src='/callbck-logo-v2.png'/>
             </div>
-            <ul id='nav-list'>
+            { !isHamburger && <ul id='nav-list'>
                 <NavLink style={{textDecoration: 'none', color: 'black'}} to='/search'><li className="nav-item">Listings</li></NavLink>
               { isLoggedIn&& <NavLink style={{textDecoration: 'none', color: 'black'}} to={`/${globalUser?.isDancer? 'profile': 'dashboard'}`}><li className="nav-item">Profile</li></NavLink>}
               { isLoggedIn&& <NavLink style={{textDecoration: 'none', color: 'black'}} onClick={handleSignOut} to={`/`}><li className="nav-item">Sign out</li></NavLink>}
               { !isLoggedIn&& <NavLink style={{textDecoration: 'none', color: 'black'}} to={`/login`}><li className="nav-item">LOGIN</li></NavLink>}
               { !isLoggedIn&& <NavLink style={{textDecoration: 'none', color: 'black'}} to={`/signup`}><li className="nav-item">Sign Up</li></NavLink>}
               { isLoggedIn&& <li className="nav-item gear" onClick={()=> {handleSettingsOpen()}}><ion-icon name="settings-outline"></ion-icon></li>}
-            </ul>
-           {isSettingsOpen && <Settings globalUser={globalUser} userInfo={userInfo} setIsSettingsOpen={setIsSettingsOpen} setSubmitData={setSubmitData} handleSubmit={handleSubmit} isSettingsOpen={isSettingsOpen} handleInputChange={handleInputChange} setSubmitType={setSubmitType} submitData={submitData}/>}
+            </ul>}
+            {
+                isHamburger &&
+                <div className="hamburger-icon" onClick={()=> {setIsActive(true)}}>
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+            }
+            {isActive &&
+            <NavDropDown isLoggedIn={isLoggedIn} setIsActive={setIsActive} globalUser={globalUser} handleSignOut={handleSignOut} handleSettingsOpen={handleSettingsOpen}/>
+        }
+        {isSettingsOpen && <Settings globalUser={globalUser} userInfo={userInfo} setIsSettingsOpen={setIsSettingsOpen} setSubmitData={setSubmitData} handleSubmit={handleSubmit} isSettingsOpen={isSettingsOpen} handleInputChange={handleInputChange} setSubmitType={setSubmitType} submitData={submitData}/>}
         </nav>
     )
 }
