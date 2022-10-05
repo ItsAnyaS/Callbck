@@ -13,7 +13,7 @@ const Navbar = () => {
     const [submitData, setSubmitData] = useState()
     const [submitType, setSubmitType] = useState()
     const navigate = useNavigate()
-    const [isHamburger, setIsHamburger] = useState(true)
+    const [isHamburger, setIsHamburger] = useState(false)
     const [isActive, setIsActive] = useState(false)
     
     useEffect(() => {
