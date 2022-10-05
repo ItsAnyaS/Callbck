@@ -39,16 +39,16 @@ const ApplicationsList = () => {
     const sendEmail = () => {
         emailjs.sendForm('service_i8bn0me', 'template_zh7l9ng', form.current, '-7XoatvWc_L2_1I1v')
           .then((result) => {
-              console.log(result.text);
+            //   console.log(result.text);
           }, (error) => {
-              console.log(error.text);
+            //   console.log(error.text);
           });
       };
 
     const updateApplication = async(listingId, status) => {
         let sendStatus 
         if (parseInt(status) < 3){
-            console.log(status)
+            // console.log(status)
             sendStatus = `${parseInt(status) + 1}`
         }else {
             sendStatus = 'hired'
@@ -71,7 +71,6 @@ const ApplicationsList = () => {
             headers: {"Content-type": "application/json"}
         })
         let res = await req.json()
-        console.log(res)
         if (req.ok){
             let filteredApplications = applications.filter(app => app.id !== listingId)
             setApplications(filteredApplications)

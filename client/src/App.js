@@ -8,9 +8,10 @@ import CompanyProfile from './components/CompanyProfile';
 import ListingPage from './components/ListingPage';
 import Login from './components/Login';
 import Home from './components/Home';
+import NotFound from './components/NotFound';
 import ApplicationsList from './components/ApplicationsList';
 import Footer from './components/Footer';
-import {BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import {BrowserRouter as Router, Route, Routes, redirect } from 'react-router-dom'
 import {createContext, useState, useEffect, useMemo} from 'react'
 import Cookies from 'js-cookie';
 export const UserContext = createContext()
@@ -56,16 +57,18 @@ useEffect(() => {
       <Router>
       <Navbar/>
         <Routes>
-          <Route exact key={1} path='/' element={<Home/>}/>
-          <Route exact key={2} path='/search' element={<Search/>}/>
-          <Route exact key={3} path='/profile' element={<DancerProfile/>}/>
-          <Route exact key={4} path='/dashboard' element={<CompanyProfile/>}/>
-          <Route exact key={5} path='/signup' element={<DancerSignUp/>}/>
-          <Route exact key={6} path='/listing/:id' element={<ListingPage/>}/>
-          <Route exact key={7} path='/listing/:id' element={<ListingPage/>}/>
-          <Route exact key={9} path='/company-signup' element={<CompanySignUp/>}/>
-          <Route exact key={10} path='/login' element={<Login/>}/>
-          <Route exact key={11} path='/dancer-applications/:id' element={<ApplicationsList/>}/>
+          <Route path='/' element={<Home/>}/>
+          <Route path='search' element={<Search/>}/>
+          <Route path='profile' element={<DancerProfile/>}/>
+          <Route path='dashboard' element={<CompanyProfile/>}/>
+          <Route path='signup' element={<DancerSignUp/>}/>
+          <Route path='/listing/:id' element={<ListingPage/>}/>
+          <Route path='/listing/:id' element={<ListingPage/>}/>
+          <Route path='/company-signup' element={<CompanySignUp/>}/>
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/dancer-applications/:id' element={<ApplicationsList/>}/>
+          <Route path='*' element={<NotFound/>}/>
+          {/* <Route render={() => <redirect to={{pathname: "/"}} />} /> */}
         </Routes>
       </Router>
       <Footer/>
