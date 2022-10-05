@@ -21,7 +21,6 @@ const DancerSignUp = () => {
             body: data
             })
         let res = await req.json()
-        console.log(res)
         if (req.ok){
             setGlobalUser({first_name: res.first_name, last_name: res.last_name, isDancer: true})
             Cookies.set('auth-token', res["auth-token"], { expires: 7 })
