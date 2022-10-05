@@ -53,7 +53,7 @@ const ApplicationsList = () => {
         }else {
             sendStatus = 'hired'
         }
-        let req = await fetch(`http://localhost:3000/applications/${listingId}`, {
+        let req = await fetch(`/applications/${listingId}`, {
             method: 'PATCH',
             headers: {"content-type": "application/json"},
             body: JSON.stringify({status: sendStatus})
@@ -66,7 +66,7 @@ const ApplicationsList = () => {
     }
 
     const rejectApplication = async(listingId) => {
-        let req = await fetch(`http://localhost:3000/applications/${listingId}`, {
+        let req = await fetch(`/applications/${listingId}`, {
             method: 'DELETE',
             headers: {"Content-type": "application/json"}
         })
