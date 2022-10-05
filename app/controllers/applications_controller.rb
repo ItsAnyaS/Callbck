@@ -51,13 +51,9 @@ class ApplicationsController <  ApplicationController
         applications = Application.where(listing_id: params[:id])
         if applications
         dancers = applications.map { |app| Dancer.find_by(id: app.dancer_id)}
-        if dancers.length < 1
         dancers = dancers.map { |dancer| {first_name: dancer.first_name, last_name: dancer.last_name, gender: dancer.gender, years_of_experience: dancer.years_of_experience, email: dancer.email, headshot: dancer.image_url, resume: dancer.resume_url, dance_reel: dancer.dance_reel}}
         apps = applications.map.with_index {|app, index| {id: app.id, listing_id: app.listing_id, company_id: app.company_id, status: app.status, dancer: dancers[index] }}
         render json: apps
-        else
-            render json: {message: 'no dancers'}
-        end
         else 
             render json: {message: 'no applications'}, status: 404
         end
