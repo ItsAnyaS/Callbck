@@ -58,15 +58,14 @@ useEffect(() => {
         <Routes>
           <Route exact key={1} path='/' element={<Home/>}/>
           <Route exact key={2} path='/search' element={<Search/>}/>
-          <Route exact key={3} path='/dancer_profile' element={<DancerProfile/>}/>
-          <Route exact key={4} path='/company_profile' element={<CompanyProfile/>}/>
+          <Route exact key={3} path='/profile' element={<DancerProfile/>}/>
+          <Route exact key={4} path='/dashboard' element={<CompanyProfile/>}/>
           <Route exact key={5} path='/signup' element={<DancerSignUp/>}/>
           <Route exact key={6} path='/listing/:id' element={<ListingPage/>}/>
           <Route exact key={7} path='/listing/:id' element={<ListingPage/>}/>
-          <Route exact key={8} path='/dancer/signup' element={<DancerSignUp/>}/>
-          <Route exact key={9} path='/company/signup' element={<CompanySignUp/>}/>
+          <Route exact key={9} path='/company-signup' element={<CompanySignUp/>}/>
           <Route exact key={10} path='/login' element={<Login/>}/>
-          <Route exact key={11} path='/company/application_list/:id' element={<ApplicationsList/>}/>
+          <Route exact key={11} path='/dancer-applications/:id' element={<ApplicationsList/>}/>
         </Routes>
       </Router>
       <Footer/>

@@ -103,7 +103,7 @@ const CompanySignUp = () => {
 
     <button className="create-dancer-account-btn hover">Create Account</button>
 </form>}
-    <button className="hover change-type" onClick={()=> {navigate('/dancer/signup')}}>Register as dancer</button>
+    <button className="hover change-type" onClick={()=> {navigate('/signup')}}>Register as dancer</button>
 </section>   
 </main>
     )

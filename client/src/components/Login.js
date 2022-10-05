@@ -20,7 +20,7 @@ const Login = () => {
         if (req.ok) {
             setGlobalUser({first_name: res.first_name, last_name: res.last_name, isDancer: true})
             Cookies.set('auth-token', res["auth-token"])
-            navigate('/dancer_profile')
+            navigate('/profile')
         }
         if (req.status === 404){
             setErroMsg('Incorrect email or password')
@@ -38,7 +38,7 @@ const Login = () => {
         if (req.ok) {
             setGlobalUser({name: res.name, isDancer: false})
             Cookies.set('company-auth-token', res["company-auth-token"], {expires: 7})
-            navigate('/company_profile')
+            navigate('/dashboard')
         } if (req.status === 404){
             setErroMsg('Incorrect email or password')
         }

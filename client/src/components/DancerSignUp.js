@@ -25,7 +25,7 @@ const DancerSignUp = () => {
         if (req.ok){
             setGlobalUser({first_name: res.first_name, last_name: res.last_name, isDancer: true})
             Cookies.set('auth-token', res["auth-token"], { expires: 7 })
-            navigate('/dancer_profile')
+            navigate('/profile')
         }
     }
 
@@ -125,7 +125,7 @@ const DancerSignUp = () => {
 
         <button className="create-dancer-account-btn hover">Create Account</button>
     </form>}
-        <button className="hover change-type" onClick={()=> {navigate('/company/signup')}}>Register as company</button>
+        <button className="hover change-type" onClick={()=> {navigate('/company-signup')}}>Register as company</button>
     </section>   
     </main>
     )
