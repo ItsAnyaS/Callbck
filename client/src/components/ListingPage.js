@@ -14,7 +14,9 @@ const ListingPage = () => {
     const {globalUser} = useContext(UserContext)
     const navigate = useNavigate()
     const [page, setPage] = useState(false)
+    const [dancerApplicationInfo, setDancerApplicationInfo] = useState()
     useEffect(()=> {
+        let authToken = Cookies.get('auth-token')
         setCurrentListingId(id)
         const getCurrentListing = async()=> {
             let req = await fetch('/listings')
@@ -23,6 +25,8 @@ const ListingPage = () => {
                 if (listing.id === parseInt(id)){
                     // console.log(listing)
                     setDisplayedListing(listing)
+                    console.log(listing)
+                    setDancerApplicationInfo({auth_token: authToken, listing_id: listing.id, company_id: listing?.company?.id, role: 'soloist'})
                     if (res[index-1]){
                         setPreviousListing(res[index-1]?.id)
                     }else {
@@ -40,14 +44,15 @@ const ListingPage = () => {
                 if (!list.has(true)){
                     navigate('/')
                 }
+                
             }
             getCurrentListing()
         },[page])
+        // console.log(displayedListing)
         // console.log(prevousListing)
         // console.log(listingByUrl)
         // console.log(nextListing)
-    let authToken = Cookies.get('auth-token')
-    const [dancerApplicationInfo] = useState({auth_token: authToken, listing_id: currentListingId, company_id: 1, role: 'soloist'})
+        console.log(dancerApplicationInfo)
     
     const applyForListing = async() => {
        let req = await fetch('/applications', {
