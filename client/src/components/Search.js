@@ -8,7 +8,7 @@ const Search = () => {
     const [expandedSearchBar, setExpandedSearchBar] = useState(false)
     const [annimation, setAnnimation] = useState(false)
         const handleSearch = async() => {
-            let req = await fetch('http://localhost:3000/listings_search', {
+            let req = await fetch('/listings_search', {
                 method: "POST",
                 headers: {"Content-type": "application/json"},
                 body: JSON.stringify(searchParams)
