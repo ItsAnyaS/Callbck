@@ -35,6 +35,11 @@ const ListingPage = () => {
                     }
                 }})
                 setCurrentListingId(displayedListing?.id)
+                let isValidListing = res.map(listing => listing.id === parseInt(id))
+                const list = new Set(isValidListing)
+                if (!list.has(true)){
+                    navigate('/')
+                }
             }
             getCurrentListing()
         },[page])
