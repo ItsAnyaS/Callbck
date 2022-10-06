@@ -25,7 +25,7 @@ const ListingPage = () => {
                 if (listing.id === parseInt(id)){
                     // console.log(listing)
                     setDisplayedListing(listing)
-                    console.log(listing)
+                    // console.log(listing)
                     setDancerApplicationInfo({auth_token: authToken, listing_id: listing.id, company_id: listing?.company?.id, role: 'soloist'})
                     if (res[index-1]){
                         setPreviousListing(res[index-1]?.id)
