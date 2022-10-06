@@ -52,7 +52,7 @@ const ListingPage = () => {
         // console.log(prevousListing)
         // console.log(listingByUrl)
         // console.log(nextListing)
-        console.log(dancerApplicationInfo)
+        // console.log(dancerApplicationInfo)
     
     const applyForListing = async() => {
        let req = await fetch('/applications', {
