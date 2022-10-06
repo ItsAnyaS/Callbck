@@ -21,6 +21,7 @@ delete '/applications/:id', to: 'applications#destroy'
 get '/listings/:id', to: 'listings#show'
 post '/listings', to: 'listings#create'
 get '/listings', to: 'listings#index'
+get '/listings_pag/:id', to: 'listings#listings_pag'
 delete '/listings/:id', to: 'listings#destroy'
 post '/listings_by_company', to: 'listings#listings_by_company'
 #Listing search

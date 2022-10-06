@@ -26,6 +26,10 @@ class ListingsController < ApplicationController
         end
     end
 
+    def listings_pag
+        render json: {message: 'working'}
+    end
+
     def search
         #needs refactoring
         if params[:location] && params[:location] != ""

@@ -1,29 +1,46 @@
 import { useEffect, useState, useContext } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate, NavLink } from "react-router-dom"
 import '../styles/ListingPage.css'
 import { UserContext } from "../App"
 import Cookies from "js-cookie"
 
 const ListingPage = () => {
     let { id } = useParams()
-    const [currentListingId, setCurrentListingId] = useState(id)
+    const [currentListingId, setCurrentListingId] = useState()
     const [displayedListing, setDisplayedListing] = useState({dancer_gender: [[]]})
     const [appError, setAppError] = useState('')
+    const [prevousListing, setPreviousListing] = useState()
+    const [nextListing, setNextListing] = useState()
     const {globalUser} = useContext(UserContext)
+    const navigate = useNavigate()
+    const [page, setPage] = useState(false)
     useEffect(()=> {
+        setCurrentListingId(id)
         const getCurrentListing = async()=> {
-            let req = await fetch(`/listings/${currentListingId}`)
+            let req = await fetch('/listings')
             let res = await req.json()
-            if (currentListingId < 1){
-                setCurrentListingId(1)
+            res.forEach((listing, index) =>{
+                if (listing.id === parseInt(id)){
+                    // console.log(listing)
+                    setDisplayedListing(listing)
+                    if (res[index-1]){
+                        setPreviousListing(res[index-1]?.id)
+                    }else {
+                        setPreviousListing(listing?.id)
+                    }
+                    if (res[index+1]){
+                        setNextListing(res[index + 1]?.id)
+                    }else {
+                        setNextListing(listing?.id)
+                    }
+                }})
+                setCurrentListingId(displayedListing?.id)
             }
-            if (res == null) {
-                setCurrentListingId(1)
-            }
-            setDisplayedListing(res)
-        }
-        getCurrentListing()
-    },[currentListingId])
+            getCurrentListing()
+        },[page])
+        // console.log(prevousListing)
+        // console.log(listingByUrl)
+        // console.log(nextListing)
     let authToken = Cookies.get('auth-token')
     const [dancerApplicationInfo] = useState({auth_token: authToken, listing_id: currentListingId, company_id: 1, role: 'soloist'})
     
@@ -83,8 +100,8 @@ return (
             <p>{displayedListing?.company?.location}</p>
         </section>
         <section id='listing-pagination-seciton'>
-       {currentListingId - 1 !== 0 ? <button className="lps-rb" onClick={()=> {setCurrentListingId(currentListingId - 1)}}>Previous listing</button>: <button className="lps-rb no-pag">Previous listing</button>}
-        <button onClick={()=> {setCurrentListingId(currentListingId + 1)}}>Next listing</button>
+       {currentListingId - 1 !== 0 ? <button className="lps-rb" onClick={()=> {navigate(`/listing/${prevousListing}`); setPage(prev=> !prev)}}>Previous listing</button>: <button className="lps-rb no-pag">Previous listing</button>}
+       <NavLink to={ `/listing/${nextListing}`}> <button onClick={()=> {setPage(prev => !prev)}}>Next listing</button></NavLink>
         </section>
     </main>
 )
