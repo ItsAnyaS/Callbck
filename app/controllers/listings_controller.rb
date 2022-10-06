@@ -3,7 +3,7 @@ class ListingsController < ApplicationController
 
     def index
         listings = Listing.all.sort {|a,z|  z.created_at - a.created_at}
-        render json: listings
+        render json: listings.to_json(methods: [:company])
     end
 
 
