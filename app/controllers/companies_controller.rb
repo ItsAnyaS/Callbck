@@ -1,8 +1,10 @@
 class CompaniesController < ApplicationController
     skip_before_action :verify_authenticity_token
+    before_action :set_company, only: %i[ show update destroy ]
+
+
     def show 
-        company = Company.find_by(id: params[:id])
-        render json: company
+        render json: @company
     end
 
     def create
@@ -21,24 +23,26 @@ class CompaniesController < ApplicationController
   end
 
   def update
-    company = Company.find_by(id: params[:id])
-    company.update(company_params)
-    render json: company
+    @company.update(company_params)
+    render json: @company
   end
 
   def destroy 
-    company = Company.find_by(id: params[:id])
-    listings = Listings.find_by(company_id: company.id)
-    applications = Applications.find_by(company_id: company.id)
+    listings = Listings.find_by(company_id: @company.id)
+    applications = Applications.find_by(company_id: @company.id)
     listings.destroy_all
     applications.destroy_all
-    company.destroy
+    @company.destroy
     render json: {message: 'successfully deleted'}
   end
 
 
 
 private
+
+def set_company
+  @company = Company.find(params[:id])
+end
 
 def verify_company
   hmac_secret = 'my$ecredsfgihdghdfghdfkghndfkhdfkdhgiudtK3y'
