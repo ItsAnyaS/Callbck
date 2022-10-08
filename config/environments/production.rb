@@ -1,8 +1,8 @@
 require "active_support/core_ext/integer/time"
 
-Rails.application.routes.default_url_options = {
-  host: 'www.callbck.com'
-}
+# Rails.application.routes.default_url_options = {
+#   host: 'www.callbck.com'
+# }
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -42,7 +42,9 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :amazon
+# Store files on Amazon S3.
+config.active_storage.service = :amazon
+
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
