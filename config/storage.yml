@@ -13,6 +13,7 @@ amazon:
   secret_access_key: <%= Rails.application.credentials.dig(:aws, :secret_access_key) %>
   region: US East (N. Virginia) us-east-1
   bucket: callbck
+  public: true
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:
