@@ -20,9 +20,8 @@ color: black;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 10%;
     justify-content: center;
-   
+    margin-left: -25em;
 }
 
 
@@ -38,8 +37,8 @@ right: 0;
 }
 
 #hero h3 {
-    font-size: 1.4em;
-    max-width: 80%;
+    font-size: 1.2em;
+    max-width: 40%;
     font-weight: 400;
 }
 
@@ -138,19 +137,56 @@ width: 30%;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
     text-align: center;
     background-color: #eccc68;
     color: rgba(0, 0, 0, 0.846);
+    flex-wrap: wrap;
+    padding: 2em;
 }
 
-#company-cta-section h1 {
+.company-cta-illistration{
+    width: 50%;
+    min-width: 728px;
+    min-height: 80vh;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+.company-cta-illistrations-container{
+    height: 500px;
+    width:  80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 1.3em;
+    color: rgba(0, 0, 0, 0.846);
+}
+
+.company-cta-illistrations-container ion-icon {
+font-size:8em;
+}
+
+.company-cta-illistrations-container-middle{
+margin-bottom: 3em;
+}
+
+.company-cta-copy {
+width: 49%;
+min-width: 428px;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+ .company-cta-copy h1 {
     font-size: 4em;
 }
-
-#company-cta-section p {
+.company-cta-copy p {
     font-size: 1.6em;
-    width: 40%;
+    width: 80%;
 }
 
 .login-change-type {
@@ -160,8 +196,7 @@ width: 30%;
     margin-top: 4em;
 }
 
-
-#company-cta-section button{
+ .company-cta-copy button{
     padding: 10px 20px;
     font-size: 2em;
     border-radius: 5px;
@@ -171,7 +206,7 @@ width: 30%;
     cursor: pointer;
 }
 
-#company-cta-section button:hover {
+ .company-cta-copy button:hover {
     transform: scale(1.1);
     transition: 300ms;
 }
