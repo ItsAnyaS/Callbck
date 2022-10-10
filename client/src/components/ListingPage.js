@@ -15,6 +15,7 @@ const ListingPage = () => {
     const navigate = useNavigate()
     const [page, setPage] = useState(false)
     const [dancerApplicationInfo, setDancerApplicationInfo] = useState()
+
     useEffect(()=> {
         let authToken = Cookies.get('auth-token')
         setCurrentListingId(id)
@@ -26,7 +27,11 @@ const ListingPage = () => {
                     // console.log(listing)
                     setDisplayedListing(listing)
                     // console.log(listing)
-                    setDancerApplicationInfo({auth_token: authToken, listing_id: listing.id, company_id: listing?.company?.id, role: 'soloist'})
+                    setDancerApplicationInfo({
+                        auth_token: authToken,
+                        listing_id: listing.id,
+                        company_id: listing?.company?.id,
+                        role: 'soloist'})
                     if (res[index-1]){
                         setPreviousListing(res[index-1]?.id)
                     }else {
@@ -48,11 +53,6 @@ const ListingPage = () => {
             }
             getCurrentListing()
         },[page])
-        // console.log(displayedListing)
-        // console.log(prevousListing)
-        // console.log(listingByUrl)
-        // console.log(nextListing)
-        // console.log(dancerApplicationInfo)
     
     const applyForListing = async() => {
        let req = await fetch('/applications', {
@@ -66,7 +66,6 @@ const ListingPage = () => {
             setAppError('')
         }, 4900)
     }
-// console.log(displayedListing)
 return (
     <main id='listing-page'>
       {appError &&  <div id='app-alert'><p>{appError}</p></div>}
@@ -95,14 +94,24 @@ return (
             <h3>Years of expirence required: </h3>
             <p>{displayedListing?.years_of_expirence || '0'}</p>
             <h3>Rehersals start date</h3>
-            <p>{ new Date(displayedListing?.rehersal_start_date).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</p>
+            <p>{ new Date(displayedListing?.rehersal_start_date).toLocaleDateString('en-us',
+             { weekday:"long",
+            year:"numeric",
+            month:"short",
+            day:"numeric"})}</p>
             <h3>Show Start Date</h3>
-            <p>{new Date( displayedListing?.show_date_start).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</p>
+            <p>{new Date( displayedListing?.show_date_start).toLocaleDateString('en-us', 
+            { weekday:"long",
+             year:"numeric",
+             month:"short",
+             day:"numeric"})}</p>
     { globalUser?.isDancer &&  <button className="hover" onClick={()=> {applyForListing()}}>Apply</button>}
         </section>
         <section id="listing-page-company-section">
             <div id='listing-company-name-container'>
-            <img  alt={`This is a logo of ${displayedListing?.company?.name}`} src={displayedListing?.company?.logo}/>
+            <img 
+             alt={`This is a logo of ${displayedListing?.company?.name}`} 
+             src={displayedListing?.company?.logo}/>
             <h4>{displayedListing?.company?.name}</h4>
             </div>
             <h5>Company size: {displayedListing?.company?.number_of_employees > 100 ? 'Large': 'Small'}</h5>
@@ -110,8 +119,13 @@ return (
             <p>{displayedListing?.company?.location}</p>
         </section>
         <section id='listing-pagination-seciton'>
-       {currentListingId - 1 !== 0 ? <button className="lps-rb" onClick={()=> {navigate(`/listing/${prevousListing}`); setPage(prev=> !prev)}}>Previous listing</button>: <button className="lps-rb no-pag">Previous listing</button>}
-       <NavLink to={ `/listing/${nextListing}`}> <button onClick={()=> {setPage(prev => !prev)}}>Next listing</button></NavLink>
+       {currentListingId - 1 !== 0 ? <button className="lps-rb" 
+       onClick={()=> {navigate(`/listing/${prevousListing}`);
+        setPage(prev=> !prev)}}>Previous listing</button>:
+         <button className="lps-rb no-pag">Previous listing</button>}
+       <NavLink to={ `/listing/${nextListing}`}> 
+        <button onClick={()=> {setPage(prev => !prev)}}>Next listing</button>
+       </NavLink>
         </section>
     </main>
 )

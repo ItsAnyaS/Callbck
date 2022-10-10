@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom"
 import "../styles/Navbar.css"
 import { UserContext } from "../App"
 import { useContext, useState, useEffect } from "react"
-import NavDropDown from "./NavDropDown"
+import NavDropDown from "./modals/NavDropDown"
 import Cookies from "js-cookie"
 import Settings from "./Settings"
 const Navbar = () => {

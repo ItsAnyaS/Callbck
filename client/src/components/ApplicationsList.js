@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom"
 import emailjs from '@emailjs/browser';
 import '../styles/ApplicationsList.css'
 import ApplicationsListCard from "./ApplicationListCard"
-import AppModal from "./AppModal";
+import AppModal from "./modals/AppModal";
 import Cookies from "js-cookie";
 const ApplicationsList = () => {
     const form = useRef({to_name: 'Anya'})
