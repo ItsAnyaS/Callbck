@@ -14,8 +14,14 @@ class ApplicationsController <  ApplicationController
     end
 
     def update
-        @applicaion.update(status: params[:status])
+      if  @application.update(status: params[:status])
+        dancer = Dancer.find_by(id: @application.dancer_id)
+        status =  handle_status_convesion(params[:status])
+        DancerMailer.with(user: dancer, status: status).application_update_email.deliver_later
         render json: @applicaion
+      else 
+        render json: {message: "something went wrong"}
+      end
     end
 
     def create
@@ -48,7 +54,9 @@ class ApplicationsController <  ApplicationController
     end
 
     def destroy 
+        dancer = Dancer.find_by(id: @application.dancer_id)
         @application.destroy
+        DancerMailer.with(user: dancer, ).application_reject_email.deliver_later
         render json: @application
     end
 
@@ -61,6 +69,16 @@ class ApplicationsController <  ApplicationController
 
   def set_application
     @application = Application.find(params[:id])
+  end
+
+  def handle_status_convesion(status)
+    if status == '1'
+        "First"
+    elsif status == '2'
+        "Second"
+    else
+        "Final Callback"
+    end
   end
 
   def set_dancer

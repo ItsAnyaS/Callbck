@@ -2,6 +2,9 @@ class DancersController < ApplicationController
   before_action :set_dancer, only: %i[ show edit update destroy ]
   skip_before_action :verify_authenticity_token
 
+  # UserMailer.with(user: @dancer).welcome_email.deliver_later
+
+
   # GET /dancers or /dancers.json
   def index
     @dancers = Dancer.all
