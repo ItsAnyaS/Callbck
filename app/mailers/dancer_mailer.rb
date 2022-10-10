@@ -1,0 +1,2 @@
+class DancerMailer < ApplicationMailer
+end

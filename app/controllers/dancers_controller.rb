@@ -31,6 +31,7 @@ class DancersController < ApplicationController
     @dancer = Dancer.new(dancer_params)
 
       if @dancer.save
+          UserMailer.with(user: @dancer).welcome_email.deliver_later
             hmac_secret = 'my$ecredsfgihdghdfghdfkghndfkhdfkdhgiudtK3y'
             payload = { data:  @dancer.email}
             token = JWT.encode payload, hmac_secret, 'HS256'
