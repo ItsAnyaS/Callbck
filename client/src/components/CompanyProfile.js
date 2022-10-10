@@ -7,6 +7,7 @@ import CreateListing from './modals/CreateListing'
 const CompanyProfile = () => {
     const {globalUser} = useContext(UserContext)
     const navigate = useNavigate()
+
     const [listingInfo, setListingInfo] = useState({company_auth_token: Cookies.get('company-auth-token')})
     const [isShowingCreatePostModal, setIsShowingCreatePostModal] = useState(false)
     const [currentListings, setCurrentListings] = useState([])
@@ -39,22 +40,14 @@ const CompanyProfile = () => {
         })
     }
 
-    const handleGenderInput = (e) => {
+    const handleSpecialInput = (e, inputType) => {
         let value = e.target.value
         value =  value.split(',')
         setListingInfo({...listingInfo,
-        dancer_gender: [value]
+        [inputType]: [value]
     })
     }
 
-    const handleStyleInput = (e) => {
-        let value = e.target.value
-        value = value.split(',')
-        setListingInfo({
-            ...listingInfo,
-            style: [value]
-        })
-    }
 
     const addListing = async(e) => {
         e.preventDefault()
@@ -71,45 +64,54 @@ const CompanyProfile = () => {
     }
 
     const handleListingDelete = async(listing) => {
-
         let req =  await fetch(`/listings/${listing.id}`, {
             method: 'DELETE',
             headers: {"content-type": "application/json"}
         })
-        let res = await req.json()
         if (req.ok) {
-
-        let filteredListings = currentListings.filter(cur => {
-            return (cur.id != listing.id)
+        let filteredListings = currentListings.filter(curListing => {
+            return (curListing.id !== listing.id)
         })
         setCurrentListings(filteredListings)
     }
 
     }
-    return (
-<main id='company-page'>
-    <header id='company-page-header'>
-        <h1>Welcome, {globalUser?.name}</h1>
-        <button className='hover' onClick={ () => setIsShowingCreatePostModal(true) }>Create listing</button>
-    </header>
-   { isShowingCreatePostModal && <CreateListing handleGenderInput={handleGenderInput} handleStyleInput={handleStyleInput} handleInput={handleInput} addListing={addListing} setIsShowingCreatePostModal={setIsShowingCreatePostModal}/>}
-    <section id='company-page-listing-section'>
-      { currentListings.length !== 0 &&  <h2>Current listings:</h2>}
-        { currentListings.length === 0 &&<div><h1>You have no open listings</h1></div>}
-        {currentListings.map(listing => {
-            return (
-                <div onClick={() => {navigate(`/listing/${listing.id}`)}} className='seller-page-listing-item' key={listing?.id}>
-                    <div className='spli-wrapper'>
-                    <h4>{listing?.title}</h4>
-                    <p>{listing?.description}</p>
+
+return (
+    <main id='company-page'>
+        <header id='company-page-header'>
+            <h1>Welcome, {globalUser?.name}</h1>
+            <button className='hover' onClick={ () => setIsShowingCreatePostModal(true) }>Create listing</button>
+        </header>
+    { isShowingCreatePostModal && 
+        <CreateListing
+        handleSpecialInput={handleSpecialInput}
+        handleInput={handleInput}
+        addListing={addListing}
+        setIsShowingCreatePostModal={setIsShowingCreatePostModal}
+        />
+        }
+        <section id='company-page-listing-section'>
+        { currentListings.length !== 0 && 
+        <h2>Current listings:</h2>}
+        { currentListings.length === 0 &&
+            <div>
+                <h1>You have no open listings</h1>
+            </div>}
+            {currentListings.map(listing => {
+                return (
+                    <div onClick={() => {navigate(`/listing/${listing.id}`)}} className='seller-page-listing-item' key={listing?.id}>
+                        <div className='spli-wrapper'>
+                        <h4>{listing?.title}</h4>
+                        <p>{listing?.description}</p>
+                        </div>
+                        <button className='hover' id='delete-listing-company-btn' onClick={(e)=> { e.stopPropagation(); navigate(`/dancer-applications/${listing.id}`)}}>See applicants</button>
+                        <button className='hover' id='delete-listing-company-btn' onClick={(e)=> { e.stopPropagation() ;handleListingDelete(listing)}}>Delete</button>
                     </div>
-                    <button className='hover' id='delete-listing-company-btn' onClick={(e)=> { e.stopPropagation(); navigate(`/dancer-applications/${listing.id}`)}}>See applicants</button>
-                    <button className='hover' id='delete-listing-company-btn' onClick={(e)=> { e.stopPropagation() ;handleListingDelete(listing)}}>Delete</button>
-                </div>
-            )
-        })}
-    </section>
-</main>
+                )
+            })}
+        </section>
+    </main>
     )
 }
 

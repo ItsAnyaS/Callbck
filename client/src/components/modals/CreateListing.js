@@ -1,4 +1,4 @@
- const CreateListing = ({handleGenderInput, handleStyleInput, handleInput, addListing, setIsShowingCreatePostModal}) => {
+ const CreateListing = ({handleSpecialInput, handleInput, addListing, setIsShowingCreatePostModal}) => {
     return (
         <section id='company-post-modal' onClick={() => setIsShowingCreatePostModal(false)} >
         <form id='company-post-modal-form' onSubmit={addListing} onClick={(e) => e.stopPropagation()}>
@@ -35,7 +35,7 @@
             <div className='new-listing-modal-dd'>
             <label>
             Choose style:    
-            <select id='create-listing-style' onChange={handleStyleInput} name='style' required placeholder='What dance styles will be utilized in this position'>
+            <select id='create-listing-style' onChange={(e)=>handleSpecialInput(e, 'style')} name='style' required placeholder='What dance styles will be utilized in this position'>
                 <option value={['ballet']} >Ballet</option>
                 <option value={['tap']} >Tap</option>
                 <option value={['jazz']} >Jazz</option>
@@ -45,7 +45,7 @@
             </label>
             <label>
                 Choose prefered gender: 
-            <select  onChange={handleGenderInput} name='dancer_gender' required placeholder='Prefered dancer gender'>
+            <select  onChange={(e)=> handleSpecialInput(e, 'dancer_gender')} name='dancer_gender' required placeholder='Prefered dancer gender'>
             <option value={['male']}>Male</option>
             <option value={['female']}>Female</option>
             <option value={['non-binary']}>Non-binary</option>
