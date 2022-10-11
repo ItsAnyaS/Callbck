@@ -33,14 +33,15 @@ Rails.application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
+  
   config.action_mailer.default_url_options = { host: 'www.callbck.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                 587,
     domain:               'callbck.com',
-    user_name:            'anastasiazsirman@gmail.com',
-    password:             'dmryqjheucenpgdb',
+    user_name:            'contact@callbck.com',
+    password:             'gmrvrtfrsjcontdz',
     authentication:       'plain',
     enable_starttls_auto: true,
     open_timeout:         5,
