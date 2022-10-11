@@ -24,13 +24,14 @@ const Navbar = () => {
         }
 
         const handleResize = () => {
-            if (window.innerWidth < 600) {
+            if (window.innerWidth < 700) {
               setIsHamburger(true);
             } else {
               setIsHamburger(false);
             }
             
           }
+          handleResize()
           window.addEventListener('load', handleResize)
           window.addEventListener('resize', handleResize);
           return () => {

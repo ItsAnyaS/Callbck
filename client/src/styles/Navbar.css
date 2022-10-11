@@ -1,12 +1,12 @@
 #navbar {
 display: flex;
-height: 8vh;
+height: 10vh;
 border-bottom: 1px solid rgba(0, 0, 0, 0.409);
 display: flex;
 align-items: center;
 max-width: 100vw;
 width: 100vw;
-overflow-x: hidden;
+overflow: hidden;
 }
 #logo{
     margin-right: auto;
@@ -80,7 +80,6 @@ font-weight: 600;
 }
 
 @media (max-width: 428px) {
-#logo {}
 
 #logo-img {
   height: 30px;
