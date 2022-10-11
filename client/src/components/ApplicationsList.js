@@ -16,7 +16,6 @@ const ApplicationsList = () => {
     const [hired, setHired] = useState([])
     const [modalInfo, setModalInfo] = useState()
     const [numOfApps, setNumOfApps] = useState(0)
-    const [emailInfo, setEmailInfo] = useState({user_name: '', user_email: '', to_name: '', message: ''})
     const [refresh, setRefresh] = useState(false)
 
     const getApplications = async() => {
@@ -46,14 +45,6 @@ const ApplicationsList = () => {
         
     }
 
-    const sendEmail = () => {
-        emailjs.sendForm('service_i8bn0me', 'template_zh7l9ng', form.current, '-7XoatvWc_L2_1I1v')
-          .then((result) => {
-            //   console.log(result.text);
-          }, (error) => {
-            //   console.log(error.text);
-          });
-      };
 
     const updateApplication = async(listingId, status) => {
         let sendStatus 
@@ -70,7 +61,6 @@ const ApplicationsList = () => {
         })
         let res = await req.json()
         setModalInfo(false)
-        sendEmail()
         setRefresh(prev => !prev)
         
     }
@@ -85,7 +75,6 @@ const ApplicationsList = () => {
             let filteredApplications = applications.filter(app => app.id !== listingId)
             setApplications(filteredApplications)
             setRefresh(prev => !prev)
-            sendEmail()
         }
     }
 
@@ -97,50 +86,39 @@ const ApplicationsList = () => {
         <main id='application-list-page'>
 <header>
 { <h1>You currently have {numOfApps} open application{applications.length == 1? '': 's'}</h1>}
-    <form id="no-form" ref={form} onSubmit={(e) => {e.preventDefault()}}>
-        <label>Name</label>
-        <input readOnly type="text" name="user_name" value={emailInfo.user_name} />
-        <label>to</label>
-        <input readOnly type="text" name="to_name" value={emailInfo.to_name}  />
-        <label>Email</label>
-        <input readOnly type="email" name="user_email" value={emailInfo.user_email}/>
-        <label>Message</label>
-        <textarea readOnly name="message"  value={emailInfo.message}/>
-        <input type="submit" value="Send"/>
-    </form>
 </header>
 <section id='apps-page-container'>
     { applications.length !== 0 && <section id='applied'>
         <h3>Applied</h3>
         {
-        applications.map(app => <ApplicationsListCard  key={app.id} app={app} setEmailInfo={setEmailInfo} rejectApplication={rejectApplication} setModalInfo={setModalInfo}/>)
+        applications.map(app => <ApplicationsListCard  key={app.id} app={app}  rejectApplication={rejectApplication} setModalInfo={setModalInfo}/>)
         }
     </section>}
   { applications1.length !== 0 &&  <section id="callback_1">
         <h3>First Callback</h3>
         {
-        applications1.map(app => <ApplicationsListCard key={app.id} app={app} setEmailInfo={setEmailInfo} rejectApplication={rejectApplication}setModalInfo={setModalInfo}/>)
+        applications1.map(app => <ApplicationsListCard key={app.id} app={app}  rejectApplication={rejectApplication}setModalInfo={setModalInfo}/>)
         }
     </section>}
 
    { applications2.length !== 0 && <section id="callback_2">
         <h3>Second Callback</h3>
         {
-        applications2.map(app => <ApplicationsListCard key={app.id} app={app} setEmailInfo={setEmailInfo} rejectApplication={rejectApplication}setModalInfo={setModalInfo}/>)
+        applications2.map(app => <ApplicationsListCard key={app.id} app={app} rejectApplication={rejectApplication}setModalInfo={setModalInfo}/>)
         }
     </section>}
 
   { applications3.length !== 0 &&  <section id='final_callback'>
         <h3>Final Callback</h3>
         {
-        applications3.map(app => <ApplicationsListCard key={app.id} app={app} setEmailInfo={setEmailInfo} rejectApplication={rejectApplication}setModalInfo={setModalInfo}/>)
+        applications3.map(app => <ApplicationsListCard key={app.id} app={app}  rejectApplication={rejectApplication}setModalInfo={setModalInfo}/>)
         }
     </section>}
         { hired.length !== 0 && <section id='hired'>
         <h3>Hired for this position</h3>
         {hired.map( app => <div key={app.id}>{app?.dancer?.first_name} | {app?.dancer?.email}</div>)}
     </section>}
-    {  modalInfo && <AppModal setEmailInfo={setEmailInfo} modalInfo={modalInfo} rejectApplication={rejectApplication} updateApplication={updateApplication} setModalInfo={setModalInfo}/>}
+    {  modalInfo && <AppModal modalInfo={modalInfo} rejectApplication={rejectApplication} updateApplication={updateApplication} setModalInfo={setModalInfo}/>}
     </section>
 </main>
     )
