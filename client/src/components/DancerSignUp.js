@@ -57,69 +57,69 @@ const DancerSignUp = () => {
 
    { <form id="dancer-signup-form" onSubmit={handleSubmit}>
     <div className="input-divider">
-        <div className="input-container">
-        <p htmlFor="first_name">First name</p>
-        <input  name='first_name' required placeholder="First name"/>
-        </div>
+        <fieldset>
+            <legend>First name</legend>
+        <input  name='first_name' required />
+        </fieldset>
 
-        <div className="input-container">
-        <p>Last name</p>
-        <input name='last_name'  required placeholder="Last name"/> 
-        </div>
+        <fieldset>
+            <legend>Last name</legend>
+        <input name='last_name'  required /> 
+        </fieldset>
     </div>
 
 
     <div className="input-divider">
-        <div className="input-container">
-        <p>Email</p>
-        <input name='email'  required placeholder="Email" type={'email'}/> 
-        </div>
+            <fieldset>
+        <legend>Email</legend>
+        <input name='email'  required  type={'email'}/> 
+            </fieldset>
 
 
-        <div className="input-container">
-        <p>Zip code</p>
-        <input name='location' minLength="5" maxLength="5"  type={'number'} required placeholder="Zip code"/> 
-        </div>
+            <fieldset>
+                <legend>location</legend>
+        <input name='location' minLength="5" maxLength="5"  type={'number'} required /> 
+            </fieldset>
     </div>
 
     <div className="input-divider">
-        <div className="input-container">
-            <p>Gender</p>
-        <select  name='gender' id="gender-drop-down" required placeholder="Gender" > 
+            <fieldset>
+                <legend>Gender</legend>
+        <select  name='gender' id="gender-drop-down" required  > 
         <option defaultChecked={true} disabled >---Select-one---</option>
         <option value={'female'} >Female</option>
         <option value={'male'}>Male</option>
         <option value={'non-binary'}>Non-binary</option>
         <option value={'other'}>Other</option>
         </select>
-        </div>
+            </fieldset>
 
-        <div className="input-container">
-        <p>Years of expirence</p>
-        <input name='years_of_expirence' required placeholder="Years of expirence" type={'number'}/> 
-        </div>
+            <fieldset>
+                <legend>Years of expirence</legend>
+                <input name='years_of_expirence' required  type={'number'}/> 
+            </fieldset>
     </div>
 
     <div className="input-divider">
-        <div className="input-container">
-        <p>Headshot</p>
-        <input name='image' required placeholder="upload" type={'file'}/>
-        </div>
-        <div className="input-container">
-        <p>Resume</p>
-        <input name='resume'  required placeholder="upload" type={'file'}/>
-        </div>
+            <fieldset>
+                <legend>Headshot</legend>
+                <input name='image' required  type={'file'}/>
+            </fieldset>
+            <fieldset>
+                <legend>Resume</legend>
+                <input name='resume'  required  type={'file'}/>
+            </fieldset>
 
     </div>
     <div className="input-divider">
-            <div className="input-container">
-            <p>Dance reel</p>
-            <input name='dance_reel'  required type={'text'} placeholder="Youtube link to dance reel" />
-            </div>
-            <div className="input-container">
-            <p>Passwod</p>
-            <input name="password_digest" required type={'password'} placeholder="Password" />
-            </div>
+                <fieldset>
+                    <legend>Dance reel</legend>
+                    <input name='dance_reel'  required type={'text'}  />
+                </fieldset>
+                <fieldset>
+                    <legend>Password</legend>
+                    <input name="password_digest" required type={'password'} />
+                </fieldset>
     </div>
 
         <button className="create-dancer-account-btn hover">Create Account</button>

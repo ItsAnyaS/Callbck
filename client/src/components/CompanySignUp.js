@@ -47,58 +47,58 @@ const CompanySignUp = () => {
 
 { <form id="dancer-signup-form" onSubmit={createNewCompany}>
 <div className="input-divider">
-    <div className="input-container">
-    <p htmlFor="name">Company name</p>
-    <input  onChange={handleInput} name='name' required placeholder="Company name"/>
-    </div>
+        <fieldset>
+            <legend>Company name</legend>
+            <input onChange={handleInput} name='name' required />
+        </fieldset>
 
-    <div className="input-container">
-    <p>Number of employees</p>
-    <input name='number_of_employees' onChange={handleInput}  required placeholder="Number of employees...(approx)"/> 
-    </div>
+        <fieldset>
+        <legend>Number of employees</legend>
+        <input name='number_of_employees' onChange={handleInput}  required /> 
+        </fieldset>
 </div>
 
 
 <div className="input-divider">
-    <div className="input-container">
-    <p>Email</p>
-    <input name='email' onChange={handleInput} required placeholder="Email" type={'email'}/> 
-    </div>
+    <fieldset>
+        <legend>Email</legend>
+        <input name='email' onChange={handleInput} required placeholder="Email" type={'email'}/> 
+    </fieldset>
 
 
-    <div className="input-container">
-    <p>Zip code</p>
-    <input name='location' minLength="5" maxLength="5"  onChange={handleInput} type={'number'} required placeholder="Zip code"/> 
-    </div>
+        <fieldset>
+            <legend>Zipcode</legend>
+    <input name='location' minLength="5" maxLength="5"  onChange={handleInput} type={'number'} required /> 
+        </fieldset>
 </div>
 
 <div className="input-divider">
-    <div className="input-container">
-    <p>Bio</p>
-    <textarea id="signup-ta"  name='bio' required onChange={handleInput}></textarea>
-    </div>
+    <fieldset>
+        <legend>Bio</legend>
+        <textarea id="signup-ta"  name='bio' required onChange={handleInput}></textarea>
+    </fieldset>
 
 
-    <div className="input-container">
-    <p>Company type</p>
+        <fieldset>
+            <legend>Company type</legend>
     <select name='company_type' required placeholder="Company type" onChange={handleInput}> 
         <option defaultChecked={true} disabled >---Select-one---</option>
         <option value={'not-for-profit'} >Not for Profit</option>
         <option value={'for-profit'}>For Profit</option>
     </select>
-    </div>
+        </fieldset>
 </div>
 
 
 <div className="input-divider">
-        <div className="input-container">
-        <p>Company logo</p>
-        <input name='logo'  onChange={handleInput}  required type={'text'} placeholder="Link to company logo" />
-        </div>
-        <div className="input-container">
-        <p>Passwod</p>
+        <fieldset>
+            <legend>Logo</legend>
+            <input name='logo'  onChange={handleInput}  required type={'text'} placeholder="Link to company logo" />
+        </fieldset>
+        <fieldset>
+            <legend>Password</legend>
         <input name="password"  onChange={handleInput} required type={'password'} placeholder="Password" />
-        </div>
+        </fieldset>
 </div>
 
     <button className="create-dancer-account-btn hover">Create Account</button>
