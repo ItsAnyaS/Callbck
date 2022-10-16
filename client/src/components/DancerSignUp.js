@@ -95,7 +95,7 @@ const DancerSignUp = () => {
             </fieldset>
 
             <fieldset>
-                <legend>Years of expirence</legend>
+                <legend>Years of experience</legend>
                 <input name='years_of_expirence' required  type={'number'}/> 
             </fieldset>
     </div>
