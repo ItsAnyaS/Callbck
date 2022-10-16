@@ -18,11 +18,11 @@
             </div>
             <div className='input-container'>
                 <p>Rehersal start date</p>
-            <input  onChange={handleInput} type='datetime-local' name='rehersal_start_date' required placeholder='Rehersal start date'/>
+            <input  onChange={handleInput} type='date' name='rehersal_start_date' required placeholder='Rehersal start date'/>
             </div>
             <div className='input-container'>
             <p>Show start date</p>
-            <input  onChange={handleInput} type='datetime-local' name='show_date_start' required placeholder='Perforamce start date'/>
+            <input  onChange={handleInput} type='date' name='show_date_start' required placeholder='Perforamce start date'/>
             </div>
             <div className='input-container'>
             <p>Location</p>
