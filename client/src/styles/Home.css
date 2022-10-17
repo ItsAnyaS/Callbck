@@ -22,6 +22,7 @@ color: black;
     align-items: center;
     justify-content: center;
     margin-left: -25em;
+    padding: 5px;
 }
 
 
@@ -40,6 +41,7 @@ right: 0;
     font-size: 1.2em;
     max-width: 40%;
     font-weight: 400;
+    text-align: justify;
 }
 
 #hero button {
@@ -67,6 +69,18 @@ right: 0;
     #hero-container{
         margin-left: 0em;
     }
+
+    #hero button {
+        margin-bottom: 2em;
+    }
+
+    #hero h1 {
+        font-size: 2.2em;
+    }
+    #hero h3 {
+        max-width: 90%;
+        margin-bottom: 2em;
+    }
 }
 
 @media (max-width: 428px) {
@@ -82,10 +96,7 @@ right: 0;
         margin: 0;
     }
 
-    #hero h3 {
-        max-width: 80%;
-        margin-bottom: 2em;
-    }
+    
 }
 
 
@@ -101,6 +112,7 @@ right: 0;
     text-align: center;
     background-color: #9980FA;
     color: white;
+    border-bottom-left-radius: 300px;
 }
 
 #cta-section button {
@@ -116,6 +128,7 @@ right: 0;
 
 #cta-section h2 {
 font-size: 3em;
+padding: 0px 10px;
 }
 
 #cta-section p {
@@ -157,6 +170,7 @@ width: 30%;
     color: rgba(0, 0, 0, 0.846);
     flex-wrap: wrap;
     padding: 2em 0;
+    border-bottom-left-radius: 10%;
 }
 
 .company-cta-illistration{
