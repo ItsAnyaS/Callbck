@@ -11,7 +11,6 @@ min-height: 80vh;
 width: 100%;
 display: flex;
 position: relative;
-background-color: #eccc68;
 color: black;
 }
 
@@ -155,7 +154,6 @@ width: 30%;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-color: #eccc68;
     color: rgba(0, 0, 0, 0.846);
     flex-wrap: wrap;
     padding: 2em 0;
