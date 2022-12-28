@@ -21,7 +21,6 @@ const CompanySignUp = () => {
             body: JSON.stringify(newCompanyInfo)
             })
         let res = await req.json()
-        console.log(res)
         if (req.ok){
             setGlobalUser({name: res.name, isDancer: false})
             Cookies.set('company-auth-token', res["company-auth-token"], { expires: 7 })
