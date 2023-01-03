@@ -84,11 +84,17 @@ border: 1px solid #9880fa87;
     margin-right: auto;
 }
 
+.spli-wrapper p{
+width: 10%;
+text-overflow: ellipsis;
+}
+
 .seller-page-listing-item p{
 max-width: 90%;
 white-space: nowrap;
 overflow: hidden;
 text-overflow: ellipsis;
+
 
 }
 
