@@ -4,7 +4,7 @@ return (
                <div id="exp-app-modal-container" onClick={(e)=> {e.stopPropagation()}}>
                 <div id="exp-app-top-container">
                     <div id='app-top-left'>
-                        <img src={modalInfo?.dancer?.headshot}/>
+                        <img src='/headshot.jpeg'/>
                         <h3>{modalInfo?.dancer?.first_name} {modalInfo?.dancer?.last_name}</h3>
                         <p>Gender: {modalInfo?.dancer?.gender}</p>
                         <p>Email: {modalInfo?.dancer?.email}</p>
@@ -12,7 +12,7 @@ return (
                         <a target='_blanck' href={`${modalInfo?.dancer?.dance_reel}`}>See dance reel</a>
                     </div>
                     <div id="pdf-container">
-                    <iframe is="x-frame-bypass" id="embeded-pdf" src={modalInfo?.dancer?.resume} > 
+                    <iframe is="x-frame-bypass" id="embeded-pdf" src='/resume.pdf' > 
                      </iframe>
                     </div>
                 </div>
