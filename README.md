@@ -5,5 +5,3 @@
 ##React
 
 ##Ruby
-
-new
