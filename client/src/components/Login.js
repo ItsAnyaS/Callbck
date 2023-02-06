@@ -24,6 +24,7 @@ const Login = () => {
         }
         if (req.status === 404){
             setErroMsg('Incorrect email or password')
+            console.log(res)
         }
     }
 
