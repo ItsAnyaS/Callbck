@@ -1,10 +1,11 @@
 const AppModal = ({modalInfo, setModalInfo, rejectApplication, updateApplication, setEmailInfo}) => {
+    console.log(modalInfo)
 return (
     <section onClick={()=> {setModalInfo(false)}} id='expanded-application-modal'>
                <div id="exp-app-modal-container" onClick={(e)=> {e.stopPropagation()}}>
                 <div id="exp-app-top-container">
                     <div id='app-top-left'>
-                        <img src='/headshot.jpeg'/>
+                        <img src={modalInfo?.dancer?.headshot}/>
                         <h3>{modalInfo?.dancer?.first_name} {modalInfo?.dancer?.last_name}</h3>
                         <p>Gender: {modalInfo?.dancer?.gender}</p>
                         <p>Email: {modalInfo?.dancer?.email}</p>
@@ -12,7 +13,7 @@ return (
                         <a target='_blanck' href={`${modalInfo?.dancer?.dance_reel}`}>See dance reel</a>
                     </div>
                     <div id="pdf-container">
-                    <iframe is="x-frame-bypass" id="embeded-pdf" src='/resume.pdf' > 
+                    <iframe is="x-frame-bypass" id="embeded-pdf" src={modalInfo?.dancer?.resume} > 
                      </iframe>
                     </div>
                 </div>
