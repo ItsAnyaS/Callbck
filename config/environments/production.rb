@@ -5,7 +5,7 @@ require "active_support/core_ext/integer/time"
 # }
 
 Rails.application.routes.default_url_options = {
-  host: 'https://callbck.herokuapp.com/'
+  host: 'https://callbck.herokuapp.com'
 }
 
 
