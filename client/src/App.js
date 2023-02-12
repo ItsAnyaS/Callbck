@@ -42,6 +42,7 @@ const handleUserType = async() => {
 
 useEffect(() => {
   handleUserType()
+  document.title = "Callbck";
 }, [])
 
 
