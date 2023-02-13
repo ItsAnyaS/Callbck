@@ -6,7 +6,7 @@ const navigate = useNavigate()
 <main id='home'>
     <section id='hero'>
         <div id='hero-container'>
-        <h1>Quick. Transparent. Convientent.</h1>
+        <h1>Quick. Transparent. Convenient.</h1>
         <h3>Callbck is a listing website that's fast, free, and transparent—all while keeping you in the loop on the application process. You can apply for jobs directly from the site, so you don't have to worry about any paper work or waiting around.</h3>
         <button onClick={()=> {navigate('/signup')}}>Get Started</button>
         </div>
