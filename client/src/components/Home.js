@@ -18,13 +18,13 @@ const navigate = useNavigate()
         <button onClick={()=> {navigate('/signup')}} >Sign Up</button>
     </section>
     <section id='company-cta-section'>
-        <section className='company-cta-illistration'>
-            <div className='company-cta-illistrations-container'>
+        <section className='company-cta-illustration'>
+            <div className='company-cta-illustration-container'>
                 <div>
                 <ion-icon name="clipboard-outline"></ion-icon>
                 <p>Sign Up</p>
                 </div>
-                <div className='company-cta-illistrations-container-middle'>
+                <div className='company-cta-illustration-container-middle'>
                 <ion-icon name="create-outline"></ion-icon>
                 <p>Create a listing</p>
                 </div>
