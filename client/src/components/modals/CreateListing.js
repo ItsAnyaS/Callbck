@@ -2,7 +2,9 @@
     return (
         <section id='company-post-modal' onClick={() => setIsShowingCreatePostModal(false)} >
         <form id='company-post-modal-form' onSubmit={addListing} onClick={(e) => e.stopPropagation()}>
-            <h2>Create Listing</h2>
+            <h1 id='add-listing-tag'>Add listing</h1>
+            <h2>Information</h2>
+            <hr id='create-listing-line-break'/>
             <div className='input-container'>
             <p>Listing title</p>
             <input onChange={handleInput} name='title' required />
@@ -10,7 +12,7 @@
             </div>
             <div className='input-container'>
             <p>Description</p>
-            <textarea  onChange={handleInput} id='listing-desc-creact' name='description' required placeholder='Proivde a detailed description of the dancers role and excpectations'/>
+            <textarea  onChange={handleInput} id='listing-desc-creact' name='description' required placeholder="Provide a detailed description of the dancer's role and expectations"/>
             </div>
             <div className='input-container'>
                 <p>Compensation</p>
@@ -44,8 +46,8 @@
             </select>
             </label>
             <label>
-                Choose prefered gender: 
-            <select  onChange={(e)=> handleSpecialInput(e, 'dancer_gender')} name='dancer_gender' required placeholder='Prefered dancer gender'>
+                Choose preferred gender:
+            <select  onChange={(e)=> handleSpecialInput(e, 'dancer_gender')} name='dancer_gender' required >
             <option value={['male']}>Male</option>
             <option value={['female']}>Female</option>
             <option value={['non-binary']}>Non-binary</option>
@@ -53,7 +55,7 @@
             </select>
             </label>
             </div>
-            <button className='hover'>Post listing</button>
+            <button className='hover'>Post</button>
         </form>
     </section>
     )
