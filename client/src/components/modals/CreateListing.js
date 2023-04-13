@@ -20,18 +20,18 @@
             </div>
             <div className='input-container'>
                 <p>Rehersal start date</p>
-            <input  onChange={handleInput} type='date' name='rehersal_start_date' required placeholder='Rehersal start date'/>
+            <input  onChange={handleInput} type='date' name='rehersal_start_date' required />
             </div>
             <div className='input-container'>
             <p>Show start date</p>
-            <input  onChange={handleInput} type='date' name='show_date_start' required placeholder='Perforamce start date'/>
+            <input  onChange={handleInput} type='date' name='show_date_start' required/>
             </div>
             <div className='input-container'>
             <p>Location</p>
             <input  onChange={handleInput} name='location' minLength='5' maxLength='5' type={'number'} required placeholder='Zip code'/>
             </div>
             <div className='input-container'>
-            <p>Years of expirence</p>
+            <p>Years of experience</p>
             <input  onChange={handleInput} name='years_of_expirence' type={'number'} required />
             </div>
             <div className='new-listing-modal-dd'>

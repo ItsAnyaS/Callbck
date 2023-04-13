@@ -20,6 +20,8 @@
 
 .applicant-card  img {
     height: 100px;
+    border-radius: 50%;
+    margin-right: 1em;
 }
 
 
@@ -40,9 +42,10 @@ margin-left: 10px;
 font-size: 1.4em;
 padding: 5px 10px;
 border-radius: 26px;
-border: 1px solid black;
+border: 1px solid #9980F9;
 margin-left: 10px;
 background-color: transparent;
+color: #9980F9;
 }
 
 #expanded-application-modal{
@@ -60,16 +63,22 @@ justify-content: center;
 #exp-app-modal-container{
     background-color: white;
     border-radius: 10px;
-    min-width: 60%;
+    min-width: 80%;
     max-width: 80%;
     min-height: 80%;
     padding: 10px;
-    
+    border: 1px solid;
 }
 #app-top-left{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-left: 3%;
+    margin-top: 1%;
+}
+
+#app-top-left strong {
+    font-weight: 400;
 }
 
 #app-top-left p{
@@ -81,8 +90,9 @@ justify-content: center;
 }
 
 #app-top-left img {
-    height: 400px;
+    height: 300px;
     max-width: 400px;
+    border-radius: 5px;
 }
 
 #exp-app-top-container{
@@ -95,31 +105,38 @@ justify-content: space-between;
     max-width: 80%;
     min-width: 66%;
     display: flex;
-    /* align-items: center; */
-    /* justify-content: flex-end; */
     margin: 0;
-    /* border: 1px solid black; */
+    margin-top: 1%;
+    margin-right: 3%;
+    border-radius: 5px;
 }
 
 #embeded-pdf{
-width:600px;
+width: 100%;
 min-height: 500px;
-
+border-radius: 5PX;
 }
 
 #exp-app-btn-container{
 display: flex;
 gap: 10px;
-padding: 0px 20px;
-margin-top: 1em;
+margin-top: 4em;
+margin-left: 3%;
+margin-right: 3%;
 }
 
 #exp-app-btn-container button {
     font-size: 1.4em;
-    padding: 5px 10px;
     border-radius: 26px;
-    border: 1px solid black;
+    width: 200px;
+    height: 50px;
+    border: 1px solid #9980F9;
+    color: #9980F9;
     background-color: transparent;
+}
+
+.reject-app {
+    margin-right: auto;
 }
 
 

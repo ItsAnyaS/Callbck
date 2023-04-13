@@ -7,9 +7,9 @@ return (
                     <div id='app-top-left'>
                         <img src={modalInfo?.dancer?.headshot}/>
                         <h3>{modalInfo?.dancer?.first_name} {modalInfo?.dancer?.last_name}</h3>
-                        <p>Gender: {modalInfo?.dancer?.gender}</p>
-                        <p>Email: {modalInfo?.dancer?.email}</p>
-                        <p>Years of expirence: {modalInfo?.dancer?.years_of_experience}</p>
+                        <p> <strong>Email:</strong>  {modalInfo?.dancer?.email}</p>
+                        <p> <strong> Years of experience:</strong> {modalInfo?.dancer?.years_of_experience}</p>
+                        <p> <strong>Gender:</strong>  {modalInfo?.dancer?.gender}</p>
                         <a target='_blanck' href={`${modalInfo?.dancer?.dance_reel}`}>See dance reel</a>
                     </div>
                     <div id="pdf-container">
@@ -18,7 +18,7 @@ return (
                     </div>
                 </div>
                 <div id="exp-app-btn-container">
-                    <button className="hover" onClick={()=> { setEmailInfo({user_name: 'Callbck', from_name: 'Callbck',user_email: modalInfo.dancer.email, message: `Unfortunatly, you weren't the right fit for this position.  Keep applying and you'll get there!`, to_name: modalInfo.dancer.first_name});rejectApplication(modalInfo.id); setModalInfo(false)}}>Reject</button>
+                    <button className="hover reject-app" onClick={()=> { setEmailInfo({user_name: 'Callbck', from_name: 'Callbck',user_email: modalInfo.dancer.email, message: `Unfortunatly, you weren't the right fit for this position.  Keep applying and you'll get there!`, to_name: modalInfo.dancer.first_name});rejectApplication(modalInfo.id); setModalInfo(false)}}>Reject</button>
                     { parseInt(modalInfo.status) < 3 &&<button className="hover" onClick={()=> {updateApplication(modalInfo.id, modalInfo.status)}}>Send Callback</button>}
                     <button className="hover" onClick={()=> {updateApplication(modalInfo.id, '3')}} >Mark as Hired</button>
                 </div>

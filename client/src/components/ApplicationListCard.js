@@ -1,4 +1,4 @@
-// import headshot from '.../public/headshot'
+
 const ApplicationsListCard = ({app, rejectApplication, setModalInfo}) => {
     const handleMessageText = () => {
         if (app.status == '0'){
@@ -14,7 +14,7 @@ const ApplicationsListCard = ({app, rejectApplication, setModalInfo}) => {
     console.log(app)
 return (
     <div className="applicant-card" key={app.id}>
-    <img alt='dancer headshot' src={app.img}/>
+    <img alt='Dancer headshot' src='../headshot.jpeg'/>
     <div className="applicant-card-left-container">
         <h5>{app?.dancer?.first_name}</h5>
     </div>

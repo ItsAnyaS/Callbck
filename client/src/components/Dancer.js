@@ -53,7 +53,7 @@ return (
         <section id='container-wrapper'>
             <h1>Current applications:</h1>
        { list1.length !== 0 && <div className="container" id='list1'  >
-            <h3>Applied</h3>
+            <h3>Applied:</h3>
             {list1.map(item => {
                 return (
                     <div key={item.id} className='dancer-app-item'>
@@ -68,7 +68,7 @@ return (
             </div>}
 
             { list2.length !== 0 && <div className="container" id='list2'  >
-            <h3>First callback</h3>
+            <h3>First callback:</h3>
             {list2.map(item => {
                 return (
                     <div key={item.id} className='dancer-app-item'>
@@ -83,7 +83,7 @@ return (
             </div>}
 
             { list3.length !== 0 && <div className="container" id='list3'  >
-            <h3>Second callback</h3>
+            <h3>Second callback:</h3>
             {list3.map(item => {
                 return (
                     <div key={item.id} className='dancer-app-item'>
@@ -98,7 +98,7 @@ return (
             </div>}
 
             { list4.length !== 0 && <div className="container" id='list4'  >
-            <h3>Final callback</h3>
+            <h3>Final callback:</h3>
             {list4.map(item => {
                 return (
                     <div key={item.id} className='dancer-app-item'>
