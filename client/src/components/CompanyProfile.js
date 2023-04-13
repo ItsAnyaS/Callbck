@@ -27,7 +27,7 @@ const CompanyProfile = () => {
                 navigate('/')
             }
         }
-        setListingInfo({...listingInfo, dancer_gender: [['male']], style: ['ballet']})
+        setListingInfo({...listingInfo, dancer_gender: ['male'], style: ['ballet']})
         getCurrentListings()
     }, [])
 
@@ -44,7 +44,7 @@ const CompanyProfile = () => {
         let value = e.target.value
         value =  value.split(',')
         setListingInfo({...listingInfo,
-        [inputType]: [value]
+        [inputType]: value
     })
     }
 

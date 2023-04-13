@@ -85,7 +85,7 @@ return (
                 <p className="gender-item">{displayedListing?.style}</p>
             <h3>Prefered gender:</h3>
             <div id="listing-pref-gender-container">
-            {displayedListing?.dancer_gender[0].map((item, index) => {
+            {displayedListing?.dancer_gender.map((item, index) => {
                 return (
                     <p className="gender-item" key={index} >{item}</p>
                 )
