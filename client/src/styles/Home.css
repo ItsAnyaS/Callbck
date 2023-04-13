@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     width: 100vw;
+    box-sizing: border-box;
 
 }
 
@@ -12,17 +13,17 @@ width: 100%;
 display: flex;
 position: relative;
 color: black;
+padding: 1px;
 }
 
 
 #hero-container{
-    text-align: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-left: -25em;
     padding: 5px;
+    width: 750px;
+    padding-left: 10%;
+    margin-top: 6em;
 }
 
 
@@ -34,26 +35,27 @@ right: 0;
 }
 
 #hero h1 {
-    font-size: 2.5em;
+    font-size: 4em;
+    color: #9980F9;
+    font-weight: 600;
 }
 
-#hero h3 {
-    font-size: 1.2em;
-    max-width: 40%;
-    font-weight: 400;
-    text-align: justify;
-}
 
 #hero button {
     padding: 10px 20px;
     font-size: 2em;
     border-radius: 5px;
     margin-top: 1em;
-    border: none;
-    background-color: #9980FA;
-    color: white;
+    border: 1px solid #9980F9; 
+    background-color: transparent;
     cursor: pointer;
+    width: 300px;
+    height: 75px;
+    border-radius: 40px;
+    color: #9980F9;
+    font-weight: 600;
 }
+
 
 #hero button:hover {
     transform: scale(1.1);
@@ -108,32 +110,43 @@ right: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    background-color: #9980FA;
-    color: white;
-    border-bottom-left-radius: 300px;
+    background-color: #fff;
+    color: #9980F9;
+}
+
+.cta-copy {
+    padding-left: 50px;
+}
+
+#cta-section img {
+    height: 60%;
+    width: 700px;
 }
 
 #cta-section button {
     padding: 10px 20px;
     font-size: 2em;
-    border-radius: 5px;
-    border: none;
-    background-color: #eccc68;
-    color: white;
+    border-radius: 40px;
+    border: 1px solid #9980F9;
+    background-color: transparent;
+    color: #9980F9;
     cursor: pointer;
+}
+
+#cta-section button:hover {
+    transform: scale(1.1);
+    transition: 300ms;
 }
 
 
 #cta-section h2 {
-font-size: 3em;
-padding: 0px 10px;
+font-size: 4em;
+margin-bottom: 0;
 }
 
 #cta-section p {
 font-size: 1.6em;
-width: 30%;
+width: 70%;
 }
 
 
@@ -166,14 +179,14 @@ width: 30%;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
     color: rgba(0, 0, 0, 0.846);
     flex-wrap: wrap;
     padding: 2em 0;
-    border-bottom-left-radius: 10%;
+    background-color: #9980F9;
+    color: #fff;
 }
 
-.company-cta-illistration{
+.company-cta-illustration{
     width: 50%;
     min-width: 728px;
     min-height: 10vh;
@@ -184,7 +197,7 @@ width: 30%;
    
 }
 
-.company-cta-illistrations-container{
+.company-cta-illustration-container{
     min-height: 250px;
     width:  80%;
     display: flex;
@@ -194,11 +207,24 @@ width: 30%;
     color: rgba(0, 0, 0, 0.846);
 }
 
-.company-cta-illistrations-container ion-icon {
+.company-cta-illustration-container ion-icon {
 font-size:8em;
+color: white;
 }
 
-.company-cta-illistrations-container-middle{
+.company-cta-illustration-container div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.company-cta-illustration-container p {
+    color: white;
+    font-weight: 600;
+}
+
+.company-cta-illustration-container-middle{
 margin-bottom: 3em;
 }
 
@@ -207,7 +233,7 @@ width: 49%;
 min-width: 428px;
 display: flex;
 flex-direction: column;
-align-items: center;
+
 }
 
  .company-cta-copy h1 {
@@ -228,11 +254,12 @@ align-items: center;
  .company-cta-copy button{
     padding: 10px 20px;
     font-size: 2em;
-    border-radius: 5px;
-    border: none;
-    background-color: #9980FA;
+    border-radius: 40px;
+    border: 1px solid white;
+    background-color: transparent;
     color: white;
     cursor: pointer;
+    width: 350px;
 }
 
  .company-cta-copy button:hover {
@@ -246,20 +273,17 @@ align-items: center;
         padding-bottom: 5em;
     }
 
-    /* .company-cta-illistration {
-    } */
-
-    .company-cta-illistrations-container ion-icon {
+    .company-cta-illustration-container ion-icon {
         font-size:90px;
     }
-    .company-cta-illistrations-container{
+    .company-cta-illustration-container{
         justify-content: center;
         color: rgba(0, 0, 0, 0.846);
         gap: 20px;
         text-align: center;
     }
 
-    .company-cta-illistrations-container div {
+    .company-cta-illustration-container div {
         font-size: 10px;
         display: flex;
         flex-direction: column;
