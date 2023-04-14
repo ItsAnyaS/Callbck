@@ -67,7 +67,6 @@ justify-content: center;
     max-width: 80%;
     min-height: 80%;
     padding: 10px;
-    border: 1px solid;
 }
 #app-top-left{
     display: flex;

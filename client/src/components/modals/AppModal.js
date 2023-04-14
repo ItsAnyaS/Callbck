@@ -10,7 +10,7 @@ return (
                         <p> <strong>Email:</strong>  {modalInfo?.dancer?.email}</p>
                         <p> <strong> Years of experience:</strong> {modalInfo?.dancer?.years_of_experience}</p>
                         <p> <strong>Gender:</strong>  {modalInfo?.dancer?.gender}</p>
-                        <a target='_blanck' href={`${modalInfo?.dancer?.dance_reel}`}>See dance reel</a>
+                        <a target='_blank' href={`${modalInfo?.dancer?.dance_reel}`}>See dance reel</a>
                     </div>
                     <div id="pdf-container">
                     <iframe is="x-frame-bypass" id="embeded-pdf" src={modalInfo?.dancer?.resume} > 

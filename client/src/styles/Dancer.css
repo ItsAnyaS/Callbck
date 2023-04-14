@@ -39,7 +39,8 @@ margin-right: auto;}
     padding: 5px 10px;
     border-radius: 26px;
     background-color: transparent;
-    border: 1px solid black;
+    border: 1px solid #9980F9;
+    color: #9980F9;
 }
 
 #no-open-dancer-listings{
