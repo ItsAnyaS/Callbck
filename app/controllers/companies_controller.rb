@@ -28,10 +28,12 @@ class CompaniesController < ApplicationController
   end
 
   def destroy 
-    listings = Listings.find_by(company_id: @company.id)
-    applications = Applications.find_by(company_id: @company.id)
-    listings.destroy_all
-    applications.destroy_all
+    listings = Listing.where(company_id: @company.id)
+    puts listings
+    applications = Application.where(company_id: @company.id)
+    puts applications
+    listings.each { |listing| listing.destroy }
+    applications.each { |application| application.destroy }
     @company.destroy
     render json: {message: 'successfully deleted'}
   end

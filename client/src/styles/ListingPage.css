@@ -24,6 +24,10 @@
     background-color: transparent;
 }
 
+#displayed-listing-title {
+    text-transform: capitalize;
+}
+
 #listing-desc{
     max-width: 80%;
 }

@@ -14,6 +14,7 @@ import Footer from './components/Footer';
 import {BrowserRouter as Router, Route, Routes, redirect } from 'react-router-dom'
 import {createContext, useState, useEffect, useMemo} from 'react'
 import Cookies from 'js-cookie';
+import About from './components/About';
 export const UserContext = createContext()
 
 const App = () => {
@@ -68,6 +69,7 @@ useEffect(() => {
           <Route path='/company-signup' element={<CompanySignUp/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/dancer-applications/:id' element={<ApplicationsList/>}/>
+          {/* <Route path='/about'  element={<About/>} /> */}
           <Route path='*' element={<NotFound/>}/>
           {/* <Route render={() => <redirect to={{pathname: "/"}} />} /> */}
         </Routes>

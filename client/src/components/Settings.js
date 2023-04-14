@@ -15,7 +15,7 @@ return (
         </div>}
         { !globalUser.isDancer && 
         <div className="input-container">
-            <p>Comapany name</p>
+            <p>Company name</p>
             <input name="name" value={userInfo?.name} onChange={handleInputChange}/>
         </div>
         }
@@ -26,7 +26,7 @@ return (
                 <input name="location"  value={userInfo?.location}  onChange={handleInputChange}  />
             </div>
            { globalUser.isDancer &&  <div className="input-container">
-                <p>Years of expirence</p>
+                <p>Years of experience</p>
                 <input name="years_of_experience" type={'number'} value={userInfo?.years_of_experience} onChange={handleInputChange} />
             </div>}
             { globalUser.isDancer && <div className="input-container">
@@ -68,7 +68,7 @@ return (
             </div>}
         </div>
                 <div className="settings-btn-container">
-                    <button onClick={()=> {setSubmitType('none')}} className="settings-del-btn hover">Delete Account</button>
+                    <button onClick={()=> {setSubmitType('delete')}} className="settings-del-btn hover">Delete Account</button>
                     <button  onClick={()=> {submitData ? setSubmitType('edit') : setSubmitType('none')}} className="settings-save-btn hover">Save</button>
                 </div>
      </form>

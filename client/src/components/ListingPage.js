@@ -71,7 +71,7 @@ return (
       {appError &&  <div id='app-alert'><p>{appError}</p></div>}
         <header id='listing-page-header'>
             <div>
-            <h1>{displayedListing?.title}</h1>
+            <h1 id="displayed-listing-title">{displayedListing?.title}</h1>
             <p>{new Date( displayedListing?.updated_at).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</p>
             </div>
             <h2 id='listing-page-info-comp'>${displayedListing?.compensation}</h2>
@@ -91,7 +91,7 @@ return (
                 )
             })}
             </div>
-            <h3>Years of expirence required: </h3>
+            <h3>Years of experience required: </h3>
             <p>{displayedListing?.years_of_expirence || '0'}</p>
             <h3>Rehersals start date</h3>
             <p>{ new Date(displayedListing?.rehersal_start_date).toLocaleDateString('en-us',

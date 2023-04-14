@@ -130,6 +130,7 @@ const Navbar = () => {
             </div>
             { !isHamburger && <ul id='nav-list'>
                 <NavLink style={{textDecoration: 'none', color: 'black'}} to='/search'><li className="nav-item">Listings</li></NavLink>
+                {/* <NavLink style={{textDecoration: 'none', color: 'black'}} to='/about'><li className="nav-item">About</li></NavLink> */}
               { isLoggedIn&& <NavLink style={{textDecoration: 'none', color: 'black'}} to={`/${globalUser?.isDancer? 'profile': 'dashboard'}`}><li className="nav-item">{globalUser?.isDancer? 'Profile': 'Dashboard'}</li></NavLink>}
               { isLoggedIn&& <NavLink style={{textDecoration: 'none', color: 'black'}} onClick={handleSignOut} to={`/`}><li className="nav-item">Sign out</li></NavLink>}
               { !isLoggedIn&& <NavLink style={{textDecoration: 'none', color: 'black'}} to={`/login`}><li className="nav-item">Login</li></NavLink>}

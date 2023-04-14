@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom"
 
 const NavDropDown = ({isLoggedIn, globalUser, handleSignOut, handleSettingsOpen, setIsActive}) => {
-    console.log(isLoggedIn)
+    // console.log(isLoggedIn)
     return (
         <ul id='drop-down-nav-list' onClick={()=> {setIsActive(false)}}>
             <div className="close-nav-modal" onClick={()=> {setIsActive(false)}}><ion-icon name="close-outline"></ion-icon></div>
