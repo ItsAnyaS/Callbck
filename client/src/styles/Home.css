@@ -90,12 +90,17 @@ right: 0;
         min-width: 100vw;
     }
 
+    #hero {
+        min-height: 50vh;
+    }
+
     #hero-img {
         display: none;
     }
 
     #hero-container{
         margin: 0;
+        margin-top: 4em;
     }
 
     
@@ -112,15 +117,17 @@ right: 0;
     justify-content: center;
     background-color: #fff;
     color: #9980F9;
+    flex-wrap: wrap;
 }
 
 .cta-copy {
     padding-left: 50px;
+    max-width: 50%;
 }
 
 #cta-section img {
     height: 60%;
-    width: 700px;
+    width: 600px;
 }
 
 #cta-section button {
@@ -157,6 +164,11 @@ width: 70%;
         max-width: 100vw;
     }
 
+    .cta-copy {
+        max-width: 90%;
+    }
+
+  
     #cta-section h2 {
         font-size: 2em;
     }
@@ -167,7 +179,11 @@ width: 70%;
     }
 
     #cta-section button{
-        margin-top: 1em;
+        margin-bottom: 2em;
+    }
+
+    #cta-section img {
+        width: 350px;
     }
 }
 
@@ -184,6 +200,7 @@ width: 70%;
     padding: 2em 0;
     background-color: #9980F9;
     color: #fff;
+    flex-wrap: wrap-reverse;
 }
 
 .company-cta-illustration{
@@ -270,7 +287,7 @@ flex-direction: column;
 @media (max-width: 700px) {
     #company-cta-section {
         max-width: 100vw;
-        padding-bottom: 5em;
+        padding-bottom: 3em;
     }
 
     .company-cta-illustration-container ion-icon {
@@ -307,4 +324,20 @@ flex-direction: column;
         font-size: 1.5em;
         margin-top: 1em;
     }
+
+  
+#company-cta-section {
+   
+    min-height: 60vh;
+}
+
+    .company-cta-copy {
+        min-width: 358px;
+        margin-left: 50px;
+    } 
+    
+    .company-cta-copy button {
+        display: none;
+    }
+
 }
