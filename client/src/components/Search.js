@@ -14,7 +14,6 @@ const Search = () => {
                 body: JSON.stringify(searchParams)
             })
             let res = await req.json()
-            // console.log(res)
             setListings(res)
         }
 
