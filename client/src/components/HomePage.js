@@ -22,7 +22,7 @@ const navigate = useNavigate()
                 </div>
                 <div className='company-cta-illustration-container-middle'>
                 <ion-icon name="create-outline"></ion-icon>
-                <p>Create a listing</p>
+                <p>Create a listing </p>
                 </div>
                 <div>
                 <ion-icon name="checkbox-outline"></ion-icon>
