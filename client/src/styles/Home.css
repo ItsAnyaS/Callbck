@@ -191,7 +191,7 @@ width: 70%;
 
     #cta-section p {
         font-size: 1.2em;
-        width: 80%;
+        max-width: 70%;
     }
 
     #cta-section button{

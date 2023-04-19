@@ -11,6 +11,7 @@ overflow: hidden;
 #logo{
     margin-right: auto;
     margin-left: 10%;
+    overflow: visible;
 }
 
 #logo-img{
@@ -28,13 +29,16 @@ overflow: hidden;
 
 #nav-list {
     display: flex;
-    gap: 10%;
     margin-right: 10%;
+    align-items: center;
+    overflow: visible;
 }
 
 .nav-item {
 list-style-type: none;
 min-width:75px;
+text-align: center;
+margin-left: 30px;
 }
 
 .gear {
