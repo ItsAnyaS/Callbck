@@ -2,7 +2,7 @@
 
 With Callbck dancers no longer need to wonder if they got the role or if they were out of the runnings a long time ago. Callbck creates an all in one ecosystem for companies to post auditions for dancers, send callbacks, mark dancers as hired and remove them from the runnings.
 
-## See this project live [Here](https://callbck.herokuapp.com/)
+## See this project live [Here](http://www.callbck.com/)
 
 ## Want to download the project and set it up?
 
