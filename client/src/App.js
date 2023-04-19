@@ -7,14 +7,13 @@ import Navbar from './components/Navbar';
 import CompanyProfile from './components/CompanyProfile';
 import ListingPage from './components/ListingPage';
 import Login from './components/Login';
-import Home from './components/Home';
+import Home from './components/HomePage'
 import NotFound from './components/NotFound';
 import ApplicationsList from './components/ApplicationsList';
 import Footer from './components/Footer';
-import {BrowserRouter as Router, Route, Routes, redirect } from 'react-router-dom'
+import {BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import {createContext, useState, useEffect, useMemo} from 'react'
 import Cookies from 'js-cookie';
-import About from './components/About';
 export const UserContext = createContext()
 
 const App = () => {
