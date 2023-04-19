@@ -5,7 +5,12 @@ cursor: pointer;
 }
 
 body {
-width: 100vw;
+max-width: 100vw;
 overflow-x: hidden;
 font-family: Helvetica;
+}
+
+*{
+    overflow-x: hidden;
+    font-family: Helvetica; 
 }
