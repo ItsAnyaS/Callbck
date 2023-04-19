@@ -3,7 +3,7 @@ return (
     <section id="settings-modal" onClick={()=> {setIsSettingsOpen(false); setSubmitData({})}}>
     <form onSubmit={handleSubmit} id="settings-container" className={isSettingsOpen && 'slide-up'} onClick={(e)=> {e.stopPropagation()}}>
         <h1>Settings</h1>
-       { globalUser.isDancer &&  <div className="input-divider">
+       { globalUser.isDancer &&  <div className="input-divider-settings">
             <div className="input-container">
                 <p>First name</p>
                 <input name="first_name" value={userInfo?.first_name} onChange={handleInputChange} />

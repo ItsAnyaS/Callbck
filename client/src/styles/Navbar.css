@@ -124,6 +124,34 @@ font-weight: 600;
     position: relative;
   }
 
+  .input-divider-settings{
+    display: flex;
+    align-items: center;
+    gap: 5%;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+
+.input-divider-settings fieldset {
+    min-width: 250px;
+    border: 1px solid rgba(0, 0, 0, 0.583);
+    font-size: 0.8em;
+    border-radius: 5px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+
+
+.input-divider-settings fieldset input {
+    border: none;
+    height: 100%;
+    width: 100%;
+}
+
   .slide-up-ann {
     animation: slide-up 500ms;
   }
