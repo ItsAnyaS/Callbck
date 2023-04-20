@@ -35,8 +35,8 @@ class DancersController < ApplicationController
 
       if @dancer.save
           UserMailer.with(user: @dancer).welcome_email.deliver_later
-            hmac_secret = 'my$ecredsfgihdghdfghdfkghndfkhdfkdhgiudtK3y'
-            payload = { data:  @dancer.email}
+            hmac_secret = ENV["MY_SECRET_KEY"]
+            payload = { data:  @dancer.uuid}
             token = JWT.encode payload, hmac_secret, 'HS256'
             render json: {"auth-token": token, first_name: @dancer.first_name, last_name: @dancer.last_name}
         # render json: @dancer
@@ -73,12 +73,12 @@ class DancersController < ApplicationController
     end
 
     def verify_dancer
-      hmac_secret = 'my$ecredsfgihdghdfghdfkghndfkhdfkdhgiudtK3y'
+      hmac_secret = ENV["MY_SECRET_KEY"]
       token = params[:token]
       puts token
       decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
       puts decoded_token
-      dancer = Dancer.find_by(email: decoded_token[0]["data"])
+      dancer = Dancer.find_by(uuid: decoded_token[0]["data"])
     end
 
     # Only allow a list of trusted parameters through.

@@ -4,28 +4,26 @@ class AuthsController < ApplicationController
 
     def login
     dancer = Dancer.find_by(email: params[:email])
-    if !dancer
-        render json: {error: "no account"}, status: 404
-    else
-    if dancer.password_digest == params[:password]
-        hmac_secret = 'my$ecredsfgihdghdfghdfkghndfkhdfkdhgiudtK3y'
-        payload = { data:  dancer.email}
-        token = JWT.encode payload, hmac_secret, 'HS256'
-        puts token
-        render json: {"auth-token": token, first_name: dancer.first_name, last_name: dancer.last_name }
-    else
-    render json: {error: "incorrect email or password"}, status: 404        
-    end
-    end
+        if !dancer
+            render json: {error: "no account"}, status: 404
+        else
+        if dancer.password_digest == params[:password]
+            hmac_secret = ENV["MY_SECRET_KEY"]
+            payload = { data:  dancer.uuid}
+            token = JWT.encode payload, hmac_secret, 'HS256'
+            render json: {"auth-token": token, first_name: dancer.first_name, last_name: dancer.last_name }
+        else
+        render json: {error: "Incorrect email or password"}, status: 404        
+        end
+        end
     end
 
     def is_valid_dancer_session
-        hmac_secret = 'my$ecredsfgihdghdfghdfkghndfkhdfkdhgiudtK3y'
+        hmac_secret = ENV["MY_SECRET_KEY"]
         token = params[:auth_token]
-        puts token
         if token
         decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
-        dancer = Dancer.find_by(email: decoded_token[0]["data"])
+        dancer = Dancer.find_by(uuid: decoded_token[0]["data"])
         render json: {first_name: dancer.first_name, last_name: dancer.last_name}
         else
             render json: {error: 'Not logged in'}, status: 422
@@ -33,7 +31,7 @@ class AuthsController < ApplicationController
     end
 
     def is_valid_company_session 
-        hmac_secret = 'my$ecredsfgihdghdfghdfkghndfkhdfkdhgiudtK3y'
+        hmac_secret = ENV["MY_SECRET_KEY"]
         token = params[:company_auth_token]
         puts token
         if token
@@ -63,7 +61,7 @@ class AuthsController < ApplicationController
             render json: {error: "no account"}, status: 404
         else
         if company.password_digest == params[:password]
-            hmac_secret = 'my$ecredsfgihdghdfghdfkghndfkhdfkdhgiudtK3y'
+            hmac_secret = ENV["MY_SECRET_KEY"]
             payload = { data:  company.email}
             token = JWT.encode payload, hmac_secret, 'HS256'
             render json: {"company-auth-token": token, name: company.name}
@@ -76,7 +74,7 @@ class AuthsController < ApplicationController
     def company_signup
         company = Company.new(company_type: params[:company_type], number_of_employees: params[:number_of_employees], name: params[:name],email: params[:email], bio: params[:bio], location: params[:location], logo: params[:logo], password_digest: params[:password])
         if company.save
-            hmac_secret = 'my$ecredsfgihdghdfghdfkghndfkhdfkdhgiudtK3y'
+            hmac_secret = ENV["MY_SECRET_KEY"]
             payload = { data:  company.email}
             token = JWT.encode payload, hmac_secret, 'HS256'
             render json: {"company-auth-token": token, name: company.name}

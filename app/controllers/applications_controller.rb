@@ -84,10 +84,10 @@ class ApplicationsController <  ApplicationController
   end
 
   def set_dancer
-    hmac_secret = 'my$ecredsfgihdghdfghdfkghndfkhdfkdhgiudtK3y'
+    hmac_secret = ENV["MY_SECRET_KEY"]
     token = params[:auth_token]
     decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
-    @dancer = Dancer.find_by(email: decoded_token[0]["data"])
+    @dancer = Dancer.find_by(uuid: decoded_token[0]["data"])
   end
 
 end
