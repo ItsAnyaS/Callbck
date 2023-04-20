@@ -92,8 +92,6 @@ class ApplicationsController <  ApplicationController
       rescue JWT::ExpiredSignature
           render json: {message: "Session expired"}
   end
-
-    
   end
 
 end
