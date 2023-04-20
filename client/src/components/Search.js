@@ -51,7 +51,7 @@ console.log(searchParams)
                 <form onSubmit={handleSubmit} id='search-form' onChange={handleInput}>
                     <div className={animation? 'contract': ''} id={expandedSearchBar ? 'search-bar-container-expanded': 'search-bar-container'}>
                   { expandedSearchBar && <input placeholder='Search keywords...' id='search-bar' name='keywords' />}
-                    <button><ion-icon name="search-outline"></ion-icon></button>
+                    <button className='search-icon'><ion-icon name="search-outline"></ion-icon></button>
                     </div>
                     <div id='search-location-container'>
                     <input name='location' placeholder='Zipcode'/>

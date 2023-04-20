@@ -59,7 +59,7 @@ return (
         {loginType === 'dancer' && 
         <section className='login-container'>
             <form className='login-form' onSubmit={(e)=> {dancerLogin(e)}}>
-            <h2>Login as a dancer</h2>
+            <h2 className='switch-account-type'>Login as a dancer</h2>
             {errorMsg &&<div id='sign-in-error'><p>{errorMsg}</p></div>}
                 <input name='email' onChange={handleInput} required placeholder='Email' type={'email'}/>
                 <input name='password' onChange={handleInput} required placeholder='Password' type={'password'}/>
@@ -70,7 +70,7 @@ return (
         { loginType === 'company' &&
             <section className='login-container'>
                 <form className='login-form' onSubmit={(e)=> {companyLogin(e)}}>
-                <h2>Login as a company</h2>
+                <h2 className='switch-account-type' >Login as a company</h2>
                 {errorMsg &&<div id='sign-in-error'><p>{errorMsg}</p></div>}
                 <input name='email' onChange={handleInput} required placeholder='Email' type={'email'}/>
                 <input name='password' onChange={handleInput} required placeholder='Password' type={'password'}/>

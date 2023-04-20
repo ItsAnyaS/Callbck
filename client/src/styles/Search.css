@@ -118,6 +118,10 @@ margin-right: auto;
     width: 0%;
 }
 
+.search-icon {
+    color: black;
+}
+
 
 
 @media (max-width: 428px) {
