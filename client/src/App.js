@@ -29,7 +29,6 @@ const handleUserType = async() => {
     })
     let res = await req.json()
     if (res.message === "Session expired"){
-      console.log("expired")
       redirect('/')
       return
     }
@@ -42,6 +41,10 @@ const handleUserType = async() => {
       body: JSON.stringify({company_auth_token: authToken})
     })
     let res = await req.json()
+    if (res.message === "Session expired"){
+      redirect('/')
+      return
+    }
     setGlobalUser({name: res.name, isDancer: false})
 }}
 

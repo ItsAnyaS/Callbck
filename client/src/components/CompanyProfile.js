@@ -20,8 +20,11 @@ const CompanyProfile = () => {
                 headers: {"content-type": "application/json"},
                 body: JSON.stringify({company_auth_token: authToken})
             })
+            let res = await req.json()
+            if (res.message === 'Session expired'){
+                navigate('/')
+            }
             if (req.ok){
-                let res = await req.json()
                 setCurrentListings(res)
             }else {
                 navigate('/')
