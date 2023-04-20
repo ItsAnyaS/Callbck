@@ -2,6 +2,7 @@
     min-height: 92vh;
     overflow-x: hidden;
     font-family: Poppins;
+    overflow-x: visible;
 }
 
 #company-post-modal{
@@ -103,7 +104,7 @@ gap: 10px;
 
 .seller-page-listing-item{
     border-bottom: 1px solid black;
-    width: 60%;
+    width: 80vw;
     display: flex;
     align-items: center;
     padding: 10px 0px;
@@ -115,21 +116,81 @@ gap: 10px;
 }
 
 .spli-wrapper{
-    margin-right: auto;
+margin-right: auto;
+max-width: 69%;
 }
 
 .spli-wrapper p{
-width: 400px;
+min-width: 50px;
+max-width: 100%;
 text-overflow: ellipsis;
+overflow-x: hidden;
+white-space: wrap;
+}
+
+.spli-wrapper h4{
+min-width: 50px;
+max-width: 80%;
+text-overflow: ellipsis;
+overflow-x: hidden;
+white-space: wrap;
+ }
+
+.spli-btn-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-end;
+    min-width: 100px;
+}
+
+.delete-listing-company-btn{
+    font-size: 1.2em;
+    margin-left: 10px;
+    border-radius: 26px;
+    padding: 5px 10px;
+    border: 1px solid #9980FA;
+    background-color: transparent;
+    color: #9980FA;
+    white-space: nowrap;
+}
+
+@media (max-width: 660px) {
+    .delete-listing-company-btn{
+        font-size: 1em;
+    }
+
+    .spli-wrapper h4{
+        font-size: 0.75em;
+        overflow: hidden;
+        max-width: 50ch;
+        text-overflow: ellipsis;
+
+    }
+}
+
+@media (max-width: 450px) {
+    .spli-wrapper h4 {
+    white-space: nowrap;
+    }
+
+    .delete-listing-company-btn{
+        font-size: 0.5em;
+    }
+
+    .spli-btn-container{
+        min-width: 50px;
+    }
+
+    .seller-page-listing-item p{
+        font-size: 0.4em;
+    }
+
 }
 
 .seller-page-listing-item p{
 max-width: 90%;
 white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;
-
-
 }
 
 
@@ -138,7 +199,7 @@ text-overflow: ellipsis;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 55%;
+    width: 80%;
     margin-top: 2em;
     flex-wrap: wrap;
 }
@@ -153,17 +214,7 @@ color: white;
 white-space: no-wrap;
 }
 
-.delete-listing-company-btn{
-    font-size: 1.2em;
-    margin-left: 10px;
-    border-radius: 26px;
-    border: 1px solid #9980FA;
-    background-color: transparent;
-    padding: 5px 10px;
-    min-width: 150px;
-    text-overflow: ellipsis;
-    color: #9980FA;
-}
+
 
 .new-listing-modal-dd{
     display: flex;
@@ -181,45 +232,8 @@ padding: 10px;
 
 @media (max-width: 700px) {
 
-
 #company-page-listing-section{
     width: 80%;
 }
-
-.seller-page-listing-item{
-    width: 100%;
-
-}
-
-.seller-page-listing-item h4{
-    max-width: 30%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.seller-page-listing-item p{
-    max-width: 30%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.spli-wrapper{
-    margin-right: -275px;
-}
-
-.delete-listing-company-btn{
-    font-size: 1em;
-    margin-left: 0px;
-    border-radius: 5px;
-    padding: 2px 5px;
-    min-width: 25px;
-}
-
-.spli-btn-container{
-    display: flex;
-    flex-direction: column;
-}
-    
+   
 }
