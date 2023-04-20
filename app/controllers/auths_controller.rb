@@ -28,7 +28,7 @@ class AuthsController < ApplicationController
             dancer = Dancer.find_by(uuid: decoded_token[0]["data"])
             render json: {first_name: dancer.first_name, last_name: dancer.last_name}
             rescue JWT::ExpiredSignature
-                render json: {message: "Session expired"}
+                render json:  {message: "Session expired"}
         end
         else
             render json: {error: 'Not logged in'}, status: 422

@@ -20,11 +20,11 @@ const [hasOpenListings, setHasOpenLisitngs] = useState(false)
                 headers: {"Content-type": "application/json"},
                 body: JSON.stringify({auth_token: authToken})
             })
-            if (req.status === 500){
+            let res = await req.json()
+            if (res.message === 'Session expired'){
                navigate('/')
             }
             else if (req.ok){
-                let res = await req.json()
                 setHasOpenLisitngs(res.length ===0 ? false : true)
                 let applied =  await res.filter(app => { return app.status === '0'})
                 setList1(applied)

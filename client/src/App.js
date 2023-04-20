@@ -11,7 +11,7 @@ import Home from './components/HomePage'
 import NotFound from './components/NotFound';
 import ApplicationsList from './components/ApplicationsList';
 import Footer from './components/Footer';
-import {BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import {BrowserRouter as Router, Route, Routes, redirect } from 'react-router-dom'
 import {createContext, useState, useEffect, useMemo} from 'react'
 import Cookies from 'js-cookie';
 export const UserContext = createContext()
@@ -28,6 +28,11 @@ const handleUserType = async() => {
       body: JSON.stringify({auth_token: authToken})
     })
     let res = await req.json()
+    if (res.message === "Session expired"){
+      console.log("expired")
+      redirect('/')
+      return
+    }
     setGlobalUser({first_name: res.first_name,last_name: res.last_name, isDancer: true,})
   } else if (Cookies.get('company-auth-token')){
     let authToken = Cookies.get('company-auth-token')

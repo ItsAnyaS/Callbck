@@ -86,8 +86,14 @@ class ApplicationsController <  ApplicationController
   def set_dancer
     hmac_secret = ENV["MY_SECRET_KEY"]
     token = params[:auth_token]
-    decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
-    @dancer = Dancer.find_by(uuid: decoded_token[0]["data"])
+    begin
+      decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
+      @dancer = Dancer.find_by(uuid: decoded_token[0]["data"])
+      rescue JWT::ExpiredSignature
+          render json: {message: "Session expired"}
+  end
+
+    
   end
 
 end
