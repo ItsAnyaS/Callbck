@@ -41,7 +41,7 @@ class AuthsController < ApplicationController
         if token
             begin
                 decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
-                company = Company.find_by(email: decoded_token[0]["data"])
+                company = Company.find_by(uuid: decoded_token[0]["data"])
                 render json: {name: company.name}
                 rescue JWT::ExpiredSignature
                     render json: {message: "Session expired"}
@@ -61,7 +61,7 @@ class AuthsController < ApplicationController
             if company.password_digest == params[:password]
             exp = Time.now.to_i + (5 * 60 * 60)
             hmac_secret = ENV["MY_SECRET_KEY"]
-            payload = { data:  company.email, exp: exp}
+            payload = { data:  company.uuid, exp: exp}
             token = JWT.encode payload, hmac_secret, 'HS256'
             render json: {"company-auth-token": token, name: company.name}
         else 
@@ -75,7 +75,7 @@ class AuthsController < ApplicationController
         if company.save
             exp = Time.now.to_i + (5 * 60 * 60)
             hmac_secret = ENV["MY_SECRET_KEY"]
-            payload = { data:  company.email, exp: exp}
+            payload = { data:  company.uuid, exp: exp}
             token = JWT.encode payload, hmac_secret, 'HS256'
             render json: {"company-auth-token": token, name: company.name}
         else
