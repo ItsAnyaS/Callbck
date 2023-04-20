@@ -62,12 +62,13 @@ class AuthsController < ApplicationController
 
     def company_login
         company = Company.find_by(email: params[:email])
+        exp = Time.now.to_i + (5 * 60 * 60)
         if !company
             render json: {error: "no account"}, status: 404
         else
         if company.password_digest == params[:password]
             hmac_secret = ENV["MY_SECRET_KEY"]
-            payload = { data:  company.email}
+            payload = { data:  company.email, exp: exp}
             token = JWT.encode payload, hmac_secret, 'HS256'
             render json: {"company-auth-token": token, name: company.name}
         else 
