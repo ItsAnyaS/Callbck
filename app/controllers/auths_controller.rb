@@ -4,12 +4,13 @@ class AuthsController < ApplicationController
 
     def login
     dancer = Dancer.find_by(email: params[:email])
+    exp = Time.now.to_i + (5 * 60 * 60)
         if !dancer
             render json: {error: "no account"}, status: 404
         else
         if dancer.password_digest == params[:password]
             hmac_secret = ENV["MY_SECRET_KEY"]
-            payload = { data:  dancer.uuid}
+            payload = { data:  dancer.uuid, exp: exp}
             token = JWT.encode payload, hmac_secret, 'HS256'
             render json: {"auth-token": token, first_name: dancer.first_name, last_name: dancer.last_name }
         else
@@ -22,9 +23,13 @@ class AuthsController < ApplicationController
         hmac_secret = ENV["MY_SECRET_KEY"]
         token = params[:auth_token]
         if token
-        decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
-        dancer = Dancer.find_by(uuid: decoded_token[0]["data"])
-        render json: {first_name: dancer.first_name, last_name: dancer.last_name}
+        begin
+            decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
+            dancer = Dancer.find_by(uuid: decoded_token[0]["data"])
+            render json: {first_name: dancer.first_name, last_name: dancer.last_name}
+            rescue JWT::ExpiredSignature
+                render json: {message: "Session expired"}
+        end
         else
             render json: {error: 'Not logged in'}, status: 422
         end
