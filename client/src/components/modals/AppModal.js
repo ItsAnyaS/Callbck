@@ -1,5 +1,4 @@
 const AppModal = ({modalInfo, setModalInfo, rejectApplication, updateApplication, setEmailInfo}) => {
-    console.log(modalInfo)
 return (
     <section onClick={()=> {setModalInfo(false)}} id='expanded-application-modal'>
                <div id="exp-app-modal-container" onClick={(e)=> {e.stopPropagation()}}>

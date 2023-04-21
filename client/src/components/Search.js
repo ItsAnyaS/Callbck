@@ -43,7 +43,6 @@ const Search = () => {
         getAllListings()
     }, [])
 
-console.log(searchParams)
     return (
         <main>
             <header id='search-header'>

@@ -47,10 +47,15 @@ def set_company
 end
 
 def verify_company
-  hmac_secret = 'my$ecredsfgihdghdfghdfkghndfkhdfkdhgiudtK3y'
+  hmac_secret = ENV["MY_SECRET_KEY"]
   token = params[:token]
-  decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
-  company = Company.find_by(email: decoded_token[0]["data"])
+  begin
+    decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
+    company = Company.find_by(uuid: decoded_token[0]["data"])
+    rescue JWT::ExpiredSignature
+        render json: {message: "Session expired"}
+end
+
 end
 
 def company_params

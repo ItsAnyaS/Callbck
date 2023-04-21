@@ -11,7 +11,6 @@ const ApplicationsListCard = ({app, rejectApplication, setModalInfo}) => {
             return 'hired'
         }
     }
-    console.log(app)
 return (
     <div className="applicant-card" key={app.id}>
     <img alt='Dancer headshot' src='../headshot.jpeg'/>
