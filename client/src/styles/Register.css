@@ -129,6 +129,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 padding: 15px 0px;
+color: black;
 }
 
 .input-container select{
@@ -137,6 +138,7 @@ width: 250px;
 border-radius: 5px;
 border: 1px solid rgba(0, 0, 0, 0.572);
 margin: 0;
+color: #000;
 }
 
 .input-container p {
@@ -171,6 +173,7 @@ margin: 0;
     border: none;
     height: 100%;
     width: 100%;
+    color: black;
 }
 
 .input-divider fieldset textarea {
@@ -204,6 +207,7 @@ margin: 0;
     border: none;
     text-decoration: underline;
     margin-top: 2em;
+    color: black;
 }
 /* 
 #signup-ta{
@@ -229,6 +233,17 @@ margin: 0;
     #dancer-signup-container{
         align-items: center;
         justify-content: center;
+    }
+
+    @media (max-width: 500px) {
+
+        #dancer-signup-container h1 {
+            font-size: 2.5em;
+        }
+    }
+
+    #dancer-signup-container h2 {
+
     }
 
     #dancer-signup-form {
