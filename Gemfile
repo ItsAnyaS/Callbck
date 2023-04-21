@@ -80,3 +80,5 @@ end
 gem "jsonapi-serializer", "~> 2.2"
 
 gem 'dotenv-rails'
+
+gem 'faker', '~> 3.2'

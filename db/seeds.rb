@@ -6,7 +6,20 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-company = Company.create(name: "New York City Ballet", email: "contact@nycb.com", bio: "The best ballet company in NYC that continues the work on George Balenchine and other post modern choreographers", number_of_employees: 100, company_type: "Not for profit", location: "10022", logo: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FNew_York_City_Ballet&psig=AOvVaw2SLWF_a2_vYkRm06UNPOlX&ust=1663788358540000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCLi0qOKMpPoCFQAAAAAdAAAAABAE")
-company = Company.create(name: "American Ballet theater", email: "contact@abt.com", bio: "The best second ballet company in NYC that continues the work on George Balenchine and other post modern choreographers", number_of_employees: 50, company_type: "Not for profit", location: "10012", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e2/American_Ballet_Theatre_logo.png")
-company = Company.create(name: "Royal Ballet Theater", email: "contact@nycb.com", bio: "The best ballet company in NYC that continues the work on George Balenchine and other post modern choreographers", number_of_employees: 100, company_type: "Not for profit", location: "10022", logo: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FNew_York_City_Ballet&psig=AOvVaw2SLWF_a2_vYkRm06UNPOlX&ust=1663788358540000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCLi0qOKMpPoCFQAAAAAdAAAAABAE")
 
+50.times do
+    Listing.create(
+      title: Faker::Lorem.sentence(word_count: 8),
+      description: Faker::Lorem.paragraph(sentence_count: 2),
+      style: ["ballet", "tap", "jazz"].sample,
+      dancer_gender: ["male", "female", "nonbinary"].sample,
+      compensation: Faker::Number.within(range: 500..2000),
+      image: "",
+      location: "11220",
+      rehersal_start_date: Faker::Time.between_dates(from: Date.today, to: Date.today + 1.year, period: :day),
+      show_date_start: Faker::Time.between_dates(from: Date.today, to: Date.today + 1.year, period: :day),
+      years_of_expirence: Faker::Number.within(range: 1..20),
+      company_id: Company.first.id
+    )
+  end
+  

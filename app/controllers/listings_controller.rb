@@ -21,146 +21,44 @@ class ListingsController < ApplicationController
         end
     end
 
+   
     def search
-        listings = Listing.all.sort {|a,z|  z.created_at - a.created_at}
-        puts params
-        #* If all fields are filled
-        if params[:keywords] && params[:keywords] != '' && params[:location] && params[:location] != '' && params[:style] && params[:style] != ''
-            listings =  listings.filter {|listing| listing.title.downcase.include?(params[:keywords].downcase) || listing.description.downcase.include?(params[:keywords].downcase) || listing.style.include?(params[:keywords].downcase)}
-            listings = listings.filter { |listing| listing.style.first == params[:style].downcase }
-
-
-                listings = listings.filter do |listing|
-                    if  listing.location[0] + listing.location[1] == params[:location][0] + params[:location][1]
-                        listing
-                    end
-                end
-    
-
-        if listings.length > 100
-            listings = listings.filter do |listing|
-                if  listing.location[0] + listing.location[1] + listing.location[2] == params[:location][0] + params[:location][1] + params[:location][2]
-                    listing
-                end
-            end
-        end
+        listings = Listing.all.sort {|a,z| z.created_at - a.created_at }
         
-            render json: listings
-        #* If only keyword and location fields are filled
-        elsif params[:keywords] && params[:keywords] != '' && params[:location] && params[:location] != ''
-            listings =  listings.filter {|listing| listing.title.downcase.include?(params[:keywords].downcase) || listing.description.downcase.include?(params[:keywords].downcase) || listing.style.include?(params[:keywords].downcase)}
+        keywords = params[:keywords]&.downcase
+        location = params[:location]&.downcase
+        style = params[:style]&.downcase
+      
 
-
-            listings = listings.filter do |listing|
-                if  listing.location[0] + listing.location[1] == params[:location][0] + params[:location][1]
-                    listing
-                end
-            end
-
-
-        if listings.length > 100
-            listings = listings.filter do |listing|
-                if  listing.location[0] + listing.location[1] + listing.location[2] == params[:location][0] + params[:location][1] + params[:location][2]
-                    listing
-                end
-            end
+        if keywords.present?
+          listings = listings.filter do |listing| 
+            listing.title.downcase.include?(keywords) || 
+            listing.description.downcase.include?(keywords) ||
+            listing.style.include?(keywords)
+          end
         end
-            render json: listings
-            #* If only kewords and style fields are filled
-        elsif params[:keywords] && params[:keywords] != '' && params[:style] && params[:style] != ''
-            listings = listings.filter {|listing| listing.title.downcase.include?(params[:keywords].downcase) || listing.description.downcase.include?(params[:keywords].downcase) || listing.style.include?(params[:keywords].downcase)}
-            listings = listings.filter {|listing| listing.style.first == params[:style].downcase }
-            render json: listings
-            #* If only locaton and style fields are filled
-        elsif params[:location] && params[:location] != '' && params[:style] && params[:style] != ''
-            listings = listings.filter {|listing| listing.style.first == params[:style].downcase }
-
-            listings = listings.filter do |listing|
-                if  listing.location[0] + listing.location[1] == params[:location][0] + params[:location][1]
-                    listing
-                end
-            end
-
-
-            if listings.length > 100
-                listings = listings.filter do |listing|
-                    if  listing.location[0] + listing.location[1] + listing.location[2] == params[:location][0] + params[:location][1] + params[:location][2]
-                        listing
-                    end
-                end
-            end
-
-            render json: listings
-
-         #* If only keyword field is filled
-        elsif params[:keywords] && params[:keywords] != ''
-            listings =  listings.filter {|listing| listing.title.downcase.include?(params[:keywords].downcase) || listing.description.downcase.include?(params[:keywords].downcase) || listing.style.include?(params[:keywords].downcase)}
-            render json: listings
-
-        #* If only location field is filled    
-        elsif params[:location] && params[:location] != ''
-
-            listings = listings.filter do |listing|
-                if  listing.location[0] + listing.location[1] == params[:location][0] + params[:location][1]
-                    listing
-                end
-            end
-
-
-            if listings.length > 100
-                listings = listings.filter do |listing|
-                    if  listing.location[0] + listing.location[1] + listing.location[2] == params[:location][0] + params[:location][1] + params[:location][2]
-                        listing
-                    end
-                end
-            end
-
-            render json: listings
-
-        #*If only style field is filled
-        elsif params[:style] && params[:style] != ''
-            listings = listings.filter {|listing| listing.style.first == params[:style].downcase }
-            render json: listings
-        else
-            #* error case
-            render json: listings
+      
+        if style.present?
+          listings = listings.filter {|listing| listing.style.first == style }
         end
+      
+        if location.present?
 
-    end
+          (0..location.length).each do |i|
+            shorter_location = location[0...i]
+            matched_listings = listings.filter do |listing|
+              listing.location.downcase.start_with?(shorter_location)
+            end
+            if matched_listings.length >= 50
+              listings = matched_listings
+              break
+            end
+          end
+        end
+      
+        render json: listings
+      end   
 
-    # def search
-    #     if params[:location] && params[:location] != ""
-    #             listings = Listing.where(location: params[:location]).sort {|a,z|  z.created_at - a.created_at}
-    #             if params[:keywords] && params[:keywords] !="" && params[:style] && params[:style] != ""
-    #             style_and_keyword_filtered_listings = listings.filter{|listing| listing.style.include?(params[:style]) && listing.title.downcase.include?(params[:keywords].downcase)}
-    #             render json: style_and_keyword_filtered_listings
-    #             elsif params[:style] && params[:style] != ""
-    #                 style_filtered_listings = listings.filter{|listing| listing.style.include?(params[:style])}
-    #                 render json: style_filtered_listings
-    #             elsif params[:keywords] && params[:keywords] != ""
-    #                 keyword_filtered_listings = listings.filter{|listing| listing.title.downcase.include?(params[:keywords].downcase)}
-    #                 render json: keyword_filtered_listings
-    #             else
-    #                 render json: listings
-    #             end
-    #     elsif params[:style] && params[:style] != ""
-    #             listings = Listing.all.filter{|listing| listing.style.include?(params[:style])}.sort {|a,z|  z.created_at - a.created_at}
-    #             if params[:keywords] && params[:keywords] != ""
-    #                 keyword_filtered_listings = listings.filter{|listing| listing.title.downcase.include?(params[:keywords].downcase)}
-    #                 render json: keyword_filtered_listings
-    #             else
-    #                 render json: listings
-    #             end
-    #     else
-    #         listings = Listing.all.sort {|a,z|  z.created_at - a.created_at}
-    #         if !params[:keywords] || params[:keywords] == ''
-    #         render json: listings
-    #         else
-    #             keyword_filtered_listings = listings.filter{|listing| listing.title.downcase.include?(params[:keywords].downcase)}
-    #             render json: keyword_filtered_listings
-    #         end
-    #     end
-    # end
 
     def listings_by_company
         listings = Listing.where(company_id: @company.id)
@@ -175,6 +73,7 @@ class ListingsController < ApplicationController
         @listing.destroy
         render json: {message: 'successfully deleted'}
     end
+    
 private
 
     def set_listing
