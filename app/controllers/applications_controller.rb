@@ -10,7 +10,7 @@ class ApplicationsController <  ApplicationController
 
     def applications_by_dancer
         applicaions = Application.where(dancer_id: @dancer.id)
-        applicaions = applicaion.filter {|app| app.status !== '4'}
+        applicaions = applicaions.filter {|app| app.status != '4'}
         render json: applicaions.to_json(methods: [:listing])
     end
 
