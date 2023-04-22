@@ -14,7 +14,7 @@ get '/applications/:id', to: 'applications#show'
 post '/applications_by_dancer', to: 'applications#applications_by_dancer'
 patch '/applications/:id', to: 'applications#update'
 post '/applications', to: 'applications#create'
-get '/applicaitons_by_listings/:id', to: 'applications#applicaitons_by_listings'
+get '/applications_by_listings/:id', to: 'applications#applications_by_listings'
 delete '/applications/:id', to: 'applications#destroy'
 
 #Listings

@@ -23,12 +23,12 @@ const ApplicationsList = () => {
         if (!isCompany){
             navigate('/')
         }
-        let req = await fetch(`/applicaitons_by_listings/${id}`)
+        let req = await fetch(`/applications_by_listings/${id}`)
         if (req.ok){
             let res = await req.json()
             setApplications(res)
             let hiredApps = res.filter(app => app.status === 'hired')
-            let notHiredApps = res.filter(app => app.status !== 'hired')
+            let notHiredApps = res.filter(app => app.status !== 'hired' && app.status !== "4")
             setNumOfApps(notHiredApps.length)
             setHired(hiredApps)
             let filteredApplications = res.filter(app => app.status === '0')
@@ -67,8 +67,9 @@ const ApplicationsList = () => {
 
     const rejectApplication = async(listingId) => {
         let req = await fetch(`/applications/${listingId}`, {
-            method: 'DELETE',
-            headers: {"Content-type": "application/json"}
+            method: 'PATCH',
+            headers: {"Content-type": "application/json"},
+            body: JSON.stringify({status: '4'})
         })
         let res = await req.json()
         if (req.ok){

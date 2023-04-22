@@ -10,6 +10,7 @@ class ApplicationsController <  ApplicationController
 
     def applications_by_dancer
         applicaions = Application.where(dancer_id: @dancer.id)
+        applicaions = applicaion.filter {|app| app.status !== '4'}
         render json: applicaions.to_json(methods: [:listing])
     end
 
@@ -18,8 +19,13 @@ class ApplicationsController <  ApplicationController
         dancer = Dancer.find_by(id: @application.dancer_id)
         company = Company.find_by(id: @application.company_id)
         status =  handle_status_convesion(params[:status])
+        if status == 'rejected'
+          DancerMailer.with(user: dancer, company: company).application_reject_email.deliver_later
+     
+      else
         DancerMailer.with(user: dancer, status: status, company: company).application_update_email.deliver_later
         render json: @applicaion
+      end
       else 
         render json: {message: "something went wrong"}
       end
@@ -41,7 +47,7 @@ class ApplicationsController <  ApplicationController
        
     end
 
-    def applicaitons_by_listings
+    def applications_by_listings
         response.headers.except! 'X-Frame-Options'
         applications = Application.where(listing_id: params[:id])
         if applications
@@ -78,8 +84,10 @@ class ApplicationsController <  ApplicationController
         "First"
     elsif status == '2'
         "Second"
-    else
+    elsif status == '3'
         "Final Callback"
+    else
+      "rejected"
     end
   end
 
