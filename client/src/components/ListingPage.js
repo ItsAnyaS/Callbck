@@ -105,7 +105,7 @@ return (
              year:"numeric",
              month:"short",
              day:"numeric"})}</p>
-    { globalUser?.isDancer &&  <button className="hover" onClick={()=> {applyForListing()}}>Apply</button>}
+    { globalUser?.isDancer &&  <button className="hover apply-btn" onClick={()=> {applyForListing()}}>Apply</button>}
         </section>
         <section id="listing-page-company-section">
             <div id='listing-company-name-container'>

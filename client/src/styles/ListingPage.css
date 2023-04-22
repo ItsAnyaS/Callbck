@@ -65,6 +65,10 @@ gap: 10px;
 font-size: 1.6em;
 }
 
+.apply-btn{
+color: black;
+}
+
 #listing-pagination-seciton {
 width: 60%;
 display: flex;
@@ -100,7 +104,7 @@ margin-right: auto;
     border-radius: 5px;
     padding: 5px 10px;
     font-weight: 600;
-    animation: notif-slide-in 5000ms;
+    animation: notif-slide-in 3000ms;
 }
 
 @keyframes notif-slide-in {
