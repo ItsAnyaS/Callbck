@@ -79,7 +79,6 @@ class DancersController < ApplicationController
       begin
         decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
         dancer = Dancer.find_by(uuid: decoded_token[0]["data"])
-        render json: {first_name: dancer.first_name, last_name: dancer.last_name}
         rescue JWT::ExpiredSignature
             render json: {message: "Session expired"}
     end
