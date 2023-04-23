@@ -17,7 +17,7 @@ Rails.application.configure do
     port:                 587,
     domain:               'callbck.com',
     user_name:            'contact@callbck.com',
-    password:             'gmrvrtfrsjcontdz',
+    password:             ENV["MY_GMAIL_PASSWORD"],
     authentication:       'plain',
     enable_starttls_auto: true,
     open_timeout:         5,
